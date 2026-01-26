@@ -10,7 +10,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root, html, body {
-    font-family: var(--font-body);
     scroll-behavior: smooth;
     height: 100%;
 }
@@ -126,8 +125,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-brand);
   }
 }
 
