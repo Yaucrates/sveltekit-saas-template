@@ -4,22 +4,22 @@
 
         <nav class="flex flex-col gap-10">
             <div class="gap-3 flex flex-col text-sm">
-                <a href="/">Resources</a>
-                <a href="/">Sign In</a>
+                <a href="/" class="hover:text-neutral-600 transition-colors">Resources</a>
+                <a href="/" class="hover:text-neutral-600 transition-colors">Sign In</a>
             </div>
 
             <div class="gap-3 flex flex-col text-xs">
                 <p class="text-neutral-400 uppercase">Platform</p>
-                <a href="/#curriculum" class="text-neutral-500">Course Curriculum</a>
-                <a href="/#problem-sets" class="text-neutral-500">Problem Sets</a>
-                <a href="/#automated-grading" class="text-neutral-500">Automated Grading</a>
-                <a href="/#student-analytics" class="text-neutral-500">Student Analytics</a>
+                <a href="/#curriculum" class="text-neutral-500 hover:text-black transition-colors">Course Curriculum</a>
+                <a href="/#problem-sets" class="text-neutral-500 hover:text-black transition-colors">Problem Sets</a>
+                <a href="/#automated-grading" class="text-neutral-500 hover:text-black transition-colors">Automated Grading</a>
+                <a href="/#student-analytics" class="text-neutral-500 hover:text-black transition-colors">Student Analytics</a>
             </div>
         </nav>
 
-        <button class="p-3 text-sm bg-black text-white font-light rounded-sm">
+        <a href="/" class="p-3 text-sm text-center bg-black text-white font-light rounded-sm hover:bg-neutral-800 transition-colors">
             Book a Demo
-        </button>
+        </a>
     </aside>
 
     <h1>Welcome to SvelteKit</h1>
