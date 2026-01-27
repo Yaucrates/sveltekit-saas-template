@@ -213,26 +213,45 @@
                         <div class="md:col-span-4">
                             <p class="text-stone-900 leading-relaxed">
                                 <span class="block text-blue-500 font-medium mb-1">Instant Iteration</span>
-                                Automated grading provides hints in seconds. Students can fix logic errors immediately while the context is still fresh.
+                                Automated grading guides students so that they can learn from their errors and fix them immediately while the context is still fresh.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Row 3: Insights -->
+                    <!-- Row 3: Standardization -->
                     <div class="grid md:grid-cols-12 py-10 gap-8">
                         <div class="md:col-span-4">
-                            <h4 class="text-sm font-semibold uppercase tracking-wider text-stone-400">Instructional Data</h4>
+                            <h4 class="text-sm font-semibold uppercase tracking-wider text-stone-400">Course Standardization</h4>
                         </div>
                         <div class="md:col-span-4">
                             <p class="text-stone-500 leading-relaxed">
-                                <span class="block text-stone-900 font-medium mb-1">Lagging Indicators</span>
-                                You only know a student is struggling after a failed midterm. Remediation is often too late to save their grade.
+                                <span class="block text-stone-900 font-medium mb-1">Inconsistent Experience</span>
+                                Course content varies significantly by instructor, creating knowledge gaps. Prerequisite disconnects (e.g., teaching ARM vs. x86) often leave students unprepared for follow-up courses.
                             </p>
                         </div>
                         <div class="md:col-span-4">
                             <p class="text-stone-900 leading-relaxed">
-                                <span class="block text-blue-500 font-medium mb-1">Precision Analytics</span>
-                                Heatmaps show exactly where students are stuck in a problem set. Identify and support struggling students in real-time.
+                                <span class="block text-blue-500 font-medium mb-1">Centralized Rigor</span>
+                                Unified curriculum management ensures every section meets the same high standards. Courses are tightly synchronized, guaranteeing students have the necessary foundation for advanced topics.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Academic Integrity -->
+                    <div class="grid md:grid-cols-12 py-10 gap-8">
+                        <div class="md:col-span-4">
+                            <h4 class="text-sm font-semibold uppercase tracking-wider text-stone-400">Academic Integrity</h4>
+                        </div>
+                        <div class="md:col-span-4">
+                            <p class="text-stone-500 leading-relaxed">
+                                <span class="block text-stone-900 font-medium mb-1">The "Cheating" Problem</span>
+                                Copy-pasting code is typically undetectable in standard document submissions, leading to academic dishonesty.
+                            </p>
+                        </div>
+                        <div class="md:col-span-4">
+                            <p class="text-stone-900 leading-relaxed">
+                                <span class="block text-blue-500 font-medium mb-1">Playback & Detection</span>
+                                Impart uses MOSS-style plagiarism detection and coding playback history.
                             </p>
                         </div>
                     </div>
