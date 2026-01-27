@@ -4,6 +4,7 @@
 
         <nav class="flex flex-col gap-10">
             <div class="gap-3 flex flex-col text-sm">
+                <a href="/" class="hover:text-neutral-600 transition-colors">Mission</a>
                 <a href="/" class="hover:text-neutral-600 transition-colors">Resources</a>
                 <a href="/" class="hover:text-neutral-600 transition-colors">Sign In</a>
             </div>
@@ -11,9 +12,9 @@
             <div class="gap-3 flex flex-col text-xs">
                 <p class="text-neutral-400 uppercase">Platform</p>
                 <a href="/#curriculum" class="text-neutral-500 hover:text-black transition-colors">Course Curriculum</a>
-                <a href="/#problem-sets" class="text-neutral-500 hover:text-black transition-colors">Problem Sets</a>
                 <a href="/#automated-grading" class="text-neutral-500 hover:text-black transition-colors">Automated Grading</a>
-                <a href="/#student-analytics" class="text-neutral-500 hover:text-black transition-colors">Student Analytics</a>
+                <a href="/#classroom-format" class="text-neutral-500 hover:text-black transition-colors">Classroom Formats</a>
+                <a href="/#impart-tooling" class="text-neutral-500 hover:text-black transition-colors">Impart Tooling</a>
             </div>
         </nav>
 
@@ -78,11 +79,12 @@
         <!-- Feature 1: Interactive Curriculum -->
         <section id="curriculum" class="max-w-6xl mx-auto px-12 py-32 grid md:grid-cols-2 gap-20 items-center">
             <div>
-                <h2 class="text-4xl tracking-tight leading-tight mb-6">Boring textbooks become<br>interactive experiences.</h2>
+                <h2 class="text-4xl tracking-tight leading-tight mb-6">A complete curriculum<br>with labs and problem sets.</h2>
                 <p class="text-lg text-stone-600 leading-relaxed mb-6">
-                    Impart provides access to engaging, interactive content. Interactive
-                    visualizations and intuitive explainations keep students actively
-                    engaged instead of passively reading.
+                    Impart delivers a fully structured course out of the box.
+                    From comprehensive lecture materials to challenging problem
+                    sets and hands-on labs, everything is pre-built so you can
+                    focus on teaching rather than content creation.
                 </p>
             </div>
             <div class="bg-[#EBE9E4] p-6 rounded-xl rotate-1 shadow-xl">
@@ -130,7 +132,7 @@
         </section>
 
         <!-- Classroom Flexibility Section -->
-        <section class="max-w-6xl mx-auto px-12 py-32">
+        <section id="classroom-format" class="max-w-6xl mx-auto px-12 py-32">
             <div class="text-center mb-16">
                 <h2 class="text-4xl tracking-tight leading-tight mb-4">Built for every classroom format</h2>
                 <p class="text-lg text-stone-600 max-w-2xl mx-auto">Whether you teach in-person, online, or a blend of both—Impart adapts to how you want to run your course.</p>
@@ -162,7 +164,7 @@
         </section>
 
         <!-- Comparison Section -->
-        <section class="bg-white py-32 border-y border-stone-200">
+        <section id="impart-tooling" class="bg-white py-32 border-y border-stone-200">
             <div class="max-w-6xl mx-auto px-12">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                     <div class="max-w-xl">
@@ -251,7 +253,7 @@
                         <div class="md:col-span-4">
                             <p class="text-stone-900 leading-relaxed">
                                 <span class="block text-blue-500 font-medium mb-1">Playback & Detection</span>
-                                Impart uses MOSS-style plagiarism detection and coding playback history.
+                                Impart uses MOSS-style plagiarism detection and coding playback history to catch cheating.
                             </p>
                         </div>
                     </div>
@@ -260,20 +262,38 @@
         </section>
 
         <!-- Footer CTA -->
-        <div class="max-w-6xl mx-auto px-12 py-32 grid md:grid-cols-2 gap-12">
-            <div>
-                <h2 class="text-5xl tracking-tighter leading-none mb-8">We build tools that make active learning possible at scale.</h2>
-                <button class="bg-stone-900 text-white px-8 py-3 rounded-full font-medium hover:bg-black transition-all">Learn about Impart</button>
+        <div class="max-w-6xl flex justify-between mx-auto px-12 py-32 gap-12">
+            <div class="w-1/2">
+                <h2 class="text-5xl tracking-tighter leading-none mb-8">Ready for the next step?</h2>
+                <p>
+                    Whether you're in the early stages of LMS discovery or your edtech
+                    stack just needs some fine-tuning, we're here to help. Let's talk
+                    about your goals.
+                </p>
             </div>
             <div class="flex flex-col justify-end text-sm text-stone-500 space-y-4">
-                <p>Impart is built by educators and engineers who've taught thousands of students and know what actually works.</p>
-                <p>We're here to make great teaching scalable.</p>
+                <a href="/" class="h-12 w-48 text-center bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Book a meeting.</a>
+                <p class="text-xs">No pressure. No fluff.</p>
             </div>
         </div>
         
         <!-- Big Logo Footer -->
-        <div class="bg-stone-900 py-16 text-center">
-            <h1 class="text-[12rem] leading-none font-brand text-white tracking-tighter opacity-90 font-medium">Impart</h1>
+        <div class="py-16 px-12 gap-12 flex flex-col border-t bg-white border-stone-200">
+            <div class="flex justify-between items-end">
+                <p class="w-2/5 text-xl text-stone-500">
+                    Impart is building the infrastructure for modern education.
+                    We help academic institutions deliver world-class education
+                    directly to their students.
+                </p>
+                <div class="gap-4 flex flex-col text-sm text-stone-400">
+                    <a href="/">Terms of Use</a>
+                    <a href="/">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="flex justify-between items-end">
+                <h1 class="text-[12rem] leading-none font-brand text-stone-900 tracking-tighter opacity-90 font-medium">Impart</h1>
+                <p class="text-xs text-stone-500">© 2026 Impart. All rights reserved.</p>
+            </div>
         </div>
     </div>
 </main>
