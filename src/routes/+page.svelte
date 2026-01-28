@@ -1,5 +1,38 @@
+<script lang="ts">
+	import { onMount } from "svelte";
+	import { setNavigationCollapse } from "$lib/components/Navigation/Navigation.svelte";
+
+	let heroSection: HTMLElement;
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const entry = entries[0];
+				// true when hero is visible, false when scrolled past
+				setNavigationCollapse(!entry.isIntersecting);
+			},
+			{
+				root: null,
+				// threshold: 0 means "trigger as soon as even 1 pixel is visible/hidden"
+				// You can adjust rootMargin if you want it to trigger slightly earlier
+				threshold: 0
+			}
+		);
+
+		if (heroSection) {
+			observer.observe(heroSection);
+		}
+
+		return () => {
+			if (heroSection) observer.disconnect();
+            setNavigationCollapse(false);
+		};
+	});
+</script>
+
 <!-- Hero Section -->
-<section class="max-w-6xl mx-auto px-12 py-24">
+<!-- Added bind:this={heroSection} here -->
+<section bind:this={heroSection} class="max-w-6xl mx-auto px-12 py-24">
     <div class="max-w-3xl">
         <h1 class="text-6xl tracking-tighter leading-[1.1] font-normal mb-8 text-stone-900">
             Meet Your All-in-One<br>
@@ -42,10 +75,10 @@
 <section class="border-y border-stone-200 bg-white py-12">
     <div class="max-w-6xl mx-auto px-12 flex flex-wrap items-center justify-between text-stone-400 grayscale opacity-70 gap-8">
         <span class="text-sm font-medium text-stone-500">Trusted by educators at</span>
-        <span class="font-bold text-lg tracking-widest">SCHS</span>
-        <span class="font-serif font-bold text-lg">UNIVERSITY OF TENNESSEE</span>
-        <span class="font-serif font-bold text-lg">MARYVILLE COLLEGE</span>
-        <span class="font-bold text-lg">BELMONT</span>
+        <span class="font-brand font-bold text-lg tracking-widest">SCHS</span>
+        <span class="font-brand font-bold text-lg">UNIVERSITY OF TENNESSEE</span>
+        <span class="font-brand font-bold text-lg">MARYVILLE COLLEGE</span>
+        <span class="font-brand font-bold text-lg">BELMONT</span>
     </div>
 </section>
 

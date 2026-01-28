@@ -3,9 +3,9 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	// Adjust import path based on where you put the component
-	import NavigationBar from '$lib/components/NavigationBar.svelte'; 
+	import NavigationBar from '$lib/components/Navigation/NavigationBar.svelte'; 
 
-	let { children } = $props();
+	let { children } = $props(); 
 </script>
 
 <svelte:head>
