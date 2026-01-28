@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getNavigationCollapse } from "./Navigation.svelte";
 
-
 	let isHovered = $state(false);
 
 	let isExpanded = $derived(!getNavigationCollapse() || isHovered);
@@ -18,7 +17,7 @@
 >
 	<!-- Header / Logo Area -->
 	<div class="relative h-24 w-full shrink-0">
-		<h1
+		<a href="/"
 			class="
                 font-brand text-4xl leading-tighter absolute left-8 top-6 origin-left
                 transition-all duration-300 whitespace-nowrap
@@ -28,7 +27,7 @@
             "
 		>
 			Impart
-		</h1>
+		</a>
 
 		<h1
 			class="
@@ -51,15 +50,9 @@
             {isExpanded ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
         "
 	>
-		<!-- 
-            UPDATES HERE: 
-            1. Removed 'h-full'
-            2. Added 'flex-1' (consumes all empty space) 
-            3. Added 'justify-center' (centers content vertically)
-        -->
 		<nav class="flex-1 flex flex-col justify-center gap-10 w-full">
 			<div class="gap-3 flex flex-col text-sm whitespace-nowrap">
-				<a href="/" class="hover:text-neutral-600 transition-colors">Mission</a>
+				<a href="/mission" class="hover:text-neutral-600 transition-colors">Mission</a>
 				<a href="/" class="hover:text-neutral-600 transition-colors">Resources</a>
 				<a href="/" class="hover:text-neutral-600 transition-colors">Sign In</a>
 			</div>

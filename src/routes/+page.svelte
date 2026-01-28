@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { setNavigationCollapse } from "$lib/components/Navigation/Navigation.svelte";
+	import MeetingCTA from "$lib/components/MeetingCTA.svelte";
 
 	let heroSection: HTMLElement;
 
@@ -267,43 +268,4 @@
     </div>
 </section>
 
-<!-- Footer CTA -->
-<div class="mx-6 my-6 rounded-3xl bg-stone-900 text-white overflow-hidden relative">
-    <div class="absolute top-0 right-0 w-125 h-125 bg-blue-600/20 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3"></div>
-    
-    <div class="max-w-6xl mx-auto px-12 py-24 relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
-        <div class="max-w-xl">
-            <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Ready for the next step?</h2>
-            <p class="text-stone-400 text-lg font-light">
-                Whether you're in the early stages of discovery or your edtech
-                stack needs some improved too,ing, we're here to help. Let's talk
-                about your goals.
-            </p>
-        </div>
-        <div class="flex flex-col items-center gap-4">
-            <a href="/" class="inline-block bg-white text-stone-900 px-8 py-4 rounded-sm font-semibold hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl hover:scale-105 duration-200">
-                Book a meeting
-            </a>
-            <p class="text-stone-400">No pressure. No fluff.</p>
-        </div>
-    </div>
-</div>
-
-<!-- Big Logo Footer -->
-<div class="py-16 px-12 gap-12 flex flex-col border-t bg-white border-stone-200">
-    <div class="flex justify-between items-end">
-        <p class="w-2/5 text-xl text-stone-500">
-            Impart is building the infrastructure for modern education.
-            We help academic institutions deliver world-class education
-            directly to their students.
-        </p>
-        <div class="gap-4 flex flex-col text-sm text-stone-400">
-            <a href="/">Terms of Use</a>
-            <a href="/">Privacy Policy</a>
-        </div>
-    </div>
-    <div class="flex justify-between items-end">
-        <h1 class="text-[12rem] leading-none font-brand text-stone-900 tracking-tighter opacity-90 font-medium">Impart</h1>
-        <p class="text-xs text-stone-500">© 2026 Impart. All rights reserved.</p>
-    </div>
-</div>
+<MeetingCTA />
