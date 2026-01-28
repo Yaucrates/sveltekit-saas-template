@@ -26,7 +26,7 @@
 
 		return () => {
 			if (heroSection) observer.disconnect();
-            setNavigationCollapse(false);
+            setNavigationCollapse(true);
 		};
 	});
 </script>

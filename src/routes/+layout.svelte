@@ -15,11 +15,9 @@
 <div class="h-screen flex bg-stone-50 font-sans text-stone-900 overflow-hidden">
 	<NavigationBar />
 
-	<main class="flex-1 overflow-y-auto scroll-smooth flex flex-col">
-        <div class="min-h-screen flex-1 w-full">
-            {@render children()}
-        </div>
+    <div class="min-h-screen flex-1 overflow-y-auto scroll-smooth w-full">
+        {@render children()}
 
         <Footer />
-	</main>
+    </div>
 </div>
