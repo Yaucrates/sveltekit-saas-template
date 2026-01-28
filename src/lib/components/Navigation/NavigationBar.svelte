@@ -19,7 +19,7 @@
 	<div class="relative h-24 w-full shrink-0">
 		<a href="/"
 			class="
-                font-brand text-4xl leading-tighter absolute left-8 top-6 origin-left
+                font-brand text-3xl leading-tighter absolute left-8 top-6 origin-left
                 transition-all duration-300 whitespace-nowrap
                 {isExpanded
 				? 'opacity-100 translate-x-0 scale-100 delay-100'
@@ -31,7 +31,7 @@
 
 		<h1
 			class="
-                font-brand text-4xl leading-tighter absolute left-1/2 top-6 -translate-x-1/2
+                font-brand text-3xl leading-tighter absolute left-1/2 top-6 -translate-x-1/2
                 transition-all duration-300 origin-center
                 {isExpanded
 				? 'opacity-0 scale-50 pointer-events-none'
@@ -52,7 +52,6 @@
 	>
 		<nav class="flex-1 flex flex-col justify-center gap-10 w-full">
 			<div class="gap-3 flex flex-col text-sm whitespace-nowrap">
-				<a href="/mission" class="hover:text-neutral-600 transition-colors">Mission</a>
 				<a href="/" class="hover:text-neutral-600 transition-colors">Resources</a>
 				<a href="/" class="hover:text-neutral-600 transition-colors">Sign In</a>
 			</div>

@@ -7,7 +7,7 @@
             <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Ready for the next step?</h2>
             <p class="text-stone-400 text-lg font-light">
                 Whether you're in the early stages of discovery or your edtech
-                stack needs some improved too,ing, we're here to help. Let's talk
+                stack needs some improved tooling, we're here to help. Let's talk
                 about your goals.
             </p>
         </div>
