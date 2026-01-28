@@ -235,7 +235,7 @@
 </section>
 
 <!-- Footer CTA -->
-<div class="mx-6 mb-6 rounded-3xl bg-stone-900 text-white overflow-hidden relative">
+<div class="mx-6 my-6 rounded-3xl bg-stone-900 text-white overflow-hidden relative">
     <div class="absolute top-0 right-0 w-125 h-125 bg-blue-600/20 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3"></div>
     
     <div class="max-w-6xl mx-auto px-12 py-24 relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
