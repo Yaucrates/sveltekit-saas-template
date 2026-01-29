@@ -31,13 +31,20 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Impart | EdTech Platform</title>
+	<meta
+		name="description"
+		content="Impart is the all-in-one learning platform for modern computer science education. Pre-built curricula, auto-graded assignments, and interactive tools designed for in-person, online, and flipped classrooms."
+	/>
+</svelte:head>
+
 <!-- Hero Section -->
-<!-- Added bind:this={heroSection} here -->
 <section bind:this={heroSection} class="max-w-6xl mx-auto px-12 py-24">
     <div class="max-w-3xl">
         <h1 class="text-6xl tracking-tighter leading-[1.1] font-normal mb-8 text-stone-900">
             Meet Your All-in-One<br>
-            <span class="text-stone-400">Active Learning Platform</span>
+            <span class="text-stone-400">Learning Platform</span>
         </h1>
         <p class="text-xl text-stone-600 mb-10 leading-relaxed max-w-xl">
             Impart is the easiest way to adopt a complete modern Course. Curriculums, auto-graded assignments, and flipped classroom tools are all built into one interactive platform.

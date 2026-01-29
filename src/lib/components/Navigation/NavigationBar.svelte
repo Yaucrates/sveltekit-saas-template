@@ -52,8 +52,8 @@
 	>
 		<nav class="flex-1 flex flex-col justify-center gap-10 w-full">
 			<div class="gap-3 flex flex-col text-sm whitespace-nowrap">
-				<a href="/" class="hover:text-neutral-600 transition-colors">Resources</a>
-				<a href="/" class="hover:text-neutral-600 transition-colors">Sign In</a>
+				<!-- <a href="/resources" class="hover:text-neutral-600 transition-colors">Resources</a> -->
+				<a href="/auth/signin" class="hover:text-neutral-600 transition-colors">Sign In</a>
 			</div>
 
 			<div class="gap-3 flex flex-col text-xs whitespace-nowrap">

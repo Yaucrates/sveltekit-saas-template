@@ -7,8 +7,8 @@
             directly to their students.
         </p>
         <div class="gap-4 flex flex-col text-sm text-stone-400">
-            <a href="/">Terms of Use</a>
-            <a href="/">Privacy Policy</a>
+            <a href="/terms-and-conditions">Terms and Conditions</a>
+            <a href="/privacy-policy">Privacy Policy</a>
         </div>
     </div>
     <div class="flex justify-between items-end">
