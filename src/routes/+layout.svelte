@@ -12,12 +12,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="h-screen flex bg-stone-50 font-sans text-stone-900 overflow-hidden">
-	<NavigationBar />
-
-    <div class="min-h-screen flex-1 overflow-y-auto scroll-smooth w-full">
-        {@render children()}
-
-        <Footer />
-    </div>
+<div class="h-screen flex bg-stone-50 text-stone-900 overflow-hidden">
+    {@render children()}
 </div>
