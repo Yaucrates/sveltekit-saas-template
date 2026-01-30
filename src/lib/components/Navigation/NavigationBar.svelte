@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ImpartNameLogo from "../logos/ImpartNameLogo.svelte";
 	import { getNavigationCollapse } from "./Navigation.svelte";
 
 	let isHovered = $state(false);
@@ -19,14 +20,13 @@
 	<div class="relative h-24 w-full shrink-0">
 		<a href="/"
 			class="
-                font-brand text-3xl leading-tighter absolute left-8 top-6 origin-left
-                transition-all duration-300 whitespace-nowrap
+                absolute left-8 top-6 origin-left transition-all duration-300
                 {isExpanded
 				? 'opacity-100 translate-x-0 scale-100 delay-100'
 				: 'opacity-0 -translate-x-4 scale-95 pointer-events-none'}
             "
 		>
-			Impart
+			<ImpartNameLogo />
 		</a>
 
 		<h1
@@ -53,7 +53,7 @@
 		<nav class="flex-1 flex flex-col justify-center gap-10 w-full">
 			<div class="gap-3 flex flex-col text-sm whitespace-nowrap">
 				<!-- <a href="/resources" class="hover:text-neutral-600 transition-colors">Resources</a> -->
-				<a href="/auth/signin" class="hover:text-neutral-600 transition-colors">Sign In</a>
+				<a href="/signin" class="hover:text-neutral-600 transition-colors">Sign In</a>
 			</div>
 
 			<div class="gap-3 flex flex-col text-xs whitespace-nowrap">
