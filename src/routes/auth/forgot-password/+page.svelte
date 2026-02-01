@@ -24,7 +24,7 @@
 				We've sent a password reset link to your email address. Click the link to create a new
 				password.
 			</p>
-			<a href="/login" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">
+			<a href="/auth/login" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">
 				Return to sign in
 			</a>
 		</div>
@@ -43,7 +43,7 @@
 
 		<p class="mt-6 text-center text-sm text-stone-600">
 			Remember your password?
-			<a href="/login" class="text-blue-600 hover:text-blue-700 hover:underline font-medium">
+			<a href="/auth/login" class="text-blue-600 hover:text-blue-700 hover:underline font-medium">
 				Sign in
 			</a>
 		</p>

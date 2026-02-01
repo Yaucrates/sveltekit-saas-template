@@ -21,10 +21,10 @@
 	</p>
 
 	<div class="space-y-3">
-		<a href="/signup" class="block">
+		<a href="/auth/signup" class="block">
 			<Button class="w-full">Try signing up again</Button>
 		</a>
-		<a href="/login" class="block">
+		<a href="/auth/login" class="block">
 			<Button variant="secondary" class="w-full">Go to sign in</Button>
 		</a>
 	</div>

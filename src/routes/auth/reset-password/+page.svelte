@@ -44,7 +44,7 @@
 		{#if form?.message}
 			<FormError message={form.message} />
 			<p class="text-sm text-stone-600 text-center">
-				<a href="/forgot-password" class="text-blue-600 hover:text-blue-700 hover:underline">
+				<a href="/auth/forgot-password" class="text-blue-600 hover:text-blue-700 hover:underline">
 					Request a new reset link
 				</a>
 			</p>

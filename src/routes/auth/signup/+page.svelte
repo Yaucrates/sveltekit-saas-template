@@ -21,7 +21,7 @@
 
 	<meta property="og:title" content="Impart | Sign Up" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="/Signup.webp" />
+	<meta property="og:image" content="signup.webp" />
 	<meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
@@ -38,7 +38,7 @@
 		<h1 class="text-4xl font-brand tracking-tight text-stone-900 mb-2">Create your account</h1>
 		<p class="text-stone-600 mb-8">Start using Impart today</p>
 
-		<form use:enhance method="POST" action="?/signup" class="space-y-6">
+		<form use:enhance method="POST" action="?/auth/signup" class="space-y-6">
 			<div>
 				<Label for="email" required>Email</Label>
 				<Input
@@ -69,7 +69,7 @@
 
 		<p class="mt-6 text-center text-sm text-stone-600">
 			Already have an account?
-			<a href="/login" class="text-blue-600 hover:text-blue-700 hover:underline font-medium">
+			<a href="/auth/login" class="text-blue-600 hover:text-blue-700 hover:underline font-medium">
 				Sign in
 			</a>
 		</p>

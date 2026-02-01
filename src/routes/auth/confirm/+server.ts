@@ -19,28 +19,12 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
     redirectTo.searchParams.delete("type");
 
     if (token_hash && type) {
-        const { data, error } = await supabase.auth.verifyOtp({ type, token_hash });
+        const { error } = await supabase.auth.verifyOtp({ type, token_hash });
         if (!error) {
-            // Only create user_data for new signups, not password recovery
-            if (type !== 'recovery') {
-                const username = data.user?.email?.split("@")[0];
-                const { error: insertError } = await supabase.from("user_data").insert([
-                    {
-                        user_id: data.user?.id,
-                        username: username,
-                    }
-                ]);
-
-                if (insertError) {
-                    console.error(insertError);
-                }
-            }
-
             redirectTo.searchParams.delete("next");
             redirect(303, redirectTo);
         }
     }
 
-    // redirectTo.pathname = "/auth/error";
     redirect(303, redirectTo);
 };
