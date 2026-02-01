@@ -22,7 +22,7 @@
 	<h1 class="text-4xl font-brand tracking-tight text-stone-900 mb-2">Welcome back</h1>
 	<p class="text-stone-600 mb-8">Sign in to your Impart account</p>
 
-	<form use:enhance method="POST" action="?/auth/login" class="space-y-6">
+	<form use:enhance method="POST" action="?/login" class="space-y-6">
 		<div>
 			<Label for="email" required>Email</Label>
 			<Input id="email" type="email" name="email" required autocomplete="email" />
