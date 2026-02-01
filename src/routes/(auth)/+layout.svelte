@@ -1,11 +1,20 @@
 <script lang="ts">
-    import ImpartNameLogo from '$lib/components/logos/ImpartNameLogo.svelte';
+	import ImpartNameLogo from '$lib/components/logos/ImpartNameLogo.svelte';
 	import Footer from '$lib/components/Navigation/Footer.svelte';
 
-    let { children } = $props();
+	let { children } = $props();
 </script>
 
-<main class="min-h-screen pb-20 flex flex-col items-center">
-    {@render children()}
-</main>
-<Footer />
+<div class="min-h-screen bg-stone-50 flex flex-col">
+	<header class="py-8 px-12">
+		<a href="/" class="inline-block hover:opacity-80 transition-opacity">
+			<ImpartNameLogo />
+		</a>
+	</header>
+
+	<main class="flex-1 flex items-center justify-center">
+		{@render children()}
+	</main>
+
+	<Footer />
+</div>

@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Impart | EdTech Platform</title>
+	<title>Impart | Digital Courseware</title>
 	<meta
 		name="description"
 		content="Impart is the all-in-one learning platform for modern computer science education. Pre-built curricula, auto-graded assignments, and interactive tools designed for in-person, online, and flipped classrooms."
