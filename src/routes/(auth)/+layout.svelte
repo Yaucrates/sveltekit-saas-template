@@ -15,6 +15,5 @@
 	<main class="flex-1 flex items-center justify-center">
 		{@render children()}
 	</main>
-
-	<Footer />
 </div>
+<Footer />

@@ -4,8 +4,8 @@ import type { Database } from '$lib/database.types'; // import generated types
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 declare global {
-	namespace App {
-		// interface Error {}
+    namespace App {
+        // interface Error {}
         interface Locals {
             supabase: SupabaseClient<Database>
             safeGetSession: () => Promise<{ session: Session | null; user: User | null }>
@@ -15,9 +15,9 @@ declare global {
         interface PageData {
             session: Session | null
         }
-		// interface PageState {}
-		// interface Platform {}
-	}
+        // interface PageState {}
+        // interface Platform {}
+    }
 }
 
 export {};
