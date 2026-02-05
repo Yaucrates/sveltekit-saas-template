@@ -48,6 +48,10 @@ export const handle: Handle = async ({ event, resolve }) => {
     return { session, user }
   }
 
+  const { session, user } = await event.locals.safeGetSession();
+  event.locals.session = session;
+  event.locals.user = user;
+
   return resolve(event, {
     filterSerializedResponseHeaders(name) {
       return name === 'content-range' || name === 'x-supabase-api-version'

@@ -2,6 +2,13 @@ import { redirect } from "@sveltejs/kit";
 
 import type { Actions } from "./$types";
 
+// Redirect authenticated users away from signup page
+export const load = async ({ locals: { user } }) => {
+	if (user) {
+		throw redirect(303, '/dashboard');
+	}
+};
+
 export const actions: Actions = {
     signup: async ({ request, locals: { supabase } }) => {
         const formData = await request.formData();
