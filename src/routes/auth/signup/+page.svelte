@@ -16,13 +16,8 @@
 </script>
 
 <svelte:head>
-	<title>Impart | Sign Up</title>
+	<title>Sign Up | Impart</title>
 	<meta name="description" content="Sign Up to Impart." />
-
-	<meta property="og:title" content="Impart | Sign Up" />
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="signup.webp" />
-	<meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
 {#if signup_success}

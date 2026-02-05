@@ -9,13 +9,8 @@
 </script>
 
 <svelte:head>
-	<title>Impart | Sign In</title>
+	<title>Sign In | Impart</title>
 	<meta name="description" content="Sign in to Impart." />
-
-	<meta property="og:title" content="Impart | Sign In" />
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="/login.webp" />
-	<meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
 <div class="px-12 py-24 w-full max-w-md mx-auto">

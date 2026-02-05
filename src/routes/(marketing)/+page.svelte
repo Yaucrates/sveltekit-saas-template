@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Impart | Digital Courseware</title>
+	<title>Digital Courseware | Impart</title>
 	<meta
 		name="description"
 		content="Impart is the all-in-one learning platform for modern computer science education. Pre-built curricula, auto-graded assignments, and interactive tools designed for in-person, online, and flipped classrooms."
@@ -50,7 +50,7 @@
             Impart is the easiest way to adopt a complete modern Course. Curriculums, auto-graded assignments, and flipped classroom tools are all built into one interactive platform.
         </p>
         <div class="flex items-center gap-4 mb-20">
-            <button class="bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Get Started &rarr;</button>
+            <a href="/courses" class="bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Get Started &rarr;</a>
         </div>
     </div>
 

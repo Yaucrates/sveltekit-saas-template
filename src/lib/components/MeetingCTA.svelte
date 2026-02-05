@@ -12,7 +12,7 @@
             </p>
         </div>
         <div class="flex flex-col items-center gap-4">
-            <a href="/" class="inline-block bg-white text-stone-900 px-8 py-4 rounded-sm font-semibold hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl hover:scale-105 duration-200">
+            <a href="/" class="inline-block bg-white text-stone-900 px-8 py-4 rounded-sm font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl duration-200">
                 Book a meeting
             </a>
             <p class="text-stone-400">No pressure. No fluff.</p>

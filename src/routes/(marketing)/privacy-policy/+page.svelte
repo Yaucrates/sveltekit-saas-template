@@ -2,7 +2,7 @@
 	<title>Privacy Policy | Impart</title>
 	<meta
 		name="description"
-		content="Learn how Impart Inc. collects, uses, and protects your personal information when you use our educational courseware platform."
+		content="Learn how Impart collects, uses, and protects your personal information when you use our educational courseware platform."
 	/>
 </svelte:head>
 

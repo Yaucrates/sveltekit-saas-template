@@ -5,6 +5,13 @@
 	let { children } = $props(); 
 </script>
 
+<svelte:head>
+    <meta property="og:title" content="Impart | Digital Courseware" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/ogImage.png" />
+    <meta property="og:url" content="https://www.imparteducation.com/" />
+</svelte:head>
+
 <div class="h-screen flex bg-stone-50 text-stone-900 overflow-hidden">
 	<NavigationBar />
 

@@ -3,13 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Impart | Auth Error</title>
+	<title>Auth Error | Impart</title>
 	<meta name="description" content="Authentication Error Page." />
-
-	<meta property="og:title" content="Impart | Auth Error" />
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="/auth-error.webp" />
-	<meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
 <div class="px-12 py-24 w-full max-w-md mx-auto text-center">

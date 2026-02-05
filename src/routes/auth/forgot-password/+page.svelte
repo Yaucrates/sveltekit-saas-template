@@ -8,12 +8,8 @@
 </script>
 
 <svelte:head>
-	<title>Impart | Forgot Password</title>
+	<title>Forgot Password | Impart</title>
 	<meta name="description" content="Reset your Impart password." />
-
-	<meta property="og:title" content="Impart | Forgot Password" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
 <div class="px-12 py-24 w-full max-w-md mx-auto">

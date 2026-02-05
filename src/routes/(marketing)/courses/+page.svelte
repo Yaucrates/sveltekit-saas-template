@@ -29,8 +29,8 @@
 </script>
 
 <svelte:head>
-	<title>Computer Science Courses | Impart</title>
-	<meta name="description" content="Explore our comprehensive CS undergraduate curriculum." />
+	<title>Computer Science Courseware | Impart</title>
+	<meta name="description" content="Explore our comprehensive Computer Science Courseware." />
 </svelte:head>
 
 <!-- Hero Section with Texture -->
