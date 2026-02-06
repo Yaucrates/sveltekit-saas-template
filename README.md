@@ -1,14 +1,4 @@
-# The SaaS Template for SvelteKit
-
-NOT READY YET!
-
-Everything you need to launch your next app.
-
-User auth, admin dashboards, Stripe payments, and more — all built on top of the best in class SvelteKit framework.
-
-Stop coding the same features in every app and save weeks of development time. Svelte SaaS is the boilerplate to jump-start your next app.
-
-## Features: 
-1. Sveltekit + MCP
-2. Shadcn for Sveltekit + MCP
-3. Supabase (You have to setup your own MCP + New Typegen + Env Variables)
+# Todo List for Gang:
+1. Book a demo/Book a meeting on the homepage do nothing.
+2. Sidebar's navigation updates for /courses/*
+3. Finish "Intro to Computer Science" overview (maybe tailor it to professors?)

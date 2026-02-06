@@ -1,5 +1,6 @@
-export interface Course {
-	id: string;
+import { toLink } from "$lib/utils";
+
+interface ProtoCourse {
 	title: string;
 	description: string;
 	category: 'core-cs' | 'mathematics' | 'systems' | 'theory';
@@ -7,9 +8,13 @@ export interface Course {
     status: 'Released' | 'Planned';
 }
 
-export const courses: Course[] = [
+export interface Course extends ProtoCourse {
+	id: number;
+    slug: string;
+}
+
+export const courses: Course[] = ([
 	{
-		id: 'intro-to-cs',
 		title: 'Introduction to Computer Science',
 		description:
 			'Build a strong foundation in programming fundamentals, problem-solving strategies, and computational thinking. Learn core concepts through hands-on coding exercises and real-world applications.',
@@ -18,7 +23,6 @@ export const courses: Course[] = [
         status: 'Released'
 	},
 	{
-		id: 'data-structures-algorithms',
 		title: 'Introduction to Data Structures and Algorithms',
 		description:
 			'Master essential data structures including arrays, linked lists, trees, and graphs. Develop algorithmic thinking through sorting, searching, and optimization techniques critical for technical interviews and software development.',
@@ -27,7 +31,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'computer-organization',
 		title: 'Introduction to Computer Organization',
 		description:
 			'Explore how computers work at the hardware level, from logic gates to processors. Understand assembly language, memory hierarchies, and system architecture to write more efficient code.',
@@ -36,7 +39,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'single-variable-calculus',
 		title: 'Single Variable Calculus',
 		description:
 			'Study limits, derivatives, and integrals with applications to computer science. Learn optimization techniques and mathematical reasoning essential for algorithm analysis and machine learning.',
@@ -45,7 +47,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'multivariable-calculus',
 		title: 'Multivariable Calculus',
 		description:
 			'Extend calculus concepts to functions of multiple variables. Master vector calculus, partial derivatives, and multiple integrals crucial for computer graphics, optimization, and data science.',
@@ -54,7 +55,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'linear-algebra',
 		title: 'Linear Algebra',
 		description:
 			'Develop expertise in matrices, vector spaces, and linear transformations. Apply these concepts to computer graphics, machine learning models, and quantum computing algorithms.',
@@ -63,7 +63,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'discrete-math',
 		title: 'Discrete Math',
 		description:
 			'Study the mathematical foundations of computer science including logic, set theory, combinatorics, and graph theory. Build proof-writing skills essential for algorithm design and verification.',
@@ -72,7 +71,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'theory-of-computation',
 		title: 'Theory of Computation',
 		description:
 			'Investigate the theoretical limits of computation through automata theory, formal languages, and complexity classes. Understand what problems can and cannot be solved algorithmically.',
@@ -81,7 +79,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'software-engineering',
 		title: 'Software Engineering',
 		description:
 			'Learn professional software development practices including design patterns, testing methodologies, and agile workflows. Develop skills for building scalable, maintainable systems in team environments.',
@@ -90,7 +87,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'systems-programming',
 		title: 'Systems Programming',
 		description:
 			'Master low-level programming with C and systems-level concepts. Work directly with memory management, system calls, and concurrent programming to build high-performance applications.',
@@ -99,7 +95,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'cybersecurity',
 		title: 'Introduction to CyberSecurity',
 		description:
 			'Learn security principles, cryptographic protocols, and threat analysis techniques. Understand common vulnerabilities and develop skills to build secure systems and protect against cyber attacks.',
@@ -108,7 +103,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'probability',
 		title: 'Introduction to Probability',
 		description:
 			'Study probability theory, random variables, and statistical inference. Apply probabilistic reasoning to algorithm analysis, machine learning, and decision-making under uncertainty.',
@@ -117,7 +111,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'operating-systems',
 		title: 'Operating Systems',
 		description:
 			'Understand how operating systems manage hardware resources and provide services to applications. Explore process scheduling, memory management, file systems, and concurrency control mechanisms.',
@@ -126,7 +119,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'programming-languages',
 		title: 'Programming Languages',
 		description:
 			'Analyze different programming paradigms and language design principles. Study syntax, semantics, type systems, and runtime environments to become a more versatile programmer.',
@@ -135,7 +127,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'compilers',
 		title: 'Introduction to Compilers',
 		description:
 			'Discover how programming languages are translated into executable code. Learn lexical analysis, parsing techniques, optimization strategies, and code generation for modern compilers.',
@@ -144,7 +135,6 @@ export const courses: Course[] = [
         status: 'Planned'
 	},
 	{
-		id: 'artificial-intelligence',
 		title: 'Introduction to Artificial Intelligence',
 		description:
 			'Explore intelligent agent design, search algorithms, and machine learning fundamentals. Build AI systems that can reason, learn from data, and solve complex real-world problems.',
@@ -152,4 +142,10 @@ export const courses: Course[] = [
 		icon: 'Bot',
         status: 'Planned'
 	}
-];
+] as ProtoCourse[]).map((course, id) => {
+    return {
+        id,
+        slug: toLink(course.title),
+        ...course
+    }
+});
