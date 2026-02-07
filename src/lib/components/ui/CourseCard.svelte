@@ -1,11 +1,6 @@
 <script lang="ts">
 	import type { Course } from '$lib/data/courses';
-	import {
-		GraduationCap, Binary, Cpu, Calculator, Sigma, Grid3x3,
-		Infinity, Brain, Workflow, Terminal, Shield, Dices,
-		Server, Code, Cog, Bot, ArrowRight, Lock
-	} from '@lucide/svelte';
-	import type { Component } from 'svelte';
+	import { ArrowRight, Lock } from '@lucide/svelte';
 
 	interface Props {
 		course: Course;
@@ -14,17 +9,7 @@
 	let { course }: Props = $props();
 
 	// Check if the course is planned
-	// Note: Ensure your Course interface has a 'status' field (e.g., 'Released' | 'Planned')
 	const isPlanned = $derived(course.status === 'Planned');
-
-	// Icon Mapping
-	const iconMap: Record<string, Component> = {
-		GraduationCap, Binary, Cpu, Calculator, Sigma, Grid3x3,
-		Infinity, Brain, Workflow, Terminal, Shield, Dices,
-		Server, Code, Cog, Bot
-	};
-
-	const IconComponent = $derived(iconMap[course.icon]);
 
 	// Category Styling Logic
 	const categoryConfig = {
@@ -55,9 +40,7 @@
 	<!-- Header: Icon & Category Badge -->
 	<div class="flex justify-between items-start mb-6">
 		<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
-			{#if IconComponent}
-				<IconComponent class={`w-6 h-6 ${theme.iconColor}`} />
-			{/if}
+			<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
 		</div>
 		<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
 			{theme.label}
