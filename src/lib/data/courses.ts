@@ -1,9 +1,11 @@
 import { toLink } from "$lib/utils";
 
+type category = Exclude<typeof categories[number]['id'], 'all'>;
+
 interface ProtoCourse {
 	title: string;
 	description: string;
-	category: 'core-cs' | 'mathematics' | 'systems' | 'theory';
+	category: category;
 	icon: string;
     status: 'Released' | 'Planned';
 }
@@ -12,6 +14,14 @@ export interface Course extends ProtoCourse {
 	id: number;
     slug: string;
 }
+
+export const categories = [
+    { id: 'all', label: 'All Courses' },
+    { id: 'core-cs', label: 'Core CS' },
+    { id: 'systems', label: 'Systems' },
+    { id: 'mathematics', label: 'Math' },
+    { id: 'theory', label: 'Theory' }
+] as const;
 
 export const courses: Course[] = ([
 	{

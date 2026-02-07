@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { courses } from '$lib/data/courses';
+	import { categories, courses } from '$lib/data/courses';
 	import CourseCard from '$lib/components/ui/CourseCard.svelte';
 	import { Search } from '@lucide/svelte';
 
@@ -18,14 +18,6 @@
 			return matchesSearch && matchesCategory;
 		})
 	);
-
-	const categories = [
-		{ id: 'all', label: 'All Courses' },
-		{ id: 'core-cs', label: 'Core CS' },
-		{ id: 'systems', label: 'Systems' },
-		{ id: 'mathematics', label: 'Math' },
-		{ id: 'theory', label: 'Theory' }
-	];
 </script>
 
 <svelte:head>
