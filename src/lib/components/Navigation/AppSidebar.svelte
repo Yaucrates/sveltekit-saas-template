@@ -118,12 +118,12 @@
 
 	<!-- Support (Bottom) - Non-prominent -->
 	<div class="px-6 pb-6">
-		<a
-			href="/support"
+		<button
+			onclick={() => window.location.href = 'mailto:support@imparteducation.com'}
 			class="
-                flex items-center gap-2.5 p-2 rounded-sm
+                flex items-center gap-2.5 p-2 rounded-sm w-full
                 text-stone-400 hover:text-stone-600 hover:bg-stone-50
-                transition-colors duration-200
+                transition-colors duration-200 cursor-pointer
             "
 		>
 			<CircleQuestionMark size={14} class="shrink-0" />
@@ -135,6 +135,6 @@
 			>
 				Request Support
 			</span>
-		</a>
+		</button>
 	</div>
 </aside>
