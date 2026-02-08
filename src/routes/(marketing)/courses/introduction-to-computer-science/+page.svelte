@@ -1,46 +1,57 @@
 <script lang="ts">
 	import MeetingCTA from "$lib/components/MeetingCTA.svelte";
 	import { 
-		GraduationCap, CircleCheck, Lock, 
-		Terminal, BookOpen, Users, Play,
+		GraduationCap, CircleCheck,
+		Terminal, BookOpen, Users,
         LayoutTemplate, FileStack
-
 	} from "@lucide/svelte";
 
-	let heroSection = $state<HTMLElement>();
-
-	const curriculum = [
-		{
-			title: "Computational Thinking & Programming Basics",
-			weeks: "Weeks 1-3",
-			topics: ["Algorithms vs. Code", "Variables & Types", "Input/Output", "Logic & Conditionals"],
-			status: "free"
-		},
-		{
-			title: "Control Flow & Iteration",
-			weeks: "Weeks 4-6",
-			topics: ["While & For Loops", "Range Functions", "Nested Loops", "Debugging Traces"],
-			status: "locked"
-		},
-		{
-			title: "Modular Programming",
-			weeks: "Weeks 7-9",
-			topics: ["Function Definition", "Parameters & Arguments", "Scope & Stack Frames", "Return Values"],
-			status: "locked"
-		},
-		{
-			title: "Data Structures I",
-			weeks: "Weeks 10-12",
-			topics: ["Lists & Mutability", "Strings & Encoding", "Dictionaries/Hash Maps", "Slicing & Indexing"],
-			status: "locked"
-		},
-		{
-			title: "Applied Algorithms",
-			weeks: "Weeks 13-16",
-			topics: ["Linear vs Binary Search", "Sorting Algorithms", "File I/O", "Final Capstone Project"],
-			status: "locked"
-		}
-	];
+    const curriculum = [
+        {
+            title: "Getting Started",
+            description: "An introduction to the nature of computation. Topics include setting up the development environment, understanding the difference between source code and compiled executables, and identifying syntax versus logic errors."
+        },
+        {
+            title: "Variables, Operators, and Functions",
+            description: "Foundational programming concepts covering basic data types (integers, floats, booleans) and arithmetic expressions. This module introduces the concept of decomposition by creating basic functions to perform reusable calculations."
+        },
+        {
+            title: "Conditionals and Iteration",
+            description: "Mastering control flow using branching logic (if/else) and repetition (for/while loops). Concepts are applied visually through digital image processing tasks, such as manipulating RGB values and drawing geometric shapes on screen."
+        },
+        {
+            title: "Number Systems and Bitwise Logic",
+            description: "A look at the hardware level of computing. Topics include converting between Binary, Decimal, and Hexadecimal systems, Boolean algebra, and manipulating data at the bit-level using bitwise operators."
+        },
+        {
+            title: "More Functions, Scoping, and Abstraction",
+            description: "A deeper dive into abstraction and problem-solving. Topics include 'black-box' function design, understanding variable scope, and writing good code."
+        },
+        {
+            title: "Data Structures and Mutability",
+            description: "Managing collections of data using Lists, Tuples, Vectors, and Dictionaries (Hash Maps). A strong emphasis is placed on memory concepts, specifically the difference between mutable and immutable types, aliasing, and deep cloning."
+        },
+        {
+            title: "Algorithms, Efficiency, and Testing",
+            description: "Introduction to the formal analysis of programs using 'Big O' notation. Topics include searching algorithms (Linear vs. Bisection/Binary search), sorting (Merge/Selection sort), and validating code using Doctests and unit testing."
+        },
+        {
+            title: "Object Oriented Programming",
+            description: "Transitioning from procedural to object-based design. Students will learn to define custom Classes, manage state through Objects, enforce encapsulation, and utilize Inheritance to share behavior between classes."
+        },
+        {
+            title: "Libraries and Exceptions",
+            description: "Leveraging external code and managing runtime errors. This module covers importing standard modules, utilizing Jupyter notebooks, and handling program crashes gracefully using Try/Except blocks and assertions."
+        },
+        {
+            title: "Working with Files and I/O",
+            description: "Techniques for data persistence and user interaction. Students will write programs that parse text files, process command-line arguments, and format output streams for both the console and external storage."
+        },
+        {
+            title: "Project Submission and Course Completion",
+            description: "Final synthesis of all course topics. Students will submit a comprehensive final project demonstrating mastery of algorithms, data structures, and clean coding practices, followed by a final exam or review."
+        },
+    ].map((module, i) => ({ unit: i, ...module }));
 </script>
 
 <svelte:head>
@@ -49,7 +60,7 @@
 </svelte:head>
 
 <!-- Hero Section -->
-<section bind:this={heroSection} class="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
+<section class="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
 	<div class="grid lg:grid-cols-2 gap-16 items-center">
 		<!-- Left: Copy -->
 		<div>
@@ -81,10 +92,7 @@
 					<Users class="w-4 h-4" /> 16 Weeks
 				</div>
 				<div class="flex items-center gap-2">
-					<Terminal class="w-4 h-4" /> Python 3, Java, or C++
-				</div>
-				<div class="flex items-center gap-2">
-					<CircleCheck class="w-4 h-4" /> Auto-Graded
+					<Terminal class="w-4 h-4" /> Python 3
 				</div>
 			</div>
 		</div>
@@ -284,7 +292,7 @@
 						<CircleCheck class="w-4 h-4 text-blue-600" />
 					</div>
 					<div class="text-xs text-blue-800">
-						<span class="font-semibold">Canvas Sync Active:</span> Grades exported to gradebook automatically.
+						<span class="font-semibold">Status:</span> All uploaded assignments have been graded.
 					</div>
 				</div>
 			</div>
@@ -301,39 +309,27 @@
 			<p class="text-stone-600">Designed to map to ACM/IEEE CS Curricula recommendations.</p>
 		</div>
 
-		<div class="space-y-6">
-			{#each curriculum as module, i}
-				<div class="group bg-white border border-stone-200 hover:border-blue-300 rounded-lg p-6 transition-all hover:shadow-md cursor-pointer">
-					<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-						<div class="flex items-center gap-4">
-							<div class="shrink-0 w-8 h-8 rounded-full bg-stone-100 text-stone-500 flex items-center justify-center font-mono text-sm">
-								{i + 1}
-							</div>
-							<div>
-								<div class="text-xs text-stone-400 uppercase tracking-wider font-semibold">{module.weeks}</div>
-								<h3 class="text-lg font-medium text-stone-900">{module.title}</h3>
-							</div>
-						</div>
-						
-						{#if module.status === 'free'}
-							<span class="inline-flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium border border-green-200">
-								<Play class="w-3 h-3 fill-current" /> Preview
-							</span>
-						{:else}
-							<span class="inline-flex items-center gap-1 bg-stone-50 text-stone-500 px-3 py-1 rounded-full text-xs font-medium border border-stone-200">
-								<Lock class="w-3 h-3" /> Locked
-							</span>
-						{/if}
-					</div>
-					
-					<div class="pl-12 grid grid-cols-2 gap-2">
-						{#each module.topics as topic}
-							<div class="flex items-center gap-2 text-sm text-stone-600">
-								<div class="w-1 h-1 rounded-full bg-stone-300"></div>
-								{topic}
-							</div>
-						{/each}
-					</div>
+		<div class="space-y-4">
+			{#each curriculum as module}
+				<div class="group bg-white border border-stone-200 hover:border-blue-300 rounded-lg p-6 transition-all hover:shadow-md">
+					<div class="flex gap-4 md:gap-6">
+                        <!-- Unit Badge -->
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-stone-50 text-stone-500 group-hover:bg-blue-50 group-hover:text-blue-600 flex items-center justify-center font-mono text-sm md:text-base font-bold transition-colors">
+                                {module.unit}
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="space-y-2">
+                            <h3 class="text-lg md:text-xl font-medium text-stone-900 group-hover:text-blue-700 transition-colors">
+                                {module.title}
+                            </h3>
+                            <p class="text-sm md:text-base text-stone-600 leading-relaxed">
+                                {module.description}
+                            </p>
+                        </div>
+                    </div>
 				</div>
 			{/each}
 		</div>

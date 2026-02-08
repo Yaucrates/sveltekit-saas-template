@@ -22,55 +22,78 @@
 	const theme = $derived(categoryConfig[course.category] || categoryConfig['core-cs']);
 </script>
 
-<!-- 
+<!--
 	Dynamic Classes:
 	- If Planned: Opacity is lower, grayscale filter, cursor not-allowed, no hover effects.
 	- If Released: Standard hover shadows, lift effects, and pointer cursor.
 -->
-<div 
-	class={`
-		relative border rounded-xl p-6 flex flex-col h-full transition-all duration-300
-		${isPlanned 
-			? 'bg-stone-50 border-stone-200 opacity-60 grayscale cursor-not-allowed' 
-			: 'bg-white border-stone-200 shadow-sm hover:shadow-lg hover:-translate-y-1 cursor-pointer group'
-		}
-	`}
->
-	
-	<!-- Header: Icon & Category Badge -->
-	<div class="flex justify-between items-start mb-6">
-		<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
-			<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
+{#if isPlanned}
+	<!-- Planned Course: Non-clickable Card -->
+	<div
+		class="relative border rounded-xl p-6 flex flex-col h-full transition-all duration-300 bg-stone-50 border-stone-200 opacity-60 grayscale cursor-not-allowed"
+	>
+
+		<!-- Header: Icon & Category Badge -->
+		<div class="flex justify-between items-start mb-6">
+			<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
+				<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
+			</div>
+			<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
+				{theme.label}
+			</span>
 		</div>
-		<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
-			{theme.label}
-		</span>
-	</div>
 
-	<!-- Content -->
-	<div class="flex-1">
-		<h3 class={`text-xl font-medium mb-3 transition-colors ${isPlanned ? 'text-stone-600' : 'text-stone-900 group-hover:text-black'}`}>
-			{course.title}
-		</h3>
-		<p class="text-sm text-stone-500 leading-relaxed mb-6">
-			{course.description}
-		</p>
-	</div>
+		<!-- Content -->
+		<div class="flex-1">
+			<h3 class="text-xl font-medium mb-3 transition-colors text-stone-600">
+				{course.title}
+			</h3>
+			<p class="text-sm text-stone-500 leading-relaxed mb-6">
+				{course.description}
+			</p>
+		</div>
 
-	<!-- Footer / CTA -->
-	<div class="mt-auto pt-6 border-t border-stone-100 flex items-center text-sm font-medium transition-colors">
-		{#if isPlanned}
-			<!-- Planned State Footer -->
+		<!-- Footer / CTA -->
+		<div class="mt-auto pt-6 border-t border-stone-100 flex items-center text-sm font-medium transition-colors">
 			<div class="text-stone-400 flex items-center">
 				<Lock class="w-4 h-4 mr-2" />
 				Coming Soon
 			</div>
-		{:else}
-			<!-- Released State Footer -->
+		</div>
+	</div>
+{:else}
+	<!-- Released Course: Clickable Link Card -->
+	<a
+		href="/courses/{course.slug}/"
+		class="relative border rounded-xl p-6 flex flex-col h-full transition-all duration-300 bg-white border-stone-200 shadow-sm hover:shadow-lg hover:-translate-y-1 cursor-pointer group no-underline"
+	>
+
+		<!-- Header: Icon & Category Badge -->
+		<div class="flex justify-between items-start mb-6">
+			<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
+				<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
+			</div>
+			<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
+				{theme.label}
+			</span>
+		</div>
+
+		<!-- Content -->
+		<div class="flex-1">
+			<h3 class="text-xl font-medium mb-3 transition-colors text-stone-900 group-hover:text-black">
+				{course.title}
+			</h3>
+			<p class="text-sm text-stone-500 leading-relaxed mb-6">
+				{course.description}
+			</p>
+		</div>
+
+		<!-- Footer / CTA -->
+		<div class="mt-auto pt-6 border-t border-stone-100 flex items-center text-sm font-medium transition-colors">
 			<div class="text-stone-900 group-hover:text-blue-600 flex items-center w-full">
-				View Syllabus 
+				View Syllabus
 				<ArrowRight class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
 			</div>
-		{/if}
-	</div>
-</div>
+		</div>
+	</a>
+{/if}
