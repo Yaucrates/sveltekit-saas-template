@@ -72,7 +72,7 @@
                 </span>
             </a>
 
-            <a
+            <!-- <a
                 href="/profile"
                 class="
                     flex items-center gap-1.5 p-2 rounded-sm
@@ -91,7 +91,7 @@
                 >
                     Profile
                 </span>
-            </a>
+            </a> -->
 
             <a
                 href="/settings"

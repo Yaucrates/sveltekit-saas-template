@@ -16,6 +16,6 @@ export const actions: Actions = {
         }
 
         // User is automatically logged in after password update
-        redirect(303, '/profile');
+        redirect(303, '/dashboard');
     }
 };
