@@ -50,7 +50,7 @@
             Impart is the easiest way to adopt a complete modern Course. Curriculums, auto-graded assignments, and flipped classroom tools are all built into one interactive platform.
         </p>
         <div class="flex items-center gap-4 mb-20">
-            <a href="/courses" class="bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Get Started &rarr;</a>
+            <a href="/library" class="bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Get Started &rarr;</a>
         </div>
     </div>
 

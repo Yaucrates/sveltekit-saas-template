@@ -4,9 +4,10 @@
 
 	interface Props {
 		course: Course;
+        location: "library" | "course";
 	}
 
-	let { course }: Props = $props();
+	let { course, location }: Props = $props();
 
 	// Check if the course is planned
 	const isPlanned = $derived(course.status === 'Planned');
@@ -64,7 +65,7 @@
 {:else}
 	<!-- Released Course: Clickable Link Card -->
 	<a
-		href="/courses/{course.slug}/"
+		href="/{location}/{course.slug}/"
 		class="relative border rounded-xl p-6 flex flex-col h-full transition-all duration-300 bg-white border-stone-200 shadow-sm hover:shadow-lg hover:-translate-y-1 cursor-pointer group no-underline"
 	>
 
