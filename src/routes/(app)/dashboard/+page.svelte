@@ -8,11 +8,11 @@
 	<meta name="description" content="Your learning dashboard" />
 </svelte:head>
 
-<div class="max-w-6xl mx-auto px-6 md:px-12 py-24">
+<div class="min-h-screen max-w-6xl mx-auto px-6 md:px-12 py-24">
 	<!-- Header -->
 	<div class="mb-12">
-		<h1 class="text-4xl tracking-tight text-stone-900 mb-2">Your Courses</h1>
-		<p class="text-stone-600">Explore our complete curriculum catalog</p>
+		<h1 class="text-4xl tracking-tight text-stone-900 mb-2">Dashboard</h1>
+		<p class="text-stone-600">Manage your classes.</p>
 	</div>
 
 	<!-- Courses Grid -->
