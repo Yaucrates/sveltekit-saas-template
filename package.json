@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@supabase/ssr": "^0.8.0",
-		"@supabase/supabase-js": "^2.93.3"
+		"@supabase/supabase-js": "^2.93.3",
+		"shiki": "^3.22.0"
 	}
 }

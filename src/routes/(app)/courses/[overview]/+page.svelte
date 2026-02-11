@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<title>Impart | {course?.title ?? 'Course'}</title>
+	<title>{course?.title ?? 'Course'} | Impart</title>
 	<meta name="description" content={course?.description ?? ''} />
 </svelte:head>
 
