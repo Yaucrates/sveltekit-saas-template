@@ -20,6 +20,30 @@ export interface Course extends ProtoCourse {
     slug: string;
 }
 
+export interface CourseChapter {
+	id: number;
+	name: string;
+	description: string;
+	section: number;
+	header: string;      // "Lesson", "Lab", "Quiz", etc.
+	released: boolean;
+	free: boolean;
+}
+
+export interface CourseSection {
+	section: number;
+	name: string;
+}
+
+export interface CourseDetails {
+	sections: CourseSection[];
+	chapters: CourseChapter[];
+}
+
+export interface CourseWithDetails extends Course {
+	details?: CourseDetails;
+}
+
 export const categories = [
     { id: 'all', label: 'All Courses' },
     { id: 'core-cs', label: 'Core CS' },
@@ -47,13 +71,345 @@ export const iconConfig: Record<string, Component> = {
     'introduction-to-artificial-intelligence': Bot
 };
 
-export const courses: Course[] = ([
+// Course details for Introduction to Computer Science
+const introToCSDetails: CourseDetails = {
+	sections: [
+		"Getting Started",
+		"Unit 1: Variables, Operators, and Functions",
+		"Unit 2: Conditionals and Iteration",
+		"Unit 3: More Functions, Scoping, and Abstraction",
+		"Unit 4: Data Structures and Mutability",
+		"Unit 5: Algorithms and Testing",
+		"Unit 6: Object Oriented Programming",
+		"Unit 7: Libraries, Exceptions, and Virtual Environments",
+		"Unit 8: Working with Files",
+		"Unit 9: Async and APIs",
+		"Unit 10: Et. Cetera",
+		"Project Submission and Course Completion"
+	].map((name, i) => ({ section: i, name })),
+	chapters: [
+		// Section 0: Getting Started
+		{
+			name: "Course Information",
+			description: "Introduces the course structure, learning objectives, and the prerequisites needed to get started.",
+			section: 0,
+			header: "Getting Started",
+			released: true,
+			free: true
+		},
+		{
+			name: "Setting Up Your Development Environment",
+			description: "Learn how to prepare your computer for programming by installing essential tools and configuring your environment for a smooth start.",
+			section: 0,
+			header: "Getting Started",
+			released: true,
+			free: true
+		},
+
+		// Section 1: Unit 1 - Variables, Operators, and Functions
+		{
+			name: "Python",
+			description: "Introduces the Python programming language. You'll learn how to use it, how it works, and why it's one of the most widely used languages in computer science.",
+			section: 1,
+			header: "Lesson",
+			released: true,
+			free: true
+		},
+		{
+			name: "Functions and Variables",
+			description: "Explore how to use functions to execute commands, and how to use variables to store and manage data.",
+			section: 1,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Typing, Comments, and More",
+			description: "Learn to use typing, comments, and other tools to make your code easier to read and debug.",
+			section: 1,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 1,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 1,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 2: Unit 2 - Conditionals and Iteration
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 2,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 2,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 2,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 3: Unit 3 - More Functions, Scoping, and Abstraction
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 3,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 3,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 3,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 4: Unit 4 - Data Structures and Mutability
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 4,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 4,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 4,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 5: Unit 5 - Algorithms and Testing
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 5,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 5,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 5,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 6: Unit 6 - Object Oriented Programming
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 6,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 6,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 6,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 7: Unit 7 - Libraries, Exceptions, and Virtual Environments
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 7,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 7,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 7,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 8: Unit 8 - Working with Files
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 8,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 8,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 8,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 9: Unit 9 - Async and APIs
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 9,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 9,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 9,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 10: Unit 10 - Et. Cetera
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 10,
+			header: "Lab",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 10,
+			header: "Lesson",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 10,
+			header: "Problem Set",
+			released: false,
+			free: false
+		},
+
+		// Section 11: Project Submission and Course Completion
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 11,
+			header: "Conclusion",
+			released: false,
+			free: false
+		},
+		{
+			name: "Name Not Applicable",
+			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
+			section: 11,
+			header: "Project",
+			released: false,
+			free: false
+		}
+	].map((chapter, i) => ({ id: i, ...chapter }))
+};
+
+export const courses: CourseWithDetails[] = ([
 	{
 		title: 'Introduction to Computer Science',
 		description:
 			'Build a strong foundation in programming fundamentals, problem-solving strategies, and computational thinking. Learn core concepts through hands-on coding exercises and real-world applications.',
 		category: 'core-cs',
-        status: 'Released'
+        status: 'Released',
+		details: introToCSDetails
 	},
 	{
 		title: 'Introduction to Data Structures and Algorithms',
@@ -167,3 +523,14 @@ export const courses: Course[] = ([
         ...course
     }
 });
+
+// Helper functions for course data access
+export function getCourseBySlug(slug: string): CourseWithDetails | undefined {
+	return courses.find(c => c.slug === slug);
+}
+
+export function getDetailedCourse(slug: string): CourseWithDetails | null {
+	const course = getCourseBySlug(slug);
+	if (!course || !course.details) return null;
+	return course;
+}
