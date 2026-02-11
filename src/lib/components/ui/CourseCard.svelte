@@ -1,16 +1,20 @@
 <script lang="ts">
 	import type { Course } from '$lib/data/courses';
+	import { iconConfig } from '$lib/data/courses';
 	import { ArrowRight, Lock } from '@lucide/svelte';
 
 	interface Props {
 		course: Course;
-        location: "library" | "course";
+        location: "library" | "courses";
 	}
 
 	let { course, location }: Props = $props();
 
 	// Check if the course is planned
 	const isPlanned = $derived(course.status === 'Planned');
+
+	// Get the icon component from the config
+	const Icon = $derived(iconConfig[course.slug]);
 
 	// Category Styling Logic
 	const categoryConfig = {
@@ -37,7 +41,7 @@
 		<!-- Header: Icon & Category Badge -->
 		<div class="flex justify-between items-start mb-6">
 			<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
-				<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
+				<Icon class={`w-6 h-6 ${theme.iconColor}`} />
 			</div>
 			<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
 				{theme.label}
@@ -72,7 +76,7 @@
 		<!-- Header: Icon & Category Badge -->
 		<div class="flex justify-between items-start mb-6">
 			<div class={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${theme.bg}`}>
-				<course.icon class={`w-6 h-6 ${theme.iconColor}`} />
+				<Icon class={`w-6 h-6 ${theme.iconColor}`} />
 			</div>
 			<span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${theme.bg} ${theme.text} ${theme.border} uppercase tracking-wide`}>
 				{theme.label}
