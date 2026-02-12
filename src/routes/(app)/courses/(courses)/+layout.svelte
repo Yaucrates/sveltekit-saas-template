@@ -51,7 +51,7 @@
     <BookOpen class="w-6 h-6" />
 </button>
 
-<div class="fixed right-0 top-0 h-screen w-80 bg-white border-l border-stone-200 shadow-sm z-40 p-6 overflow-y-auto flex flex-col gap-5 {toggleSidebar ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]">
+<div class="fixed right-0 top-0 h-screen w-80 bg-white border-l border-stone-200 shadow-sm z-40 p-6 flex flex-col gap-5 {toggleSidebar ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]">
     <div class="flex items-center justify-between mb-1 shrink-0">
         <h1 class="text-stone-900 text-xl font-semibold truncate">{course?.title}</h1>
         <button

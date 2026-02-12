@@ -109,25 +109,46 @@
 
 							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 								{#each chapters.filter(chapter => chapter.section === section.section) as chapter (chapter.id)}
-									<a
-										href="/courses/{toLink(course.title)}/{chapter.id}-{toLink(chapter.name)}"
-										class="group relative flex flex-col gap-4 p-6 bg-white hover:bg-stone-50 rounded-xl transition-all border border-stone-200 hover:border-blue-500/50 shadow-sm hover:shadow-lg hover:-translate-y-1"
-									>
-										<div class="flex flex-col gap-3 flex-1">
-											<div class="flex items-start justify-between gap-3">
-												<h4 class="font-bold text-lg text-stone-900 group-hover:text-blue-600 transition-colors">
-													{chapter.name}
-												</h4>
-												<CirclePlay class="w-5 h-5 shrink-0 text-stone-400 group-hover:text-blue-600 transition-colors" />
+									{#if chapter.released}
+										<a
+											href="/courses/{toLink(course.title)}/{chapter.id}-{toLink(chapter.name)}"
+											class="group relative flex flex-col gap-4 p-6 bg-white hover:bg-stone-50 rounded-xl transition-all border border-stone-200 hover:border-blue-500/50 shadow-sm hover:shadow-lg hover:-translate-y-1"
+										>
+											<div class="flex flex-col gap-3 flex-1">
+												<div class="flex items-start justify-between gap-3">
+													<h4 class="font-bold text-lg text-stone-900 group-hover:text-blue-600 transition-colors">
+														{chapter.name}
+													</h4>
+													<CirclePlay class="w-5 h-5 shrink-0 text-stone-400 group-hover:text-blue-600 transition-colors" />
+												</div>
+												<p class="text-sm text-stone-600 leading-relaxed">
+													{chapter.description}
+												</p>
 											</div>
-											<p class="text-sm text-stone-600 leading-relaxed">
-												{chapter.description}
-											</p>
+											<span class="w-fit py-1 px-3 text-[10px] font-bold bg-blue-50 text-blue-700 rounded border border-blue-200 uppercase tracking-widest">
+												{chapter.header}
+											</span>
+										</a>
+									{:else}
+										<div
+											class="relative flex flex-col gap-4 p-6 bg-stone-50 rounded-xl border border-stone-200 opacity-60 cursor-default"
+										>
+											<div class="flex flex-col gap-3 flex-1">
+												<div class="flex items-start justify-between gap-3">
+													<h4 class="font-bold text-lg text-stone-900">
+														{chapter.name}
+													</h4>
+													<CirclePlay class="w-5 h-5 shrink-0 text-stone-300" />
+												</div>
+												<p class="text-sm text-stone-600 leading-relaxed">
+													{chapter.description}
+												</p>
+											</div>
+											<span class="w-fit py-1 px-3 text-[10px] font-bold bg-stone-100 text-stone-500 rounded border border-stone-200 uppercase tracking-widest">
+												Coming Soon
+											</span>
 										</div>
-										<span class="w-fit py-1 px-3 text-[10px] font-bold bg-blue-50 text-blue-700 rounded border border-blue-200 uppercase tracking-widest">
-											{chapter.header}
-										</span>
-									</a>
+									{/if}
 								{/each}
 							</div>
 						</div>

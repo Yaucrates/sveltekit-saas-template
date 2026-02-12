@@ -9,7 +9,7 @@
 
 <aside
 	class="
-        flex flex-col justify-between bg-white border-r border-stone-100 
+        h-screen sticky top-0 flex flex-col justify-between bg-white border-r border-stone-100
         overflow-hidden transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
         {isExpanded ? 'w-56' : 'w-20'}
     "

@@ -12,10 +12,10 @@
     <meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
-<div class="h-screen flex bg-stone-50 text-stone-900 overflow-hidden">
+<div class="flex bg-stone-50 text-stone-900">
 	<NavigationBar />
 
-    <div class="min-h-screen flex-1 overflow-y-auto scroll-smooth w-full">
+    <div class="min-h-screen flex-1 scroll-smooth w-full">
         {@render children()}
 
         <Footer />
