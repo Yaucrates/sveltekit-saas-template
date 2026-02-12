@@ -29,13 +29,6 @@
     let currentSectionNumber = $derived(currentChapter.section);
     let toggleDropdown = $state(false);
     let toggleSidebar = $state(false);
-
-    // Auto-close sidebar on mobile when navigating to new chapter
-    $effect(() => {
-        if (currentChapterNumber && window.innerWidth < 1024) {
-            toggleSidebar = false;
-        }
-    });
 </script>
 
 <svelte:head>
