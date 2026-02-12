@@ -66,7 +66,7 @@
 								</div>
 								<div class="flex flex-col">
 									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Curriculum</span>
-									<span class="font-medium text-stone-900">{totalChapters} Chapters</span>
+									<span class="text-stone-900">{totalChapters} Chapters</span>
 								</div>
 							</div>
 
@@ -76,7 +76,7 @@
 								</div>
 								<div class="flex flex-col">
 									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Resources</span>
-									<span class="font-medium text-stone-900">Source Files Included</span>
+									<span class="text-stone-900">Source Files Included</span>
 								</div>
 							</div>
 
@@ -86,7 +86,7 @@
 								</div>
 								<div class="flex flex-col">
 									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Recognition</span>
-									<span class="font-medium text-stone-900">Certificate Provided</span>
+									<span class="text-stone-900">Certificate Provided</span>
 								</div>
 							</div>
 
@@ -96,7 +96,7 @@
 								</div>
 								<div class="flex flex-col">
 									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Updates</span>
-									<span class="font-medium text-stone-900">Always Current</span>
+									<span class="text-stone-900">Always Current</span>
 								</div>
 							</div>
 						</div>
