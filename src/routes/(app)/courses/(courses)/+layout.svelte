@@ -119,7 +119,7 @@
     
     <div class="flex flex-col flex-1 min-h-0">
         <hr class="h-px w-full bg-stone-200 border-0 shrink-0"/>
-        <div class="flex flex-col w-full overflow-y-auto flex-1">
+        <div class="flex flex-col gap-1 w-full overflow-y-auto flex-1">
             {#each chapters.filter(chapter => chapter.released && chapter.section === currentSectionNumber) as chapter (chapter.id)}
                 {@const isActive = currentChapterNumber === chapter.id}
 
