@@ -43,8 +43,8 @@ assigning a value to it using the assignment operator (`=`). Let's update our pr
 input inside of a variable called `name`:
 
 > **Important:** You may be used to seeing `=` used in math to assert equality, but in programming,
-it means something different: it means "take the value on the right, and store it in the variable on
-the left."
+it means something different. It tells us to take the value on the right, and store it in the variable
+on the left.
 
 ```python
 name = input("What's your name? ")
@@ -69,7 +69,7 @@ the comma in `"Hello, "`.
 When you run this program, you'll notice that it prints the greeting and the name on two separate lines.
 Mistakes in coding are known as a **bug**, and they are a natural and unavoidable part of the programming
 process. This bug is caused by the fact that print starts a new line after every call. To fix this, we can
-use the `end` parameter of the `print` function to specify what should be printed.
+use the `end` parameter `print` function to specify what should be printed.
 
 ```python
 name = input("What's your name? ")
@@ -79,7 +79,7 @@ print("!")
 ```
 
 Many functions, such as print, have additional parameters like `end` that allow you to customize their behavior.
-For `print`, the default value of `end` is the newline character (`\n`), which represents what's known as the
+For `print`, the default value of `end` is `"\n"`, which represents what's known as the
 newline character. We will get into special characters a bit later in this chapter.
 
 Finally, the program prints the greeting and the name on the same line.
@@ -90,7 +90,7 @@ As you start writing more complex programs, it's important to document your code
 your future self), can understand what it does. **Comments** are notes written that are the programmer that
 the computer ignores entirely. In Python, there are two ways to write comments:
 1.  **Single-line comments:** Start with a `#` symbol and continue to the end of the line.
-2.  **Multi-line comments:** Enclosed within triple quotes (`"""`).
+2.  **Multi-line comments:** Enclosed within triple quotes (`"""` or less standard, `'''`).
 
 ```python
 # Ask the user for their name.
