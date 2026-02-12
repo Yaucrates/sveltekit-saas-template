@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { toLink } from '$lib/utils';
-	import { BookOpen, CircleCheck, CirclePlay } from '@lucide/svelte';
+	import { BookOpen, FileCode, Award, RefreshCw, CirclePlay } from '@lucide/svelte';
 	import { getDetailedCourse } from '$lib/data/courses';
 	import { page } from '$app/state';
 	import Textbook from '$lib/components/ui/Textbook.svelte';
@@ -45,46 +45,67 @@
 
 				<!-- Right Column: Course Info & CTA -->
 				<div class="order-1 lg:order-2 flex flex-col gap-6">
-					<h1 class="text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-stone-900">
+					<span class="w-fit py-1.5 px-4 text-xs font-medium uppercase tracking-widest text-blue-700 bg-blue-50 rounded-full border border-blue-200">
+						Open Access Resource
+					</span>
+
+					<h1 class="text-4xl lg:text-5xl font-base leading-[1.1] tracking-tight text-stone-900">
 						{course.title}
 					</h1>
 
-					<p class="text-stone-600 leading-relaxed">
+					<p class="text-lg text-stone-600 leading-relaxed">
 						{course.description}
 					</p>
 
-					<!-- Free Course Card -->
-					<div class="bg-white border border-stone-200 rounded-2xl p-6 lg:p-8 shadow-lg">
-						<div class="flex flex-col gap-6">
-							<div class="flex items-baseline gap-2">
-								<span class="text-5xl font-black text-blue-600">Free</span>
-								<span class="text-stone-500 font-medium">Full course access</span>
+					<!-- Course Meta Grid -->
+					<div class="border-y border-stone-200 py-8">
+						<div class="grid grid-cols-2 gap-y-8 gap-x-6">
+							<div class="flex items-center gap-4">
+								<div class="p-2.5 bg-blue-50 rounded-xl text-blue-600 border border-blue-100">
+									<BookOpen class="w-5 h-5" />
+								</div>
+								<div class="flex flex-col">
+									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Curriculum</span>
+									<span class="font-medium text-stone-900">{totalChapters} Chapters</span>
+								</div>
 							</div>
 
-							<ul class="space-y-3">
-								{#each ['Lifetime access to all videos', 'Source code & exercise files', 'Certificate of completion', 'Future course updates'] as benefit}
-									<li class="flex items-center gap-3 text-sm text-stone-600">
-										<CircleCheck class="text-blue-600 w-5 h-5" />
-										{benefit}
-									</li>
-								{/each}
-							</ul>
-
-							<a href="#content" class="w-full py-4 px-6 text-center text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all">
-								Get Started
-							</a>
-						</div>
-					</div>
-                    <!-- Course Meta -->
-					<div class="flex flex-col gap-4 py-6 border-y border-stone-200">
-						<!-- Chapter Count -->
-						<div class="flex items-center gap-3 text-stone-600">
-							<div class="p-2 bg-stone-100 rounded-lg text-blue-600">
-								<BookOpen class="w-5 h-5" />
+							<div class="flex items-center gap-4">
+								<div class="p-2.5 bg-blue-50 rounded-xl text-blue-600 border border-blue-100">
+									<FileCode class="w-5 h-5" />
+								</div>
+								<div class="flex flex-col">
+									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Resources</span>
+									<span class="font-medium text-stone-900">Source Files Included</span>
+								</div>
 							</div>
-							<span class="text-sm">Curriculum: <strong class="text-stone-900 ml-1">{totalChapters} Chapters</strong></span>
+
+							<div class="flex items-center gap-4">
+								<div class="p-2.5 bg-blue-50 rounded-xl text-blue-600 border border-blue-100">
+									<Award class="w-5 h-5" />
+								</div>
+								<div class="flex flex-col">
+									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Recognition</span>
+									<span class="font-medium text-stone-900">Certificate Provided</span>
+								</div>
+							</div>
+
+							<div class="flex items-center gap-4">
+								<div class="p-2.5 bg-blue-50 rounded-xl text-blue-600 border border-blue-100">
+									<RefreshCw class="w-5 h-5" />
+								</div>
+								<div class="flex flex-col">
+									<span class="text-xs font-semibold uppercase tracking-widest text-stone-400">Updates</span>
+									<span class="font-medium text-stone-900">Always Current</span>
+								</div>
+							</div>
 						</div>
 					</div>
+
+					<!-- CTA -->
+                    <a href="#content" class="w-fit py-4 px-10 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-colors shadow-sm">
+                        Start Learning
+                    </a>
 				</div>
 			</div>
 		</div>
