@@ -27,7 +27,6 @@ export interface CourseChapter {
 	section: number;
 	header: string;      // "Lesson", "Lab", "Quiz", etc.
 	released: boolean;
-	free: boolean;
 }
 
 export interface CourseSection {
@@ -94,16 +93,14 @@ const introToCSDetails: CourseDetails = {
 			description: "Introduces the course structure, learning objectives, and the prerequisites needed to get started.",
 			section: 0,
 			header: "Getting Started",
-			released: true,
-			free: true
+			released: true
 		},
 		{
 			name: "Setting Up Your Development Environment",
 			description: "Learn how to prepare your computer for programming by installing essential tools and configuring your environment for a smooth start.",
 			section: 0,
 			header: "Getting Started",
-			released: true,
-			free: true
+			released: true
 		},
 
 		// Section 1: Unit 1 - Variables, Operators, and Functions
@@ -112,40 +109,35 @@ const introToCSDetails: CourseDetails = {
 			description: "Introduces the Python programming language. You'll learn how to use it, how it works, and why it's one of the most widely used languages in computer science.",
 			section: 1,
 			header: "Lesson",
-			released: true,
-			free: true
+			released: true
 		},
 		{
 			name: "Functions and Variables",
 			description: "Explore how to use functions to execute commands, and how to use variables to store and manage data.",
 			section: 1,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: true
 		},
 		{
 			name: "Typing, Comments, and More",
 			description: "Learn to use typing, comments, and other tools to make your code easier to read and debug.",
 			section: 1,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 1,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 1,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 2: Unit 2 - Conditionals and Iteration
@@ -154,24 +146,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 2,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 2,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 2,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 3: Unit 3 - More Functions, Scoping, and Abstraction
@@ -180,24 +169,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 3,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 3,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 3,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 4: Unit 4 - Data Structures and Mutability
@@ -206,24 +192,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 4,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 4,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 4,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 5: Unit 5 - Algorithms and Testing
@@ -232,24 +215,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 5,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 5,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 5,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 6: Unit 6 - Object Oriented Programming
@@ -258,24 +238,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 6,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 6,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 6,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 7: Unit 7 - Libraries, Exceptions, and Virtual Environments
@@ -284,24 +261,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 7,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 7,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 7,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 8: Unit 8 - Working with Files
@@ -310,24 +284,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 8,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 8,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 8,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 9: Unit 9 - Async and APIs
@@ -336,24 +307,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 9,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 9,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 9,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 10: Unit 10 - Et. Cetera
@@ -362,24 +330,21 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 10,
 			header: "Lab",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 10,
 			header: "Lesson",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 10,
 			header: "Problem Set",
-			released: false,
-			free: false
+			released: false
 		},
 
 		// Section 11: Project Submission and Course Completion
@@ -388,16 +353,14 @@ const introToCSDetails: CourseDetails = {
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 11,
 			header: "Conclusion",
-			released: false,
-			free: false
+			released: false
 		},
 		{
 			name: "Name Not Applicable",
 			description: "This description does not exist and is purely meant as a placeholder. I'm looking forward to actually writting and recording everything for this course!",
 			section: 11,
 			header: "Project",
-			released: false,
-			free: false
+			released: false
 		}
 	].map((chapter, i) => ({ id: i, ...chapter }))
 };
