@@ -118,14 +118,14 @@
     </div>
     
     <div class="flex flex-col flex-1 min-h-0">
-        <hr class="h-px w-full bg-stone-200 border-0 mb-4 shrink-0"/>
+        <hr class="h-px w-full bg-stone-200 border-0 shrink-0"/>
         <div class="flex flex-col gap-0.5 w-full overflow-y-auto flex-1">
             {#each chapters.filter(chapter => chapter.released && chapter.section === currentSectionNumber) as chapter (chapter.id)}
                 {@const isActive = currentChapterNumber === chapter.id}
 
                 <a
                     href="./{chapter.id}-{toLink(chapter.name)}"
-                    class="relative flex items-center gap-3 px-3 py-3 rounded-sm transition-colors duration-200 {isActive ? 'bg-blue-50 text-blue-700' : 'text-stone-700 hover:bg-stone-100'}"
+                    class="relative flex items-center gap-3 px-3 py-3 rounded-sm transition-colors duration-200 border-b {isActive ? 'bg-blue-50 text-blue-700' : 'text-stone-700 hover:bg-stone-100'}"
                 >
                     {@render chapterContent(chapter, isActive)}
                 </a>
