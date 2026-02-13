@@ -67,7 +67,7 @@ the comma in `"Hello, "`.
 ### Bugs
 
 When you run this program, you'll notice that it prints the greeting and the name on two separate lines.
-Mistakes in coding are known as a **bug**, and they are a natural and unavoidable part of the programming
+Mistakes in coding are known as **bugs**, and they are a natural and unavoidable part of the programming
 process. This bug is caused by the fact that print starts a new line after every call. To fix this, we can
 use the `end` parameter `print` function to specify what should be printed.
 

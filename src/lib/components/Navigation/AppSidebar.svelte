@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ImpartNameLogo from '../logos/ImpartNameLogo.svelte';
-	import { House, User, Settings, CircleQuestionMark } from '@lucide/svelte';
+	import { LayoutDashboard, Settings, CircleQuestionMark } from '@lucide/svelte';
 	import { page } from '$app/state';
 
 	let isHovered = $state(false);
@@ -61,7 +61,7 @@
                     : 'hover:bg-stone-100 text-stone-700'}
                 "
             >
-                <House size={18} class="shrink-0 mx-0.5" />
+                <LayoutDashboard size={18} class="shrink-0 mx-0.5" />
                 <span
                     class="
                         transition-all duration-300 whitespace-nowrap text-sm
