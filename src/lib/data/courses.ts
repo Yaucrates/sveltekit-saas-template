@@ -112,7 +112,7 @@ const introToCSDetails: CourseDetails = {
 			released: true
 		},
 		{
-			name: "Functions and Variables",
+			name: "Functions, Variables, and Operators",
 			description: "Explore how to use functions to execute commands, and how to use variables to store and manage data.",
 			section: 1,
 			header: "Lesson",

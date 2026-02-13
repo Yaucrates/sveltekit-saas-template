@@ -1,4 +1,4 @@
-# Typing, Comments, and More
+# Comments, Types, and More
 
 In the previous lesson, we learned how to use functions and variables to create interactive programs.
 Now, we're going to explore some additional tools that will make our code easier to read, write, and debug.
@@ -8,7 +8,7 @@ Now, we're going to explore some additional tools that will make our code easier
 ## Comments
 
 As you start writing more complex programs, it's important to document your code so that others (including
-your future self), can understand what it does. **Comments** are notes written that are the programmer that
+your future self), can understand what it does. **Comments** are notes written by the programmer that
 the computer ignores entirely. In Python, there are two ways to write comments:
 1.  **Single-line comments:** Start with a `#` symbol and continue to the end of the line.
 2.  **Multi-line comments:** Enclosed within triple quotes (`"""` or the less standard, `'''`).
@@ -20,26 +20,37 @@ name = input("What's your name? ")
 """
 Say hello to the user.
 """
-print("Hello, ", end="")
-print(name, end="")
-print("!")
+print("Hello, " + name + "!")
 ```
 
 ---
 
-## Strings (str)
+## Strings
 
-Text in Python is known as a **string** (shorthand for `str`). Strings are sequences of characters enclosed in quotation marks.
+In the previous lesson, we learned that strings are sequences of characters enclosed in quotation marks.
+Now let's look at some powerful tools for working with them.
 
 ### F-Strings
-One of the most common tasks in programming is combining text with variables. While you can print them separately, the most elegant way to combine them is using **format strings**, or **f-strings**.
+One of the most common tasks in programming is combining text with variables. While you can print them
+separately as we did in the previous chapter, the most elegant way to combine them is by using **format
+strings**, or **f-strings**.
 
-By placing an `f` before the opening quotation mark, you can insert variables directly into the string using curly braces `{}`.
+By placing an `f` before an opening quotation mark, you can insert variables directly into the string
+using curly braces `{}`. This allows us to take `hello.py`:
 
 ```python
 name = input("What's your name? ")
-print(f"hello, {name}")
+print("Hello, " + name + "!")
 ```
+
+And rewrite it as:
+
+```python
+name = input("What's your name? ")
+print(f"hello, {name}!")
+```
+
+Now our code is way easier to read and understand!
 
 ### String Methods
 Python strings come with built-in functions, called **methods**, to manipulate text. Because users are unpredictable (they might accidentally type spaces or forget to capitalize), we can use methods to clean up their input.
@@ -87,3 +98,69 @@ print(x + y)
 ```
 
 If you need to perform math with decimals, you would use `float()` instead of `int()`.
+
+---
+
+## Type Hints
+
+So far, we've seen that Python has several types: `str`, `int`, and `float`. Python is what's known as a **dynamically typed** language, meaning you don't have to declare what type a variable is — Python figures it out on its own at runtime. This is convenient, but as programs grow larger, it can become hard to remember what type each variable is supposed to hold.
+
+This is where **type hints** come in. Type hints are annotations you add to your code that indicate what type a variable or function parameter should be. They don't change how your program runs — Python completely ignores them at runtime — but they make your code significantly easier to read and debug.
+
+### Variable Annotations
+
+You can annotate a variable by placing a colon and the type after its name:
+
+```python
+name: str = "Alice"
+age: int = 25
+gpa: float = 3.8
+```
+
+This tells anyone reading the code exactly what kind of data each variable is meant to hold. Without these annotations, a reader would have to look at the assigned value (or trace through the program) to figure it out.
+
+### Function Annotations
+
+Type hints become even more useful in functions. You can annotate both the parameters a function takes *and* the value it returns. Let's revisit the `hello` function from the previous lesson:
+
+```python
+def hello(to: str = "world") -> None:
+    print(f"hello, {to}")
+```
+
+Here, `to: str` tells us the `to` parameter should be a string, and `-> None` tells us the function doesn't return anything (it just prints). Now consider the `square` function:
+
+```python
+def square(n: int) -> int:
+    return n * n
+```
+
+The annotations make it immediately clear: `square` takes an integer and returns an integer. Without them, you'd have to read the function body to understand this.
+
+### Putting It Together
+
+Let's apply type hints to our calculator example from earlier in this lesson:
+
+```python
+def add(x: int, y: int) -> int:
+    return x + y
+
+def main() -> None:
+    x: int = int(input("What's x? "))
+    y: int = int(input("What's y? "))
+    print(add(x, y))
+
+main()
+```
+
+Notice how the type hints act as built-in documentation. Just by looking at the function signature `def add(x: int, y: int) -> int`, you know exactly what the function expects and what it gives back, without reading a single line of the body.
+
+### A Note on Enforcement
+
+It's important to understand that Python **does not enforce** type hints. If you annotate a variable as `int` but assign a string to it, Python won't complain:
+
+```python
+age: int = "twenty"  # No error — Python doesn't check this!
+```
+
+So why use them? Because tools like your code editor *do* check them. Most modern editors will highlight type mismatches, offer better autocomplete suggestions, and catch potential bugs before you even run your code. Think of type hints as comments that your tools can actually understand.

@@ -1,0 +1,303 @@
+# Functions, Variables, and Operators
+
+In the previous lesson, we wrote a simple program that would print "Hello, World!" to
+the screen. Now, we're going to expand on that program to create one that's more interactive
+and dynamic.
+
+---
+
+## Functions and Arguments
+
+Although `hello.py` was simple, it contained two important concepts: *functions* and *arguments*.
+
+```python
+print("Hello, World!")
+```
+
+In it, `print` is a *function*. Functions are commands that a tell the computer what to do. The
+`print` function specifically knows how to take text and output it to the terminal. This text that
+it takes as input is known as an argument.
+
+*Arguments* are the pieces of information you give to a function as input so it can do its job.
+In `hello.py`, we pass the phrase `"Hello, World!"` as our argument, so that it gets printed to the
+screen.
+
+---
+
+## Variables and User Input
+
+As awesome as `hello.py` is, it always prints the same message. To make our programs more dynamic,
+we need to introduce the `input` function. The `input` function waits for the user to type something
+on their keyboard and press Enter. Once they do, whatever they typed is returned from the function
+for us to use. Let's update `hello.py` to use `input`:
+
+```python
+input()
+print("Hello, World!")
+```
+
+If you run this, you'll notice the program pauses and waits for you to type something before
+continuing. It works, but there's no indication of *what* the user should type. We can fix this by
+passing an argument to `input`, which will be displayed as a prompt:
+
+```python
+input("What's your name? ")
+print("Hello, World!")
+```
+
+Now the user sees a message asking for their name. However, the program still doesn't actually
+*remember* what the user typed. This is because we're not storing the value that `input` is
+returning to us. To do this, we need to use
+*variables*. Variables are names that refer to values we've stored, and we can create one by
+assigning a value to it using the assignment operator (`=`). Let's update our program to store the
+input inside of a variable called `name`:
+
+> **Important:** You may be used to seeing `=` used in math to assert equality, but in programming,
+it means something different. It tells us to take the value on the right, and store it in the variable
+on the left.
+
+```python
+name = input("What's your name? ")
+print("Hello, World!")
+```
+
+Now, we want to actually use the name that the user typed. We can do this by passing the variable `name`
+as an argument to the `print` function:
+
+```python
+name = input("What's your name? ")
+print("Hello, ")
+print(name)
+print("!")
+```
+
+> Whitespace is important in Python programs. Make sure to include the spaces where necessary, such as after
+the comma in `"Hello, "`.
+
+### Bugs
+
+When you run this program, you'll notice that it prints the greeting and the name on separate lines.
+
+```txt
+Hello, 
+John Doe
+!
+```
+
+Mistakes in coding are known as *bugs*, and they are a natural and unavoidable part of the programming
+process.
+
+This bug is caused by the fact that `print` automatically adds a special character called `\n` (a
+*newline*) at the end of every call, which moves the output to the next line. To fix this, we can
+use the `end` parameter of the `print` function to override the default behavior:
+
+```python
+name = input("What's your name? ")
+print("Hello, ", end="")
+print(name, end="")
+print("!")
+```
+
+By setting `end=""`, we're replacing the default `\n` with nothing, so the next `print` continues on
+the same line. Many functions, like `print`, have additional parameters that allow you to customize
+their behavior.
+
+Now, the program prints the greeting and the name on the same line, but it's awful to look at and
+read. There has to be a better way! What if we could combine the text?
+
+### Strings
+
+Before we solve that, let's take a moment to name something we've been using all along. Values like
+`"Hello, World!"` and `"What's your name? "` are called **strings**. A string is a sequence of
+characters enclosed in quotation marks, and it's how we represent text in Python.
+
+When you call `input("What's your name? ")`, the value the user types is also returned as a string.
+In fact, every piece of text you've seen so far in our programs has been a string.
+
+Strings are one of several **types** of data in Python. Each type represents a different kind of value,
+such as text, numbers, or true/false conditions. We'll explore types in much more detail in the next
+lesson, but for now, just know that strings are the type used for text.
+
+### Operators
+
+An **operator** is a symbol that performs an operation on one or more values. You've already seen the
+assignment operator (`=`), which stores a value in a variable. Another common operator is the `+`
+operator, which, when used on strings, **concatenates** (joins) them together:
+
+```python
+print("Hello, " + "World" + "!")
+```
+
+```
+Hello, World!
+```
+
+Using `+`, we can collapse our three `print` calls into a single, clean line:
+
+```python
+name = input("What's your name? ")
+print("Hello, " + name + "!")
+```
+
+This is much easier to read and does exactly the same thing. In the next lesson, we'll explore types in
+more depth and discover an even more elegant way to combine strings and variables.
+
+### Errors
+
+Sometimes Python will catch a mistake *before* your program even runs. These are called **syntax errors**,
+and they occur when your code breaks the rules of the Python language.
+
+For example, try running this:
+
+```python
+print("hello"
+```
+
+Python will refuse to run it and display an error message:
+
+```
+  File "hello.py", line 1
+    print("hello"
+         ^
+SyntaxError: '(' was never closed
+```
+
+Python is telling us exactly what went wrong and where. The `^` arrow points to the spot where it noticed
+the problem, and the message explains that the opening `(` was never matched with a closing `)`. To fix
+it, we simply add the missing parenthesis:
+
+```python
+print("hello")
+```
+
+This applies to more than just parentheses. Python expects matching pairs for quotes, brackets, and
+braces. If you ever see a `SyntaxError`, check that all your opening symbols have a corresponding
+closing one.
+
+> As you write more code, you'll quickly get used to reading error messages. They might look intimidating
+at first, but they're one of the most helpful tools you have for finding and fixing mistakes.
+
+### Special Characters
+
+We already saw the `\n` newline character when fixing our bug. The `\n` is an example of an **escape
+sequence**, a combination of a backslash (`\`) followed by a character that represents something
+special.
+
+Escape sequences are necessary because some characters can't be typed directly into a string. For
+instance, since Python uses quotes to mark the boundaries of a string, what happens if your text itself
+contains a quote?
+
+```python
+print("She said "hello" to me")
+```
+
+Python sees the quote before `hello` and thinks the string has ended, causing a `SyntaxError`. To include
+a quote character inside a string, you need to *escape* it by placing a backslash before it:
+
+```python
+print("She said \"hello\" to me")
+```
+
+The backslash tells Python: "don't treat the next character as special--treat it literally." Here are the
+most common escape sequences:
+
+| Escape Sequence | What It Produces |
+|:---:|:---|
+| `\"` | A double quote |
+| `\'` | A single quote |
+| `\\` | A literal backslash |
+| `\n` | A newline (moves to the next line) |
+| `\t` | A tab (horizontal space) |
+
+For example:
+
+```python
+print("Line one\nLine two")
+print("Name:\tAlice")
+```
+
+```
+Line one
+Line two
+Name:	Alice
+```
+
+---
+
+## Defining Custom Functions
+
+Although Python provides many built-in functions (like `print` and `input`), programmers often need to create
+their own. This is done using the `def` keyword. Defining functions allows you to organize code, make it
+reusable, and abstract away complexity.
+
+```python
+def hello(to="world"):
+    print("hello,", to)
+
+name = input("What's your name? ")
+hello(name)
+hello()
+```
+
+`def hello(to="world"):` defines a function named `hello` that accepts one *parameter* named `to`. Parameters
+are what we call the variables listed in a function's definition. They act as placeholders for the arguments
+that will be passed in when the function is called.
+
+The `to="world"` part makes `to` a *default parameter*. This means if the caller does not provide an argument,
+`to` will automatically default to `"world"`. That's why `hello()` prints `"hello, world"` while `hello(name)`
+prints the user's name instead.
+
+You'll also notice that the `print` line is *indented* under `def`. Python relies on indentation to define
+*scope*. Everything indented under `def` is part of that function's body.
+
+### Return Values
+Sometimes a function performs a calculation but doesn't print it immediately. Instead, it sends the result
+back to the part of the program that called it. This is done using `return`.
+
+```python
+def square(n):
+    return n * n
+
+x = int(input("What's x? "))
+print("x squared is", square(x))
+```
+
+In this example, `square` takes the number `n`, multiplies it by itself, and *returns* that value back to
+the caller. The returned value is then passed directly into the `print` function.
+
+---
+
+## The `main` Function
+
+As your programs grow, you'll notice that having loose code scattered at the top level of a file can get
+messy. A common convention in Python is to place your program's primary logic inside a function called
+`main`, and then call it at the bottom of the file.
+
+Let's refactor our previous examples to use this pattern:
+
+```python
+def hello(to="world"):
+    print("hello,", to)
+
+def main():
+    name = input("What's your name? ")
+    hello(name)
+    hello()
+
+main()
+```
+
+```python
+def square(n):
+    return n * n
+
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+main()
+```
+
+By wrapping your logic in `main`, you keep your program organized and make it clear where execution
+begins. This becomes especially important as your files grow larger and contain multiple function
+definitions.
