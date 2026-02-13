@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ImpartNameLogo from "../logos/ImpartNameLogo.svelte";
-	import { getNavigationCollapse } from "./Navigation.svelte";
+	import { getNavigationCollapse } from "./MarketingNavigation.svelte";
 
 	let isHovered = $state(false);
 

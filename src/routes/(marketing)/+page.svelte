@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { setNavigationCollapse } from "$lib/components/Navigation/Navigation.svelte";
+	import { setNavigationCollapse } from "$lib/components/Navigation/MarketingNavigation.svelte";
 	import MeetingCTA from "$lib/components/MeetingCTA.svelte";
 
 	let heroSection: HTMLElement;
