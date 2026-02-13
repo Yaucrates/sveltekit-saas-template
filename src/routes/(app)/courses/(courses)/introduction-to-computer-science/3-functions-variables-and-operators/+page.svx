@@ -74,6 +74,21 @@ print("!")
 > Whitespace is important in Python programs. Make sure to include the spaces where necessary, such as after
 the comma in `"Hello, "`.
 
+### Strings
+
+Let's take a moment to name something we've been using all along. Values like
+`"Hello, World!"` and `"What's your name? "` are called **strings**. A string is a sequence of
+characters enclosed in quotation marks, and it's how we represent text in Python.
+
+> Note: You can use both `'single quotes'` and `"double quotes"` interchangably in Python.
+
+When you call `input("What's your name? ")`, the value the user types is also returned as a string.
+In fact, every piece of text you've seen so far in our programs has been a string.
+
+Strings are one of several **types** of data in Python. Each type represents a different kind of value,
+such as text, numbers, or true/false conditions. We'll explore types in much more detail in the next
+lesson, but for now, just know that strings are the type used for text.
+
 ### Bugs
 
 When you run this program, you'll notice that it prints the greeting and the name on separate lines.
@@ -102,21 +117,26 @@ By setting `end=""`, we're replacing the default `\n` with nothing, so the next 
 the same line. Many functions, like `print`, have additional parameters that allow you to customize
 their behavior.
 
-Now, the program prints the greeting and the name on the same line, but it's awful to look at and
-read. There has to be a better way! What if we could combine the text?
+### Documentation
 
-### Strings
+But how would you have known that `end` existed in the first place? This is where **documentation**
+comes in. Documentation is the official reference material that describes how a language, library, or
+function works. For Python, the most important resource is the
+[official documentation](https://docs.python.org/3/).
 
-Before we solve that, let's take a moment to name something we've been using all along. Values like
-`"Hello, World!"` and `"What's your name? "` are called **strings**. A string is a sequence of
-characters enclosed in quotation marks, and it's how we represent text in Python.
+You've probably heard of and used AI tools like ChatGPT, Claude, and GitHub Copilot. These tools can write
+code, explain concepts, and answer programming questions. They are real, they are powerful, and
+professional developers use them every day.
 
-When you call `input("What's your name? ")`, the value the user types is also returned as a string.
-In fact, every piece of text you've seen so far in our programs has been a string.
+However, if you're just starting to learn programming, **relying on AI too early can seriously
+hurt your growth.** Think of it like using a calculator before you understand arithmetic. The
+calculator gives you the right answer, but you never build the intuition for *why* it's right. When
+something goes wrong, you won't know how to fix it. When the problem changes slightly, you won't
+know how to adapt.
 
-Strings are one of several **types** of data in Python. Each type represents a different kind of value,
-such as text, numbers, or true/false conditions. We'll explore types in much more detail in the next
-lesson, but for now, just know that strings are the type used for text.
+Now--going back to our earlier program--it finally prints the greeting and the name on the same
+line, but it's awful to look at and read. There has to be a better way! What if we could combine
+the text?
 
 ### Operators
 
@@ -171,8 +191,7 @@ print("hello")
 ```
 
 This applies to more than just parentheses. Python expects matching pairs for quotes, brackets, and
-braces. If you ever see a `SyntaxError`, check that all your opening symbols have a corresponding
-closing one.
+braces. If you ever see a `SyntaxError`, it means you've written something Python doesn't allow.
 
 > As you write more code, you'll quickly get used to reading error messages. They might look intimidating
 at first, but they're one of the most helpful tools you have for finding and fixing mistakes.
