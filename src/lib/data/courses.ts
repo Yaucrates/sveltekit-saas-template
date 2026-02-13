@@ -123,7 +123,7 @@ const introToCSDetails: CourseDetails = {
 			description: "Learn to use typing, comments, and other tools to make your code easier to read and debug.",
 			section: 1,
 			header: "Lesson",
-			released: false
+			released: true
 		},
 		{
 			name: "Name Not Applicable",

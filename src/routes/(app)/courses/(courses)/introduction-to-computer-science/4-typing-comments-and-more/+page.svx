@@ -1,0 +1,89 @@
+# Typing, Comments, and More
+
+In the previous lesson, we learned how to use functions and variables to create interactive programs.
+Now, we're going to explore some additional tools that will make our code easier to read, write, and debug.
+
+---
+
+## Comments
+
+As you start writing more complex programs, it's important to document your code so that others (including
+your future self), can understand what it does. **Comments** are notes written that are the programmer that
+the computer ignores entirely. In Python, there are two ways to write comments:
+1.  **Single-line comments:** Start with a `#` symbol and continue to the end of the line.
+2.  **Multi-line comments:** Enclosed within triple quotes (`"""` or the less standard, `'''`).
+
+```python
+# Ask the user for their name.
+name = input("What's your name? ")
+
+"""
+Say hello to the user.
+"""
+print("Hello, ", end="")
+print(name, end="")
+print("!")
+```
+
+---
+
+## Strings (str)
+
+Text in Python is known as a **string** (shorthand for `str`). Strings are sequences of characters enclosed in quotation marks.
+
+### F-Strings
+One of the most common tasks in programming is combining text with variables. While you can print them separately, the most elegant way to combine them is using **format strings**, or **f-strings**.
+
+By placing an `f` before the opening quotation mark, you can insert variables directly into the string using curly braces `{}`.
+
+```python
+name = input("What's your name? ")
+print(f"hello, {name}")
+```
+
+### String Methods
+Python strings come with built-in functions, called **methods**, to manipulate text. Because users are unpredictable (they might accidentally type spaces or forget to capitalize), we can use methods to clean up their input.
+
+*   `.strip()`: Removes whitespace from the beginning and end of a string.
+*   `.title()`: Capitalizes the first letter of each word.
+
+These methods can be "chained" together to clean up user input in one line:
+
+```python
+# Ask user for name, remove whitespace, and title case it
+name = input("What's your name? ").strip().title()
+
+print(f"hello, {name}")
+```
+
+---
+
+## Integers and Math
+
+Python handles numbers differently than strings.
+*   **String (`str`):** Text data (e.g., "hello", "123").
+*   **Integer (`int`):** Whole numbers (e.g., 1, 50, -10).
+*   **Float (`float`):** Real numbers with decimal points (e.g., 1.2, -0.5).
+
+Consider this simple calculator program:
+
+```python
+x = input("What's x? ")
+y = input("What's y? ")
+z = x + y
+print(z)
+```
+
+If the user types `1` and `2`, the output will be `12`, not `3`.
+
+This is because the `input()` function always returns a **string**, even if the user types a number. The `+` operator, when used on strings, performs "concatenation" (joining them together like words).
+
+To perform math, we must **cast** (convert) the strings to integers using the `int()` function.
+
+```python
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+print(x + y)
+```
+
+If you need to perform math with decimals, you would use `float()` instead of `int()`.

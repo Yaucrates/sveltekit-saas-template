@@ -8,17 +8,17 @@ and dynamic.
 
 ## Functions and Arguments
 
-Although `hello.py` was simple, it contained two important concepts: **functions** and **arguments**.
+Although `hello.py` was simple, it contained two important concepts: *functions* and *arguments*.
 
 ```python
 print("Hello, World!")
 ```
 
-In it, `print` is a **function**. Functions are commands that a tell the computer *what* to do. The
+In it, `print` is a *function*. Functions are commands that a tell the computer what to do. The
 `print` function specifically knows how to take text and output it to the terminal. This text that
 it takes as input is known as an argument.
 
-**Arguments** are the pieces of information you give to a function as input so it can do its job.
+*Arguments* are the pieces of information you give to a function as input so it can do its job.
 In `hello.py`, we pass the phrase `"Hello, World!"` as our argument, so that it gets printed to the
 screen.
 
@@ -38,7 +38,7 @@ print("Hello, World!")
 
 Although this program does ask for a name, it doesn't actually *remember* what the user typed. This
 is because we're not storing the value that `input` is returning to us. To do this, we need to use
-**variables**. Variables are names that refer to values we've stored, and we can create one by
+*variables*. Variables are names that refer to values we've stored, and we can create one by
 assigning a value to it using the assignment operator (`=`). Let's update our program to store the
 input inside of a variable called `name`:
 
@@ -67,7 +67,7 @@ the comma in `"Hello, "`.
 ### Bugs
 
 When you run this program, you'll notice that it prints the greeting and the name on two separate lines.
-Mistakes in coding are known as **bugs**, and they are a natural and unavoidable part of the programming
+Mistakes in coding are known as *bugs*, and they are a natural and unavoidable part of the programming
 process. This bug is caused by the fact that print starts a new line after every call. To fix this, we can
 use the `end` parameter `print` function to specify what should be printed.
 
@@ -78,100 +78,65 @@ print(name, end="")
 print("!")
 ```
 
-Many functions, such as print, have additional parameters like `end` that allow you to customize their behavior.
-For `print`, the default value of `end` is `"\n"`, which represents what's known as the
-newline character. We will get into special characters a bit later in this chapter.
+Many functions, such as print, have additional parameters like `end` that allow you to customize their
+behavior. For `print`, the default value of `end` is `"\n"`, which represents what's known as the newline
+character. We will get into special characters a bit more in the next chapter.
 
-Finally, the program prints the greeting and the name on the same line.
-
-### Comments
-
-As you start writing more complex programs, it's important to document your code so that others (including
-your future self), can understand what it does. **Comments** are notes written that are the programmer that
-the computer ignores entirely. In Python, there are two ways to write comments:
-1.  **Single-line comments:** Start with a `#` symbol and continue to the end of the line.
-2.  **Multi-line comments:** Enclosed within triple quotes (`"""` or the less standard, `'''`).
-
-```python
-# Ask the user for their name.
-name = input("What's your name? ")
-
-"""
-Say hello to the user.
-"""
-print("Hello, ", end="")
-print(name, end="")
-print("!")
-```
+Finally, the program prints the greeting and the name on the same line. Although this code works, we'll
+come back to this program in the next chapter and improve on it.
 
 ---
 
-## Strings (str)
+## Defining Custom Functions
 
-Text in Python is known as a **string** (shorthand for `str`). Strings are sequences of characters enclosed in quotation marks.
-
-### F-Strings
-One of the most common tasks in programming is combining text with variables. While you can print them separately, the most elegant way to combine them is using **format strings**, or **f-strings**.
-
-By placing an `f` before the opening quotation mark, you can insert variables directly into the string using curly braces `{}`.
+Although Python provides many built-in functions (like `print` and `input`), programmers often need to create
+their own. This is done using the `def` keyword. Defining functions allows you to organize code, make it
+reusable, and abstract away complexity.
 
 ```python
+def hello(to="world"):
+    print("hello,", to)
+
 name = input("What's your name? ")
-print(f"hello, {name}")
+hello(name)
+hello()
 ```
 
-### String Methods
-Python strings come with built-in functions, called **methods**, to manipulate text. Because users are unpredictable (they might accidentally type spaces or forget to capitalize), we can use methods to clean up their input.
+`def hello(to="world"):` defines a function named `hello` that accepts one *parameter* named `to`. Parameters
+are what we call the variables listed in a function's definition. They act as placeholders for the arguments
+that will be passed in when the function is called.
 
-*   `.strip()`: Removes whitespace from the beginning and end of a string.
-*   `.title()`: Capitalizes the first letter of each word.
+The `to="world"` part makes `to` a *default parameter*. This means if the caller does not provide an argument,
+`to` will automatically default to `"world"`. That's why `hello()` prints `"hello, world"` while `hello(name)`
+prints the user's name instead.
 
-These methods can be "chained" together to clean up user input in one line:
+You'll also notice that the `print` line is *indented* under `def`. Python relies on indentation to define
+*scope*. Everything indented under `def` is part of that function's body.
 
-```python
-# Ask user for name, remove whitespace, and title case it
-name = input("What's your name? ").strip().title()
-
-print(f"hello, {name}")
-```
-
----
-
-## Integers and Math
-
-Python handles numbers differently than strings.
-*   **String (`str`):** Text data (e.g., "hello", "123").
-*   **Integer (`int`):** Whole numbers (e.g., 1, 50, -10).
-*   **Float (`float`):** Real numbers with decimal points (e.g., 1.2, -0.5).
-
-Consider this simple calculator program:
+### Return Values
+Sometimes a function performs a calculation but doesn't print it immediately. Instead, it sends the result
+back to the part of the program that called it. This is done using `return`.
 
 ```python
-x = input("What's x? ")
-y = input("What's y? ")
-z = x + y
-print(z)
-```
+def square(n):
+    return n * n
 
-If the user types `1` and `2`, the output will be `12`, not `3`.
-
-This is because the `input()` function always returns a **string**, even if the user types a number. The `+` operator, when used on strings, performs "concatenation" (joining them together like words).
-
-To perform math, we must **cast** (convert) the strings to integers using the `int()` function.
-
-```python
 x = int(input("What's x? "))
-y = int(input("What's y? "))
-print(x + y)
+print("x squared is", square(x))
 ```
 
-If you need to perform math with decimals, you would use `float()` instead of `int()`.
+In this example, `square` takes the number `n`, multiplies it by itself, and *returns* that value back to
+the caller. The returned value is then passed directly into the `print` function.
 
 ---
 
-## Defining Custom Functions (`def`)
+## The `main` Function
 
-While Python provides many built-in functions (like `print`, `input`, `int`), programmers often need to create their own. This is done using the `def` keyword. Defining functions allows you to organize code, make it reusable, and abstract away complexity.
+As your programs grow, you'll notice that having loose code scattered at the top level of a file can get
+messy. A common convention in Python is to place your program's primary logic inside a function called
+`main`, and then call it at the bottom of the file.
+
+Let's refactor our previous examples to use this pattern:
 
 ```python
 def hello(to="world"):
@@ -185,26 +150,17 @@ def main():
 main()
 ```
 
-### Key Concepts:
-1.  **Definition:** `def hello(to):` defines a function named `hello` that accepts one parameter named `to`.
-2.  **Indentation:** Python relies on indentation (spacing) to define scope. Everything indented under `def` is part of that function.
-3.  **Default Parameters:** `to="world"` means if the caller does not provide an argument, the variable `to` defaults to "world".
-4.  **Main:** It is a convention to place the primary logic of the program in a function called `main()` and call it at the end of the file.
-
-### Return Values
-Sometimes a function performs a calculation but doesn't print it immediately. Instead, it sends the result back to the part of the program that called it. This is done using `return`.
-
 ```python
+def square(n):
+    return n * n
+
 def main():
     x = int(input("What's x? "))
     print("x squared is", square(x))
 
-def square(n):
-    return n * n
-
 main()
 ```
 
-In this example, `square` takes a number `n`, multiplies it by itself, and **returns** that value to `main`.
-
-Prime factorization, raising to power, pattern recognition, etc.
+By wrapping your logic in `main`, you keep your program organized and make it clear where execution
+begins. This becomes especially important as your files grow larger and contain multiple function
+definitions.

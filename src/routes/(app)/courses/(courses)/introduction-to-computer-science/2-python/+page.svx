@@ -27,7 +27,7 @@ the "New File..." button.
 
 </div>
 
-For this tutorial, we'll name the file **hello.py**, but you can choose any name you like. Inside this file,
+For this tutorial, we'll name the file `hello.py`, but you can choose any name you like. Inside this file,
 we’ll write our very first line of Python code:
 
 ```python
@@ -37,10 +37,10 @@ print("Hello, World!")
 This little program that we wrote instructs the computer to print the phrase "Hello, World!" to your
 terminal. However, computers don’t natively understand programming languages. At their core, computers
 operate using only ones and zeros. So when we write code in a language like **Python**, we need an
-**interpreter** to translate our human-readable instructions into something the computer can
+*interpreter* to translate our human-readable instructions into something the computer can
 understand--machine code (i.e. ones and zeros).
 
-To run **hello.py**, open your terminal, also known as the command line interface (CLI), and
+To run `hello.py`, open your terminal, also known as the command line interface (CLI), and
 enter the following command:
 
 ```bash
