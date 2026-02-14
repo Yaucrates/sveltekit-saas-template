@@ -1,4 +1,4 @@
-# Functions, Variables, and Operators
+# Chapter 2: Functions, Variables, and Operators
 
 In the previous lesson, we wrote a simple program that would print "Hello, World!" to
 the screen. Now, we're going to expand on that program to create one that's more interactive
@@ -121,8 +121,44 @@ their behavior.
 
 But how would you have known that `end` existed in the first place? This is where **documentation**
 comes in. Documentation is the official reference material that describes how a language, library, or
-function works. For Python, the most important resource is the
-[official documentation](https://docs.python.org/3/).
+function works. For Python, the most important resource is the [official documentation](https://docs.python.org/3/)
+although you can use any resource you want online.
+
+Documentation takes some experience to understand. Taking a look at the documentation for the `print`
+function, we see how print is defined followed by an explaination. The definition is as follows:
+
+```python
+print(*objects, sep=' ', end='\n', file=None, flush=False)
+```
+
+This tells us that `print` accepts several parameters. Let's break them down:
+
+*   `*objects`: The `*` means `print` can accept any number of arguments. That's why
+    `print("hello", "world")` works just as well as `print("hello")`—you can pass one value
+    or many.
+*   `sep=' '`: Short for *separator*. When you pass multiple arguments, `sep` controls what
+    goes between them. The default is a space, which is why `print("hello", "world")` outputs
+    `hello world`. You could change it:
+
+```python
+print("hello", "world", sep="-")
+```
+
+```
+hello-world
+```
+
+*   `end='\n'`: This is the one we already used! It controls what gets printed at the very
+    end. The default is `\n` (a newline), which is why each `print` normally starts a new
+    line. Earlier, we set `end=""` to prevent that.
+*   `file` and `flush`: These control *where* the output goes and *when* it's sent. You won't
+    need these for now.
+
+Don't worry if documentation feels overwhelming at first. The key skill is learning to scan
+for what you need rather than reading everything top to bottom. With practice, you'll find
+that documentation is one of the most reliable tools you have as a programmer.
+
+### AI
 
 You've probably heard of and used AI tools like ChatGPT, Claude, and GitHub Copilot. These tools can write
 code, explain concepts, and answer programming questions. They are real, they are powerful, and
@@ -159,13 +195,44 @@ name = input("What's your name? ")
 print("Hello, " + name + "!")
 ```
 
-This is much easier to read and does exactly the same thing. In the next lesson, we'll explore types in
-more depth and discover an even more elegant way to combine strings and variables.
+This is much easier to read and does exactly the same thing.
+
+### F-Strings
+
+While `+` works well for simple cases, there's an even cleaner way to combine text and variables:
+**format strings**, or **f-strings**. By placing an `f` before the opening quotation mark, you can
+insert variables directly into the string using curly braces `{}`:
+
+```python
+name = input("What's your name? ")
+print(f"Hello, {name}!")
+```
+
+F-strings are the preferred way to build strings in modern Python, and you'll see them used
+throughout the rest of this course.
+
+### String Methods
+
+Python strings come with built-in functions, called **methods**, to manipulate text. Because users are unpredictable (they might accidentally type spaces or forget to capitalize), we can use methods to clean up their input.
+
+*   `.strip()`: Removes whitespace from the beginning and end of a string.
+*   `.title()`: Capitalizes the first letter of each word.
+
+These methods can be "chained" together to clean up user input in one line:
+
+```python
+# Ask user for name, remove whitespace, and title case it
+name = input("What's your name? ").strip().title()
+
+print(f"Hello, {name}!")
+```
 
 ### Errors
 
-Sometimes Python will catch a mistake *before* your program even runs. These are called **syntax errors**,
-and they occur when your code breaks the rules of the Python language.
+As you write code, it's important to realize you will make mistakes. Sometimes
+Python will catch a mistake *before* your program even runs. These are called
+**syntax errors**, and they occur when your code breaks the rules of the Python
+language.
 
 For example, try running this:
 

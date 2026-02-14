@@ -1,4 +1,4 @@
-# Comments, Types, and More
+# Chapter 3: Comments, Types, and More
 
 In the previous lesson, we learned how to use functions and variables to create interactive programs.
 Now, we're going to explore some additional tools that will make our code easier to read, write, and debug.
@@ -21,50 +21,6 @@ name = input("What's your name? ")
 Say hello to the user.
 """
 print("Hello, " + name + "!")
-```
-
----
-
-## Strings
-
-In the previous lesson, we learned that strings are sequences of characters enclosed in quotation marks.
-Now let's look at some powerful tools for working with them.
-
-### F-Strings
-One of the most common tasks in programming is combining text with variables. While you can print them
-separately as we did in the previous chapter, the most elegant way to combine them is by using **format
-strings**, or **f-strings**.
-
-By placing an `f` before an opening quotation mark, you can insert variables directly into the string
-using curly braces `{}`. This allows us to take `hello.py`:
-
-```python
-name = input("What's your name? ")
-print("Hello, " + name + "!")
-```
-
-And rewrite it as:
-
-```python
-name = input("What's your name? ")
-print(f"hello, {name}!")
-```
-
-Now our code is way easier to read and understand!
-
-### String Methods
-Python strings come with built-in functions, called **methods**, to manipulate text. Because users are unpredictable (they might accidentally type spaces or forget to capitalize), we can use methods to clean up their input.
-
-*   `.strip()`: Removes whitespace from the beginning and end of a string.
-*   `.title()`: Capitalizes the first letter of each word.
-
-These methods can be "chained" together to clean up user input in one line:
-
-```python
-# Ask user for name, remove whitespace, and title case it
-name = input("What's your name? ").strip().title()
-
-print(f"hello, {name}")
 ```
 
 ---
