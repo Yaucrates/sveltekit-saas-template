@@ -32,10 +32,10 @@
 </script>
 
 <svelte:head>
-	<title>Digital Courseware | Impart</title>
+	<title>AI Courseware | Impart</title>
 	<meta
 		name="description"
-		content="Impart is the all-in-one learning platform for modern computer science education. Pre-built curricula, auto-graded assignments, and interactive tools designed for in-person, online, and flipped classrooms."
+		content="Impart is the all-in-one AI courseware platform for modern education. Pre-built AI curricula, auto-graded assignments, and interactive tools designed for in-person, online, and flipped classrooms."
 	/>
 </svelte:head>
 
@@ -43,11 +43,11 @@
 <section bind:this={heroSection} class="max-w-6xl mx-auto px-12 py-24">
     <div class="max-w-3xl">
         <h1 class="text-6xl tracking-tighter leading-[1.1] font-normal mb-8 text-stone-900">
-            Meet Your All-in-One<br>
-            <span class="text-stone-400">Learning Platform</span>
+            Modern AI Courseware<br>
+            <span class="text-stone-400">for Every Classroom</span>
         </h1>
         <p class="text-xl text-stone-600 mb-10 leading-relaxed max-w-xl">
-            Impart is the easiest way to adopt a complete modern Course. Curriculums, auto-graded assignments, and flipped classroom tools are all built into one interactive platform.
+            Impart is the easiest way to adopt a complete, modern AI course. Curriculums, auto-graded assignments, and flipped-classroom tools are all built into one interactive platform.
         </p>
         <div class="flex items-center gap-4 mb-20">
             <a href="/auth/signup" class="bg-stone-900 text-white px-8 py-3 rounded-sm font-medium hover:bg-black transition-all">Get Started &rarr;</a>
@@ -93,9 +93,9 @@
 <!-- Feature 1: Interactive Curriculum -->
 <section id="curriculum" class="max-w-6xl mx-auto px-12 py-32 grid md:grid-cols-2 gap-20 items-center">
     <div>
-        <h2 class="text-4xl tracking-tight leading-tight mb-6">A complete curriculum<br>with labs and problem sets.</h2>
+        <h2 class="text-4xl tracking-tight leading-tight mb-6">A complete AI curriculum<br>with labs and problem sets.</h2>
         <p class="text-lg text-stone-600 leading-relaxed mb-6">
-            Impart delivers a fully structured course out of the box.
+            Impart delivers a fully structured AI course out of the box.
             From comprehensive lecture materials to challenging problem
             sets and hands-on labs, everything is pre-built so you can
             focus on teaching rather than content creation.
@@ -106,13 +106,13 @@
         <div class="bg-white rounded-lg p-4 shadow-sm border border-stone-200">
             <div class="border-b border-stone-100 pb-3 mb-4">
                 <div class="text-xs text-stone-400 uppercase tracking-wide mb-1">Chapter 3</div>
-                <div class="font-medium text-stone-900">Data Structures & Algorithms</div>
+                <div class="font-medium text-stone-900">Supervised Learning</div>
             </div>
             <div class="space-y-3">
-                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-green-500"></div><div class="text-sm text-stone-600">Arrays and Lists</div></div>
-                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-green-500"></div><div class="text-sm text-stone-600">Stacks and Queues</div></div>
-                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full border-2 border-blue-500 bg-blue-50"></div><div class="text-sm text-stone-900 font-medium">Binary Trees</div></div>
-                <div class="flex items-center gap-3 opacity-50"><div class="w-4 h-4 rounded-full border border-stone-300"></div><div class="text-sm text-stone-400">Hash Tables</div></div>
+                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-green-500"></div><div class="text-sm text-stone-600">Linear Regression</div></div>
+                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full bg-green-500"></div><div class="text-sm text-stone-600">Logistic Regression</div></div>
+                <div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full border-2 border-blue-500 bg-blue-50"></div><div class="text-sm text-stone-900 font-medium">Neural Networks</div></div>
+                <div class="flex items-center gap-3 opacity-50"><div class="w-4 h-4 rounded-full border border-stone-300"></div><div class="text-sm text-stone-400">Backpropagation</div></div>
             </div>
         </div>
     </div>
@@ -125,22 +125,22 @@
         <div class="bg-white rounded-lg p-6 shadow-sm border border-stone-200 text-sm">
             <div class="font-mono text-xs bg-stone-900 text-green-400 p-3 rounded mb-4">
                 <div class="text-stone-500">// Student submission</div>
-                <div>def fibonacci(n):</div>
-                <div class="pl-4">if n {'<='} 1: return n</div>
-                <div class="pl-4">return fibonacci(n-1) + fibonacci(n-2)</div>
+                <div>def gradient_step(w, X, y, lr):</div>
+                <div class="pl-4">pred = sigmoid(X @ w)</div>
+                <div class="pl-4">return w - lr * X.T @ (pred - y)</div>
             </div>
             <div class="p-3 bg-green-50 rounded border border-green-200">
                 <div class="flex items-center gap-2 text-green-800 font-medium mb-1">
                     <span>✓</span> All tests passed
                 </div>
-                <div class="text-xs text-green-700">Correct output for n=0,1,5,10,20. Runtime: 0.03s</div>
+                <div class="text-xs text-green-700">Correct loss for all test batches. Runtime: 0.03s</div>
             </div>
         </div>
     </div>
     <div class="order-1 md:order-2">
         <h2 class="text-4xl tracking-tight leading-tight mb-6">Instant feedback on every submission. No grading backlog.</h2>
         <p class="text-lg text-stone-600 leading-relaxed">
-            Students can submit at anytime and get immediate feedback—not just pass/fail, but hints on edge cases, time complexity insights, and suggestions for improvement.
+            Students can submit at anytime and get immediate feedback—not just pass/fail, but hints on edge cases, training insights, and suggestions for improvement.
         </p>
     </div>
 </section>
@@ -242,7 +242,7 @@
                 <div class="md:col-span-4">
                     <p class="text-stone-500 leading-relaxed">
                         <span class="block text-stone-900 font-medium mb-1">Inconsistent Experience</span>
-                        Course content varies significantly by instructor, creating knowledge gaps. Prerequisite disconnects (e.g., teaching ARM vs. x86) often leave students unprepared for follow-up courses.
+                        Course content varies significantly by instructor, creating knowledge gaps. Prerequisite disconnects (e.g., teaching PyTorch vs. TensorFlow) often leave students unprepared for follow-up courses.
                     </p>
                 </div>
                 <div class="md:col-span-4">

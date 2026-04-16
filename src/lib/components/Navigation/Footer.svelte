@@ -2,8 +2,8 @@
 <div class="py-16 px-12 gap-12 flex flex-col border-t bg-white border-stone-200">
     <div class="flex justify-between items-end">
         <p class="w-2/5 text-xl text-stone-500">
-            Impart is building the infrastructure for modern education.
-            We help academic institutions deliver world-class education
+            Impart is building the infrastructure for modern AI education.
+            We help academic institutions deliver world-class AI courses
             directly to their students.
         </p>
         <div class="gap-4 flex flex-col text-sm text-stone-400">
