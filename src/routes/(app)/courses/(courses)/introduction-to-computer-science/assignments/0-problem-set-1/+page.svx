@@ -1,0 +1,64 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Camel Case
+
+## Problem to Solve
+
+In Python, it's conventional to write variable names in `snake_case` — words separated by underscores. But in other languages like JavaScript, `camelCase` is more common, where each word after the first starts with a capital letter.
+
+In a file called `camel.py`, implement a program that prompts the user for a variable name written in `snake_case` and converts it to `camelCase`. Assume the input will only contain lowercase letters and underscores.
+
+## Examples
+
+Here's how the program should work if the user inputs `hello_world`:
+
+```bash
+$ python camel.py
+snake_case: hello_world
+camelCase: helloWorld
+```
+
+Here's how the program should work if the user inputs `this_is_a_variable`:
+
+```bash
+$ python camel.py
+snake_case: this_is_a_variable
+camelCase: thisIsAVariable
+```
+
+Here's how the program should work if the user inputs a single word:
+
+```bash
+$ python camel.py
+snake_case: hello
+camelCase: hello
+```
+
+Note that the first word stays lowercase — only subsequent words are capitalised.
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Python strings have a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">split</code> method that can split on a specific character — try splitting on <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">"_"</code>.</li>
+        <li>The first word should stay lowercase; use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">capitalize()</code> on all subsequent words to uppercase only their first letter.</li>
+        <li>You can build the result by joining a list of transformed words: <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">"".join(words)</code>.</li>
+        <li>Think about edge cases: what if the user enters a name with no underscores at all?</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you input:
+
+- `hello_world`?
+- `a_b_c`?
+- A single word with no underscores?
+- A word that starts or ends with an underscore?
+
+---
+
+<AssignmentSubmission assignmentName="camel.py" />

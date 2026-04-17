@@ -1,0 +1,69 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Seasons of Love
+
+## Problem to Solve
+
+How many minutes have you been alive? Let's figure it out — using object-oriented programming.
+
+In a file called `seasons.py`, implement a program that prompts the user for their date of birth in `YYYY-MM-DD` format and then outputs how many minutes old they are, in English words.
+
+To do this, implement a `Date` class with:
+
+- A constructor that accepts a year, month, and day
+- A method (or property) that returns the number of minutes between that date and today
+
+Output the number of minutes as words using the `inflect` library, in the format shown below.
+
+## Examples
+
+```bash
+$ python seasons.py
+Date of Birth: 1990-01-01
+eighteen million, eight hundred thirty-two thousand, six hundred forty minutes
+```
+
+```bash
+$ python seasons.py
+Date of Birth: 2000-01-01
+thirteen million, one hundred forty-three thousand, five hundred twenty minutes
+```
+
+If the input is not a valid date in `YYYY-MM-DD` format, prompt the user again:
+
+```bash
+$ python seasons.py
+Date of Birth: 1990-13-01
+Date of Birth: not-a-date
+Date of Birth: 2000-06-15
+twelve million, ...
+```
+
+You may use Python's `datetime` module and the third-party `inflect` library.
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">datetime.date.today()</code> to get today's date, and subtract two <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">date</code> objects to get a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">timedelta</code>.</li>
+        <li>A <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">timedelta</code> has a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">.days</code> attribute — multiply by 24 × 60 to convert days to minutes.</li>
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">inflect.engine().number_to_words(n, andword="")</code> to convert an integer to English words.</li>
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">datetime.date.fromisoformat()</code> inside a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">try / except ValueError</code> to validate the date.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you input:
+
+- A valid date in `YYYY-MM-DD` format?
+- An invalid month like `1990-13-01`?
+- An invalid format like `01/01/1990`?
+- A future date (should it work or should it reject it — decide and handle it)?
+
+---
+
+<AssignmentSubmission assignmentName="seasons.py" />

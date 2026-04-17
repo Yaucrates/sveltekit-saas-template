@@ -1,0 +1,81 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Fuel Gauge
+
+## Problem to Solve
+
+Fuel gauges in cars often display remaining fuel as a fraction (e.g. `3/4`) and as a percentage. At the extremes, it's conventional to display `E` (empty) when the tank is at or below 1% and `F` (full) when it's at or above 99%.
+
+In a file called `fuel.py`, implement a program that prompts the user for a fraction in the form `X/Y` and then outputs the corresponding percentage, rounded to the nearest integer. If the fraction is not a valid format, or if `Y` is zero, or if `X` is greater than `Y`, prompt the user again. Display `E` if the percentage is 1% or less and `F` if it is 99% or greater.
+
+## Examples
+
+Here's how the program should work if the user inputs a valid fraction:
+
+```bash
+$ python fuel.py
+Fraction: 3/4
+75%
+```
+
+```bash
+$ python fuel.py
+Fraction: 1/100
+1%
+```
+
+Wait — that's at or below 1%, so output `E`:
+
+```bash
+$ python fuel.py
+Fraction: 1/100
+E
+```
+
+```bash
+$ python fuel.py
+Fraction: 99/100
+F
+```
+
+If the user types something invalid, prompt again:
+
+```bash
+$ python fuel.py
+Fraction: cat/dog
+Fraction: 5/0
+Fraction: 5/3
+Fraction: 2/3
+67%
+```
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Use a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">while True</code> loop combined with <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">try / except</code> to keep prompting until valid input is received.</li>
+        <li>Split the string on <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">"/"</code> and convert each part to an integer with <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">int()</code>. A <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">ValueError</code> will be raised if they aren't numbers.</li>
+        <li>Raise (or catch) a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">ZeroDivisionError</code> for the case where <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">Y</code> is zero, and a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">ValueError</code> when <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">X &gt; Y</code>.</li>
+        <li>Use Python's built-in <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">round()</code> to round to the nearest integer.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you input:
+
+- `3/4`?
+- `1/4`?
+- `1/100`?
+- `99/100`?
+- `0/1` (should be `E`)?
+- `4/2` (X > Y — invalid)?
+- `cat/dog` (non-integers)?
+- `1/0` (zero denominator)?
+
+---
+
+<AssignmentSubmission assignmentName="fuel.py" />

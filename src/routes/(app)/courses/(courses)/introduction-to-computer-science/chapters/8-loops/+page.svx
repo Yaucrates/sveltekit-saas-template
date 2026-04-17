@@ -1,0 +1,144 @@
+# Chapter 2.3: Loops
+
+You've written programs that run from top to bottom, line by line. But what if you need to do something many times? Typing the same line 500 times is not a solution—loops are.
+
+---
+
+## The Problem with Repetition
+
+Create a new file called `cat.py` and write the following:
+
+```py
+print("meow")
+print("meow")
+print("meow")
+```
+
+This works for three meows. But what about 500? Loops let you express repetition without repeating yourself.
+
+---
+
+## While Loops
+
+A `while` loop keeps running a block of code for as long as its condition is `True`.
+
+```py
+i = 3
+while i != 0:
+    print("meow")
+    i = i - 1
+```
+
+Each pass through the loop is called an **iteration**. Here, `i` starts at 3 and decreases by 1 each iteration. Once `i` reaches 0, the condition `i != 0` becomes `False` and the loop stops.
+
+Notice the shorthand `i -= 1` is equivalent to `i = i - 1`. Python convention is to start counting at zero:
+
+```py
+i = 0
+while i < 3:
+    print("meow")
+    i += 1
+```
+
+This reads: while `i` is less than 3, print "meow" and increment `i`. The loop runs for `i = 0`, `i = 1`, and `i = 2`—three iterations total.
+
+> **Warning:** If you forget to update `i`, the condition never becomes `False` and your loop runs forever. Press `Ctrl+C` to break out of an infinite loop.
+
+---
+
+## For Loops
+
+A `for` loop iterates over a sequence of values directly.
+
+```py
+for i in [0, 1, 2]:
+    print("meow")
+```
+
+Python assigns `i` to each value in the list in turn and runs the indented block. This is cleaner than a `while` loop, but spelling out the list by hand is tedious for large ranges.
+
+The built-in `range()` function generates a sequence for you:
+
+```py
+for i in range(3):
+    print("meow")
+```
+
+`range(3)` produces the values `0`, `1`, and `2`—three values starting from zero.
+
+If you don't need the loop variable at all, use `_` as a placeholder to signal that the variable is intentionally unused:
+
+```py
+for _ in range(3):
+    print("meow")
+```
+
+You can also use string multiplication for simple repeated output:
+
+```py
+print("meow\n" * 3, end="")
+```
+
+`"meow\n"` is the string "meow" followed by a newline character. Multiplying it by 3 repeats it three times. The `end=""` argument prevents `print` from adding an extra newline of its own.
+
+---
+
+## Improving with User Input
+
+Loops are also a powerful tool for validating user input. A common pattern is to loop until the user provides an acceptable value:
+
+```py
+while True:
+    n = int(input("What's n? "))
+    if n > 0:
+        break
+```
+
+`while True` creates a loop that would run forever on its own. The `break` keyword immediately exits the loop when the condition is met. The `continue` keyword, conversely, skips the rest of the current iteration and goes back to the top of the loop.
+
+Once you have a valid `n`, you can use it:
+
+```py
+while True:
+    n = int(input("What's n? "))
+    if n > 0:
+        break
+
+for _ in range(n):
+    print("meow")
+```
+
+For larger programs, it is good practice to separate concerns into functions:
+
+```py
+def main():
+    meow(get_number())
+
+
+def get_number():
+    while True:
+        n = int(input("What's n? "))
+        if n > 0:
+            return n
+
+
+def meow(n):
+    for _ in range(n):
+        print("meow")
+
+
+main()
+```
+
+Notice that `get_number` uses `return` rather than `break`. Returning a value from inside a loop both exits the loop *and* sends the value back to the caller.
+
+---
+
+## Summing Up
+
+Loops let you express repetition concisely and handle real-world uncertainty like bad user input. In this chapter we covered…
+
+- `while` loops that repeat as long as a condition is `True`
+- `for` loops that iterate over a sequence with `range()`
+- `break` for exiting a loop early and `continue` for skipping an iteration
+- Validating user input by looping until an acceptable value is entered

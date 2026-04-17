@@ -1,0 +1,122 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Mario
+
+## Problem to Solve
+
+Toward the beginning of World 1-1 in Nintendo's Super Mario Brothers, Mario must hop over
+adjacent pyramids of blocks, per the below.
+
+<div class="flex items-center justify-center">
+    <img
+        src="/courses/introduction-to-computer-science/mario.png"
+        alt="Screenshot of Mario jumping over adjacent pyramids"
+        class="w-3/4"
+    />
+</div>
+
+In a file called `mario.py`, implement a program in Python that recreates that
+pyramid, using hashes (`#`) for bricks, as in the below:
+
+```
+   #  #
+  ##  ##
+ ###  ###
+####  ####
+```
+
+And let's allow the user to decide just how tall the pyramids should be by first prompting
+them for a positive integer between, say, 1 and 8, inclusive.
+
+## Examples
+
+Here's how the program might work if the user inputs `8` when prompted:
+
+```bash
+$ python mario.py
+Height: 8
+       #  #
+      ##  ##
+     ###  ###
+    ####  ####
+   #####  #####
+  ######  ######
+ #######  #######
+########  ########
+```
+
+Here's how the program might work if the user inputs `4` when prompted:
+
+```bash
+$ python mario.py
+Height: 4
+   #  #
+  ##  ##
+ ###  ###
+####  ####
+```
+
+Here's how the program might work if the user inputs `2` when prompted:
+
+```bash
+$ python mario.py
+Height: 2
+ #  #
+##  ##
+```
+
+And here's how the program might work if the user inputs `1` when prompted:
+
+```bash
+$ python mario.py
+Height: 1
+#  #
+```
+
+If the user doesn't, in fact, input a positive integer between 1 and 8, inclusive, when
+prompted, the program should re-prompt the user until they cooperate:
+
+```bash
+$ python mario.py
+Height: -1
+Height: 0
+Height: 42
+Height: 50
+Height: 4
+   #  #
+  ##  ##
+ ###  ###
+####  ####
+```
+
+Notice that width of the "gap" between adjacent pyramids is equal to the width of two
+hashes, irrespective of the pyramids' heights.
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Think about what each row looks like: some number of spaces, then hashes, then a gap of two spaces, then more hashes.</li>
+        <li>For row <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">i</code> (starting from 1) of a pyramid with height <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">n</code>, how many spaces and how many hashes do you need?</li>
+        <li>Use Python's string multiplication (<code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">" " * count</code>) to repeat characters easily.</li>
+        <li>Use a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">while</code> loop to keep prompting the user until they provide valid input.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you input:
+
+- `-1` (or other negative numbers)?
+- `0`?
+- `1` through `8`?
+- `9` or other positive numbers?
+- Letters or words?
+- No input at all, when you only hit Enter?
+
+---
+
+<AssignmentSubmission assignmentName="mario.py" />

@@ -1,0 +1,210 @@
+# Chapter 1.3: Strings, Numbers, and Your Own Functions
+
+In the last chapter, we got user input, stored it in a variable, and printed it out. Now let's look more closely at strings, explore numbers, and learn how to write our own functions.
+
+---
+
+## Strings and Parameters
+
+A **string** (written as `str` in Python) is a sequence of text--letters, numbers, spaces, symbols, anything.
+
+Recall our program from last chapter, where the name and the greeting appeared on separate lines:
+
+```py
+name = input("What's your name? ")
+print("hello,")
+print(name)
+```
+
+This happens because `print` adds a newline at the end by default. Looking at Python's documentation for `print`, you'd find that it has a parameter called `end` with a default value of `'\n'`--the newline character. This is why each `print` call starts on a new line.
+
+**Parameters** are named values that functions accept to influence their behaviour. We can override `end` ourselves to prevent the newline:
+
+```py
+name = input("What's your name? ")
+print("hello,", end="")
+print(name)
+```
+
+By setting `end=""`, we're telling `print` to finish with an empty string instead of a newline. The cursor stays on the same line, and the output becomes:
+
+```
+hello, David
+```
+
+### A small problem with quotation marks
+
+What if you want quotation marks inside your string? This causes an issue:
+
+```py
+print("hello, "friend"")
+```
+
+Python gets confused because it sees the string ending at the second `"`. The interpreter will throw an error. There are two ways to fix this.
+
+The first is to use single quotation marks on the outside:
+
+```py
+print('hello, "friend"')
+```
+
+The second is to **escape** the inner quotation marks with a backslash `\`:
+
+```py
+print("hello, \"friend\"")
+```
+
+The backslash tells the interpreter: *treat the next character as a literal character, not a special one.*
+
+---
+
+## Formatting Strings
+
+The most elegant way to include a variable inside a string is with an **f-string**:
+
+```py
+name = input("What's your name? ")
+print(f"hello, {name}")
+```
+
+Notice the `f` before the opening quotation mark. This tells Python that this is a formatted string. Any variable name (or expression) placed inside `{}` will be evaluated and inserted directly into the string. F-strings are clean, readable, and you'll use them constantly throughout this course.
+
+---
+
+## More on Strings
+
+You should never assume your users will type input exactly the way you want. Fortunately, Python's `str` type comes with built-in **methods**--functions that belong to a specific type and are called with dot notation.
+
+For example, `strip()` removes any whitespace from the left and right of a string:
+
+```py
+name = input("What's your name? ")
+name = name.strip()
+print(f"hello, {name}")
+```
+
+Now even if the user types `  David  ` with extra spaces, the output will still be `hello, David`.
+
+The `title()` method capitalises the first letter of each word:
+
+```py
+name = input("What's your name? ")
+name = name.strip()
+name = name.title()
+print(f"hello, {name}")
+```
+
+You can also **chain** methods--calling one right after another--to make the code more concise:
+
+```py
+name = input("What's your name? ").strip().title()
+print(f"hello, {name}")
+```
+
+Each method runs left to right: `input` gets the value, `strip` removes whitespace, then `title` capitalises it.
+
+---
+
+## Integers or int
+
+In Python, whole numbers are called **integers**, or `int`. You can do arithmetic with them using the standard operators: `+`, `-`, `*`, `/`, and `%` (modulo).
+
+You don't have to use a file to run Python code. In your terminal, you can run `python` alone. You'll be presented with `>>>` — this is Python's interactive mode, where you can type expressions and see results immediately. For example, typing `1+1` will output `2`. This mode won't be used often in this course, but it's handy for quick experiments.
+
+Let's build a simple calculator:
+
+```py
+x = input("What's x? ")
+y = input("What's y? ")
+print(x + y)
+```
+
+If you run this and type `1` and `2`, you might expect `3`--but you'll get `12`. That's because `input` always returns a string. Adding two strings with `+` *concatenates* them (joins them as text), it doesn't add them as numbers.
+
+To fix this, we need to **cast** the values to integers using `int()`:
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+print(x + y)
+```
+
+Now `1 + 2` gives `3` as expected. The `int()` function temporarily converts the string to an integer so the arithmetic works correctly.
+
+---
+
+## Readability Wins
+
+As you write more code, you'll often find that there are several valid ways to solve the same problem. When choosing between them, **readability** should be a top priority. Code that is easy to read is easier to debug, easier to share, and easier to return to after time away.
+
+Use comments to explain your intent, choose descriptive variable names, and avoid cramming too much onto a single line just to be clever.
+
+---
+
+## Float Basics
+
+A **float** is a number with a decimal point, like `0.52` or `3.14`. You work with them the same way as integers, just using `float()` to cast:
+
+```py
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+print(x + y)
+```
+
+Python's built-in `round()` function lets you round a float. The second argument, `ndigits`, is optional--omitting it rounds to the nearest integer:
+
+```py
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+z = round(x + y)
+print(z)
+```
+
+You can also format numbers in output. For example, to print a number with commas (like `1,000`):
+
+```py
+z = round(x + y)
+print(f"{z:,}")
+```
+
+---
+
+## More on Floats
+
+What if we want to round a floating-point result to a specific number of decimal places? Let's say we're dividing:
+
+```py
+x = float(input("What's x? "))
+y = float(input("What's y? "))
+z = x / y
+print(z)
+```
+
+If you input `2` and `3`, you'll get something like `0.6666666666666666`. We can round this to 2 decimal places using the second argument to `round()`:
+
+```py
+z = round(x / y, 2)
+print(z)
+```
+
+Or we can use an f-string formatting code to achieve the same thing:
+
+```py
+z = x / y
+print(f"{z:.2f}")
+```
+
+These special formatting codes inside `{}` in f-strings are part of Python's format specification language--cryptic at first, but very useful once you get used to them.
+
+---
+
+## Summing Up
+
+In this chapter you have learned about…
+
+- **Strings and Parameters** — using `end` and other parameters to control `print`, and handling quotation marks inside strings
+- **Formatting Strings** — using f-strings to embed variables and expressions directly in text
+- **String Methods** — cleaning and transforming input with `strip()`, `title()`, and method chaining
+- **Integers** — performing arithmetic and casting string input to `int`
+- **Readability** — choosing clarity over cleverness when writing code
+- **Floats** — working with decimal numbers, rounding with `round()`, and formatting with f-string codes

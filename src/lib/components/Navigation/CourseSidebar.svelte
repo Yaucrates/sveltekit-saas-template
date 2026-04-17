@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { House, BookOpen, ClipboardList, Award } from '@lucide/svelte';
+	import { House, LayoutList, BookOpen, ClipboardList, Award } from '@lucide/svelte';
 
 	interface Props {
 		courseSlug: string;
@@ -18,8 +18,8 @@
 		return segments.length === 2 && segments[0] === 'courses';
 	}
 
-	function isChaptersActive() {
-		return pathname.includes('/chapters');
+	function isActive(name: string) {
+		return pathname.includes(`/${name}`);
 	}
 </script>
 
@@ -27,7 +27,7 @@
 	class="
 		h-screen sticky top-0 flex flex-col bg-white border-r border-stone-100
 		overflow-hidden transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shrink-0
-		{isHovered ? 'w-56' : 'w-20'}
+		{isHovered ? 'w-56' : 'w-20'} hidden sm:flex
 	"
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
@@ -56,12 +56,31 @@
 			</span>
 		</a>
 
+		<!-- Curriculum -->
+		<a
+			href="/courses/{courseSlug}/curriculum"
+			class="
+				flex items-center gap-1.5 p-2 rounded-sm transition-colors duration-200
+				{isActive('curriculum') ? 'bg-blue-50 text-blue-700' : 'hover:bg-stone-100 text-stone-700'}
+			"
+		>
+			<LayoutList size={18} class="shrink-0 mx-0.5" />
+			<span
+				class="
+					transition-all duration-300 whitespace-nowrap text-sm
+					{isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
+				"
+			>
+				Curriculum
+			</span>
+		</a>
+
 		<!-- Chapters -->
 		<a
 			href="/courses/{courseSlug}/chapters"
 			class="
 				flex items-center gap-1.5 p-2 rounded-sm transition-colors duration-200
-				{isChaptersActive() ? 'bg-blue-50 text-blue-700' : 'hover:bg-stone-100 text-stone-700'}
+				{isActive("chapters") ? 'bg-blue-50 text-blue-700' : 'hover:bg-stone-100 text-stone-700'}
 			"
 		>
 			<BookOpen size={18} class="shrink-0 mx-0.5" />
@@ -75,9 +94,13 @@
 			</span>
 		</a>
 
-		<!-- Assignments (coming soon) -->
-		<div
-			class="flex items-center justify-between p-2 rounded-sm text-stone-400 cursor-default"
+		<!-- Assignments -->
+		<a
+			href="/courses/{courseSlug}/assignments"
+			class="
+				flex items-center gap-1.5 p-2 rounded-sm transition-colors duration-200
+				{isActive("assignments") ? 'bg-blue-50 text-blue-700' : 'hover:bg-stone-100 text-stone-700'}
+			"
 		>
 			<div class="flex items-center gap-1.5">
 				<ClipboardList size={18} class="shrink-0 mx-0.5" />
@@ -90,19 +113,15 @@
 					Assignments
 				</span>
 			</div>
-			<span
-				class="
-					text-[9px] px-1.5 py-0.5 bg-stone-100 text-stone-500 rounded uppercase font-bold
-					transition-all duration-300
-					{isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
-				"
-				>Soon</span
-			>
-		</div>
+		</a>
 
-		<!-- Grades (coming soon) -->
-		<div
-			class="flex items-center justify-between p-2 rounded-sm text-stone-400 cursor-default"
+		<!-- Grades -->
+		<a
+			href="/courses/{courseSlug}/grades"
+			class="
+				flex items-center gap-1.5 p-2 rounded-sm transition-colors duration-200
+				{isActive("grades") ? 'bg-blue-50 text-blue-700' : 'hover:bg-stone-100 text-stone-700'}
+			"
 		>
 			<div class="flex items-center gap-1.5">
 				<Award size={18} class="shrink-0 mx-0.5" />
@@ -115,14 +134,21 @@
 					Grades
 				</span>
 			</div>
-			<span
-				class="
-					text-[9px] px-1.5 py-0.5 bg-stone-100 text-stone-500 rounded uppercase font-bold
-					transition-all duration-300
-					{isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
-				"
-				>Soon</span
-			>
-		</div>
+		</a>
 	</nav>
 </aside>
+
+<style>
+	/* Target the nav element to hide the scrollbar */
+	nav {
+		/* Firefox */
+		scrollbar-width: none;
+		/* IE and Edge */
+		-ms-overflow-style: none;
+	}
+
+	/* Chrome, Safari and Opera */
+	nav::-webkit-scrollbar {
+		display: none;
+	}
+</style>

@@ -1,0 +1,122 @@
+# Chapter 10.3: Advanced Iteration
+
+Two final iteration tools round out your Python toolkit: `enumerate` for cleanly tracking an index alongside a value, and generators for producing values one at a time without loading everything into memory.
+
+---
+
+## enumerate
+
+When you need both the index and the value while iterating, avoid manual indexing:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+for i in range(len(students)):
+    print(i + 1, students[i])
+```
+
+`enumerate` provides both cleanly:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+for i, student in enumerate(students):
+    print(i + 1, student)
+```
+
+---
+
+## Generators and Iterators
+
+Python's **generators** let you produce values one at a time rather than building an entire list in memory. This is especially useful when working with large data sets.
+
+A naive approach builds a full list:
+
+```py
+def main():
+    n = int(input("What's n? "))
+    for s in sheep(n):
+        print(s)
+
+
+def sheep(n):
+    flock = []
+    for i in range(n):
+        flock.append("🐑" * i)
+    return flock
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Asking for 1,000,000 sheep would try to store all of them in memory at once—likely causing a crash or hang.
+
+Using `yield` turns `sheep` into a **generator** that produces one value at a time:
+
+```py
+def main():
+    n = int(input("What's n? "))
+    for s in sheep(n):
+        print(s)
+
+
+def sheep(n):
+    for i in range(n):
+        yield "🐑" * i
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Each call to the generator resumes where it left off, handing back a single value without storing the whole flock in memory.
+
+---
+
+## Congratulations!
+
+As you exit from this course, you have built a solid mental model and toolbox for addressing programming-related problems.
+
+- **Lesson 1** — Functions and variables
+- **Lesson 2** — Conditionals
+- **Lesson 3** — Loops
+- **Lesson 4** — Exceptions
+- **Lesson 5** — Libraries
+- **Lesson 6** — Unit tests
+- **Lesson 7** — File I/O
+- **Lesson 8** — Regular expressions
+- **Lesson 9** — Object-oriented programming
+- **Lesson 10** — Et cetera
+
+---
+
+## This was CS50!
+
+Our final program brings everything together:
+
+```py
+import cowsay
+import pyttsx3
+
+engine = pyttsx3.init()
+this = input("What's this? ")
+cowsay.cow(this)
+engine.say(this)
+engine.runAndWait()
+```
+
+Running this program provides a spirited send-off—a cow speaks your words aloud.
+
+Our great hope is that you will use what you learned in this course to address real problems in the world, making our globe a better place.
+
+**This was CS50!**
+
+---
+
+## Summing Up
+
+In this chapter we covered…
+
+- **enumerate** — iterating with both index and value, cleanly and without manual index tracking
+- **Generators and iterators** — producing values one at a time with `yield` to avoid memory issues on large data sets

@@ -1,0 +1,68 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Scourgify
+
+## Problem to Solve
+
+Data is often exported from spreadsheets in an inconvenient format. Suppose you've received a CSV file called `before.csv` where each row stores a student's full name in a single `name` column as `"Last, First"` — with the last name first, the first name second, and both surrounded by quotes.
+
+In a file called `scourgify.py`, implement a program that:
+
+1. Reads `before.csv` (which has columns `name` and `house`)
+2. Writes a new file called `after.csv` with three columns: `first`, `last`, `house`
+
+The names should be split and cleaned up — no surrounding quotes.
+
+## Examples
+
+Given a `before.csv` like:
+
+```
+name,house
+"Abbott, Hannah",Hufflepuff
+"Bell, Katie",Gryffindor
+"Bones, Susan",Hufflepuff
+```
+
+Your program should produce an `after.csv` like:
+
+```
+first,last,house
+Hannah,Abbott,Hufflepuff
+Katie,Bell,Gryffindor
+Susan,Bones,Hufflepuff
+```
+
+Run your program like:
+
+```bash
+$ python scourgify.py
+```
+
+If `before.csv` does not exist, output a useful error message and exit with a non-zero status code.
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Use Python's <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">csv.DictReader</code> and <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">csv.DictWriter</code> to read and write CSVs by column name.</li>
+        <li>The <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">name</code> field will look like <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">"Abbott, Hannah"</code>. Split on <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">", "</code> to get last and first name separately.</li>
+        <li>Wrap your file open calls in <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">try / except FileNotFoundError</code> to handle a missing input file gracefully.</li>
+        <li>Remember to call <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">writer.writeheader()</code> before writing rows.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when:
+
+- `before.csv` exists with several rows?
+- `before.csv` does not exist?
+- A name contains only one part (no comma)?
+
+---
+
+<AssignmentSubmission assignmentName="scourgify.py" />

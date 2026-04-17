@@ -1,0 +1,23 @@
+# Course Information
+
+Welcome to Impart’s *Introduction to Programming with Python*. This course provides a
+foundational understanding of computer programming for students with no prior experience.
+
+By the end of the course, students will be able to read, write, and analyze Python code
+as well as test and debug their programs to ensure correctness and reliability. Emphasis
+is placed on developing problem-solving strategies and algorithmic thinking.
+
+## How to Take this Course
+
+This course is split into 10 units. Each unit is composed of 3 parts: lectures, labs, and
+problem sets.
+- Lectures introduce the core material for the week.
+- Labs consist of various programming exercises to develop useful skills and tools.
+- Problem Sets allow you to apply what you’ve learned. These assignments are designed to
+strengthen your problem-solving skills, test your grasp of key concepts, and help you
+learn to write clean, efficient, and well-documented code.
+
+## Looking Forward
+
+In the next lesson, we'll get your development environment set up, so that you can write
+your first program.

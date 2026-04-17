@@ -11,7 +11,7 @@
 	class="
         h-screen sticky top-0 flex flex-col justify-between bg-white border-r border-stone-100
         overflow-hidden transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
-        {isExpanded ? 'w-56' : 'w-20'}
+        {isExpanded ? 'w-56' : 'w-20'} hidden sm:flex
     "
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
@@ -52,7 +52,7 @@
 	>
 		<nav class="flex-1 flex flex-col justify-center gap-10 w-full">
 			<div class="gap-3 flex flex-col text-sm whitespace-nowrap">
-				<a href="/courses" class="hover:text-neutral-600 transition-colors">Courses</a>
+				<a href="/library" class="hover:text-neutral-600 transition-colors">Library</a>
 				<a href="/auth/login" class="hover:text-neutral-600 transition-colors">Log In</a>
 				<a href="/auth/signup" class="hover:text-neutral-600 transition-colors">Sign Up</a>
 			</div>
@@ -75,9 +75,11 @@
 		</nav>
 
 		<a
-			href="/"
+			href="https://calendly.com/abdulhusseinyousifh/30min"
+			target="_blank"
+			rel="noopener noreferrer"
 			class="
-                block w-full p-3 text-sm text-center bg-black text-white 
+                block w-full p-3 text-sm text-center bg-black text-white
                 rounded-sm hover:bg-neutral-800 transition-colors whitespace-nowrap
             "
 		>

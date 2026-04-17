@@ -1,0 +1,193 @@
+# Chapter 2.1: Conditionals
+
+So far your programs have run from top to bottom in a straight line. Conditionals give your program the ability to *choose*—to take one path or another depending on whether a condition is true or false.
+
+---
+
+## Comparison Operators
+
+Before writing conditional statements, you need a way to ask questions about values. Python provides a set of **comparison operators** for this:
+
+| Operator | Meaning |
+|----------|---------|
+| `>`  | greater than |
+| `<`  | less than |
+| `>=` | greater than or equal to |
+| `<=` | less than or equal to |
+| `==` | equal to |
+| `!=` | not equal to |
+
+Notice the double equals sign `==`. A single `=` *assigns* a value to a variable. Two equals signs *compare* two values. Mixing them up is one of the most common beginner mistakes—Python will either throw an error or behave in a way you didn't expect.
+
+---
+
+## if Statements
+
+Create a new file called `compare.py` and write the following:
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x < y:
+    print("x is less than y")
+```
+
+The `if` keyword begins a conditional statement. The condition `x < y` is evaluated—if it is `True`, the indented block runs. If it is `False`, the block is skipped entirely.
+
+Notice the **indentation**. Just like with functions, Python uses indentation to determine what code belongs inside the `if` block.
+
+---
+
+## Control Flow, elif, and else
+
+You can chain multiple conditions together to handle every possible outcome:
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x < y:
+    print("x is less than y")
+if x > y:
+    print("x is greater than y")
+if x == y:
+    print("x is equal to y")
+```
+
+This works, but it has a subtle inefficiency: all three `if` statements are evaluated every time, even after a match is found. If `x < y` is true, there is no point asking the other two questions—but Python does anyway. This sequence of decisions is called **control flow**.
+
+A better approach uses `elif` (short for "else if"):
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x < y:
+    print("x is less than y")
+elif x > y:
+    print("x is greater than y")
+elif x == y:
+    print("x is equal to y")
+```
+
+Now, once Python finds a true condition it stops checking the rest. If `x < y` is true, the `elif` branches are never evaluated.
+
+We can simplify even further. Think about it logically: if `x` is not less than `y`, and it is not greater than `y`, then it *must* be equal to `y`. The final `elif` is unnecessary. We can replace it with `else`, which catches anything that hasn't already been handled:
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x < y:
+    print("x is less than y")
+elif x > y:
+    print("x is greater than y")
+else:
+    print("x is equal to y")
+```
+
+`else` requires no condition—it simply runs when none of the preceding conditions were true. This is the cleanest version of the program: fewer questions, clearer logic.
+
+---
+
+## or
+
+The `or` keyword lets you combine two conditions into one. The combined condition is `True` if *at least one* of the two conditions is true:
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x < y or x > y:
+    print("x is not equal to y")
+else:
+    print("x is equal to y")
+```
+
+But we can do even better. Asking "is x less than y OR greater than y?" is just a roundabout way of asking "is x not equal to y?":
+
+```py
+x = int(input("What's x? "))
+y = int(input("What's y? "))
+
+if x != y:
+    print("x is not equal to y")
+else:
+    print("x is equal to y")
+```
+
+One clear question. Fewer moving parts. This is a principle worth keeping in mind as your programs grow.
+
+---
+
+## and
+
+The `and` keyword combines two conditions where *both* must be true. It is commonly used when checking whether a value falls within a range.
+
+Create a new file called `grade.py`:
+
+```py
+score = int(input("Score: "))
+
+if score >= 90 and score <= 100:
+    print("Grade: A")
+elif score >= 80 and score < 90:
+    print("Grade: B")
+elif score >= 70 and score < 80:
+    print("Grade: C")
+elif score >= 60 and score < 70:
+    print("Grade: D")
+else:
+    print("Grade: F")
+```
+
+Python actually allows you to write range checks more naturally than most languages—you can *chain* comparisons:
+
+```py
+score = int(input("Score: "))
+
+if 90 <= score <= 100:
+    print("Grade: A")
+elif 80 <= score < 90:
+    print("Grade: B")
+elif 70 <= score < 80:
+    print("Grade: C")
+elif 60 <= score < 70:
+    print("Grade: D")
+else:
+    print("Grade: F")
+```
+
+This reads almost like a mathematical expression: "is the score between 90 and 100?"
+
+We can simplify further by taking advantage of how `elif` works. Once a condition matches, the rest are skipped. So if we know the score is not ≥ 90, there is no need to check the upper bound of the next range:
+
+```py
+score = int(input("Score: "))
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
+elif score >= 70:
+    print("Grade: C")
+elif score >= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")
+```
+
+Fewer conditions, same correct behaviour. Programs that are easier to read are also easier to maintain and debug.
+
+---
+
+## Summing Up
+
+You now know how to give your programs the ability to make decisions. In this chapter we covered…
+
+- Comparison operators for asking questions about values
+- `if` statements and how indentation defines their scope
+- `elif` and `else` for handling multiple outcomes efficiently
+- `or` for combining conditions where at least one must be true
+- `and` for conditions where both must be true

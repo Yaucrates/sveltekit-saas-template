@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ImpartNameLogo from '../logos/ImpartNameLogo.svelte';
-	import { LayoutDashboard, Settings, CircleQuestionMark } from '@lucide/svelte';
+	import { LayoutDashboard, Settings, CircleQuestionMark, School } from '@lucide/svelte';
 	import { page } from '$app/state';
 
 	let isHovered = $state(false);
@@ -15,7 +15,7 @@
 	class="
         h-screen sticky top-0 flex flex-col justify-between bg-white border-r border-stone-100
         overflow-hidden transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
-        {isHovered ? 'w-56' : 'w-20'}
+        {isHovered ? 'w-56' : 'w-20'} hidden sm:flex
     "
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
@@ -23,7 +23,7 @@
 	<!-- Logo Area (same pattern as NavigationBar) -->
 	<div class="relative h-24 w-full shrink-0">
 		<a
-			href="/"
+			href="/dashboard"
 			class="
                 absolute left-8 top-6 origin-left transition-all duration-300
                 {isHovered
@@ -50,13 +50,13 @@
 	<!-- Navigation Items -->
 	<div class="flex-1 flex flex-col px-5 pb-6">
 		<nav class="h-full flex flex-col gap-2">
-			<!-- Courses Section -->
+			<!-- Dashboard Section -->
             <a
-                href="/courses"
+                href="/dashboard"
                 class="
                     flex items-center gap-1.5 p-2 rounded-sm
                     transition-colors duration-200
-                    {isActive('/courses')
+                    {isActive('/dashboard')
                     ? 'bg-blue-50 text-blue-700'
                     : 'hover:bg-stone-100 text-stone-700'}
                 "
@@ -68,7 +68,7 @@
                         {isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
                     "
                 >
-                    Courses
+                    Dashboard
                 </span>
             </a>
 
@@ -92,6 +92,27 @@
                     Profile
                 </span>
             </a> -->
+
+            <a
+                href="/classroom"
+                class="
+                    flex items-center gap-1.5 p-2 rounded-sm
+                    transition-colors duration-200
+                    {isActive('/classroom')
+                    ? 'bg-blue-50 text-blue-700'
+                    : 'hover:bg-stone-100 text-stone-700'}
+                "
+            >
+                <School size={18} class="shrink-0 mx-0.5" />
+                <span
+                    class="
+                        transition-all duration-300 whitespace-nowrap text-sm
+                        {isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
+                    "
+                >
+                    Classroom
+                </span>
+            </a>
 
             <a
                 href="/settings"

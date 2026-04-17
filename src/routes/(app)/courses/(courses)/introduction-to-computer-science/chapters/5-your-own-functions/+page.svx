@@ -1,0 +1,102 @@
+# Chapter 1.4: Your Own Functions
+
+So far, we've only used functions that Python provides. Now it's time to create our own using the `def` keyword.
+
+---
+
+## Def
+
+Let's start fresh with `hello.py`:
+
+```py
+def hello():
+    print("hello")
+
+
+name = input("What's your name? ")
+hello()
+print(name)
+```
+
+Notice that the code inside `hello` is **indented**. Python uses indentation to understand what belongs to a function. Everything indented under `def hello():` is part of that function. When something is not indented, Python treats it as outside the function.
+
+We can make `hello` more useful by giving it a **parameter**:
+
+```py
+def hello(to):
+    print("hello,", to)
+
+
+name = input("What's your name? ")
+hello(name)
+```
+
+Now when we call `hello(name)`, the value of `name` is passed into the function as `to`, and the function prints it. This is how we pass values into functions.
+
+We can also provide a **default value** for the parameter:
+
+```py
+def hello(to="world"):
+    print("hello,", to)
+
+
+name = input("What's your name? ")
+hello(name)
+hello()
+```
+
+If `hello` is called without an argument, it falls back to the default: `hello, world`.
+
+### Organising with `main`
+
+As programs grow, it's common to put the main logic inside a function called `main`:
+
+```py
+def main():
+    name = input("What's your name? ")
+    hello(name)
+    hello()
+
+
+def hello(to="world"):
+    print("hello,", to)
+
+
+main()
+```
+
+Notice that `main()` is called at the very end. Without that call, nothing would happen. Python reads the function definitions but doesn't run them until they're explicitly called.
+
+---
+
+## Returning Values
+
+Functions can do more than just perform an action--they can also **return** a value back to the caller.
+
+Here's a simple example using a `square` function:
+
+```py
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+
+def square(n):
+    return n * n
+
+
+main()
+```
+
+When `square(x)` is called, Python runs the function, computes `n * n`, and hands the result back to where the function was called. That returned value is then passed directly into `print`.
+
+---
+
+## Summing Up
+
+In this chapter you have learned about…
+
+- **def** — defining your own functions with the `def` keyword and indented bodies
+- **Parameters** — passing values into functions and providing default values
+- **Organising with main** — structuring programs so the top-level logic lives in a `main` function
+- **Returning Values** — using `return` to hand a result back to the caller

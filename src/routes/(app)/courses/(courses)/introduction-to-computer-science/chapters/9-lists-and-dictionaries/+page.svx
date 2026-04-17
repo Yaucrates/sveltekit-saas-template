@@ -1,0 +1,147 @@
+# Chapter 2.4: Lists and Dictionaries
+
+Variables store a single value. But programs often need to work with whole collections of data. Python provides two fundamental data structures for this: **lists** and **dictionaries**.
+
+---
+
+## Lists
+
+A **list** is an ordered collection of values. Create a new file called `hogwarts.py`:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+print(students[0])
+print(students[1])
+print(students[2])
+```
+
+Square brackets `[]` define a list. Individual items are accessed by their **index**—a number starting at `0`. So `students[0]` is `"Hermione"`, `students[1]` is `"Harry"`, and `students[2]` is `"Ron"`.
+
+Rather than printing each item manually, use a `for` loop to iterate over the list:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+for student in students:
+    print(student)
+```
+
+The loop variable `student` takes on each value in `students` in turn. Notice we use `student` (not `_`) because the value is actually used inside the loop.
+
+---
+
+## Length
+
+The built-in `len()` function returns the number of items in a list. This lets you write code that adapts as the list grows:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+for i in range(len(students)):
+    print(i + 1, students[i])
+```
+
+`range(len(students))` generates indices `0`, `1`, `2`. Adding `1` when printing gives a human-friendly numbered list (1, 2, 3) while the code still accesses the list at the correct zero-based index.
+
+---
+
+## Dictionaries
+
+A **dictionary** (or `dict`) maps **keys** to **values**. Where a list is indexed by numbers, a dictionary is indexed by the keys you choose.
+
+Suppose you want to record which Hogwarts house each student belongs to. You could use two separate lists:
+
+```py
+students = ["Hermione", "Harry", "Ron", "Draco"]
+houses = ["Gryffindor", "Gryffindor", "Gryffindor", "Slytherin"]
+```
+
+This works only if you promise to keep the two lists perfectly in sync—fragile and error-prone. A `dict` keeps the association explicit:
+
+```py
+students = {
+    "Hermione": "Gryffindor",
+    "Harry": "Gryffindor",
+    "Ron": "Gryffindor",
+    "Draco": "Slytherin",
+}
+print(students["Hermione"])
+print(students["Harry"])
+print(students["Ron"])
+print(students["Draco"])
+```
+
+Curly braces `{}` define a dictionary. Each entry is a `key: value` pair. You look up a value using its key: `students["Hermione"]` returns `"Gryffindor"`.
+
+---
+
+## Iterating Over a Dictionary
+
+A `for` loop over a dict iterates through its **keys**:
+
+```py
+for student in students:
+    print(student)
+```
+
+To access the corresponding value, use the key as an index:
+
+```py
+for student in students:
+    print(student, students[student])
+```
+
+Clean up the output with `sep`:
+
+```py
+for student in students:
+    print(student, students[student], sep=", ")
+```
+
+Running this produces:
+
+```
+Hermione, Gryffindor
+Harry, Gryffindor
+Ron, Gryffindor
+Draco, Slytherin
+```
+
+---
+
+## Lists of Dictionaries
+
+What if each student has more than one piece of associated data? You can store a **list of dictionaries**—each dictionary represents one student with multiple attributes:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor", "patronus": "Otter"},
+    {"name": "Harry",    "house": "Gryffindor", "patronus": "Stag"},
+    {"name": "Ron",      "house": "Gryffindor", "patronus": "Jack Russell terrier"},
+    {"name": "Draco",    "house": "Slytherin",  "patronus": None},
+]
+```
+
+`None` is Python's way of representing the absence of a value—Draco has no known patronus.
+
+Iterate and print each student's details:
+
+```py
+for student in students:
+    print(student["name"], student["house"], student["patronus"], sep=", ")
+```
+
+Each time through the loop, `student` is one of the dictionaries. You access individual fields by key.
+
+---
+
+## Summing Up
+
+Lists and dictionaries are the building blocks for managing collections of data in Python. In this chapter we covered…
+
+- **Lists** for ordered collections accessed by numeric index
+- `len()` to get the size of a list
+- **Dictionaries** for key-value associations accessed by name
+- Iterating over both structures with `for` loops
+- **Lists of dictionaries** for storing multiple attributes per item

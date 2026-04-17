@@ -1,19 +1,21 @@
 <script lang="ts">
-	import NavigationBar from '$lib/components/Navigation/MarketingSidebar.svelte'; 
+	import MarketingSidebar from '$lib/components/Navigation/MarketingSidebar.svelte';
+	import MobileMarketingHeader from '$lib/components/Navigation/MobileMarketingHeader.svelte';
 	import Footer from '$lib/components/Navigation/Footer.svelte';
 
-	let { children } = $props(); 
+	let { children } = $props();
 </script>
 
 <svelte:head>
-    <meta property="og:title" content="Impart | AI Courseware" />
+    <meta property="og:title" content="Impart | Digital Courseware" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/ogImage.png" />
     <meta property="og:url" content="https://www.imparteducation.com/" />
 </svelte:head>
 
-<div class="flex bg-stone-50 text-stone-900">
-	<NavigationBar />
+<div class="flex flex-col sm:flex-row bg-stone-50 text-stone-900">
+    <MobileMarketingHeader />
+	<MarketingSidebar />
 
     <div class="min-h-screen flex-1 scroll-smooth w-full">
         {@render children()}

@@ -1,0 +1,233 @@
+# Chapter 8.2: Regex in Practice
+
+With the core pattern syntax in hand, we can apply regular expressions to real-world problems: handling case sensitivity, cleaning up messy user input, and extracting specific pieces of data.
+
+---
+
+## Case Sensitivity
+
+By default, regex patterns are case-sensitive—`edu` does not match `EDU`. The `re.search` function accepts an optional `flags` parameter. Some useful built-in flags:
+
+- `re.IGNORECASE`
+- `re.MULTILINE`
+- `re.DOTALL`
+
+Pass `re.IGNORECASE` to make the match case-insensitive:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@\w+\.edu$", email, re.IGNORECASE):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+Now `MALAN@HARVARD.EDU` is treated as valid.
+
+Addresses like `malan@cs50.harvard.edu` have an extra subdomain segment. The pattern `(\w+\.)?` matches an optional `word.` prefix:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@(\w+\.)?\w+\.edu$", email, re.IGNORECASE):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+`(\w+\.)?` means "one or more word characters followed by a dot, appearing zero or one time"—so both `malan@harvard.edu` and `malan@cs50.harvard.edu` are accepted.
+
+For reference, a fully RFC-compliant email regex looks like:
+
+```
+^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$
+```
+
+Python also provides `re.match` (anchors at the start automatically) and `re.fullmatch` (requires the pattern to match the entire string) as convenient alternatives to `re.search` with `^` and `$`.
+
+---
+
+## Cleaning Up User Input
+
+Users rarely format input exactly as you expect. Regular expressions can standardise messy input before your program acts on it.
+
+Start with a simple name-greeting program:
+
+```py
+name = input("What's your name? ").strip()
+print(f"hello, {name}")
+```
+
+This works for `David`, but `Malan, David` (last name first) produces the wrong output. A basic split handles one case:
+
+```py
+name = input("What's your name? ").strip()
+if "," in name:
+    last, first = name.split(", ")
+    name = f"{first} {last}"
+print(f"hello, {name}")
+```
+
+But `Malan,David` (no space) crashes with a `ValueError`. Using `re.search` instead:
+
+```py
+import re
+
+name = input("What's your name? ").strip()
+matches = re.search(r"^(.+), (.+)$", name)
+if matches:
+    last, first = matches.groups()
+    name = first + " " + last
+print(f"hello, {name}")
+```
+
+`re.search` returns a match object when the pattern is found, or `None` if not. Calling `.groups()` on the match object returns all captured groups as a tuple.
+
+You can also access individual groups by index with `.group()`:
+
+```py
+import re
+
+name = input("What's your name? ").strip()
+matches = re.search(r"^(.+), (.+)$", name)
+if matches:
+    name = matches.group(2) + " " + matches.group(1)
+print(f"hello, {name}")
+```
+
+`group(1)` is the content of the first `(...)`, `group(2)` the second.
+
+To also tolerate `Malan,David` with no space after the comma, change `, ` to `, *` (zero or more spaces):
+
+```py
+import re
+
+name = input("What's your name? ").strip()
+matches = re.search(r"^(.+), *(.+)$", name)
+if matches:
+    name = matches.group(2) + " " + matches.group(1)
+print(f"hello, {name}")
+```
+
+Python's **walrus operator** `:=` lets you assign and test in the same expression, removing the separate `matches = ...` line:
+
+```py
+import re
+
+name = input("What's your name? ").strip()
+if matches := re.search(r"^(.+), *(.+)$", name):
+    name = matches.group(2) + " " + matches.group(1)
+print(f"hello, {name}")
+```
+
+Turn your head sideways and you can see why `:=` is called the *walrus operator*.
+
+---
+
+## Extracting User Input
+
+Beyond validation and cleanup, `re.search` can pull specific pieces out of a string.
+
+Suppose you want to extract a Twitter username from a URL:
+
+```py
+url = input("URL: ").strip()
+print(url)
+```
+
+A naive approach strips the known prefix:
+
+```py
+url = input("URL: ").strip()
+
+username = url.replace("https://twitter.com/", "")
+print(f"Username: {username}")
+```
+
+`str.removeprefix` is slightly cleaner, but both approaches break if the user omits `https://` or includes `www.`.
+
+The `re` module's `re.sub` function substitutes a pattern with a replacement string:
+
+```py
+re.sub(pattern, repl, string, count=0, flags=0)
+```
+
+A basic substitution:
+
+```py
+import re
+
+url = input("URL: ").strip()
+
+username = re.sub(r"https://twitter.com/", "", url)
+print(f"Username: {username}")
+```
+
+Making the protocol and `www.` optional, and anchoring to the start:
+
+```py
+import re
+
+url = input("URL: ").strip()
+
+username = re.sub(r"^(https?://)?(www\.)?twitter\.com/", "", url)
+print(f"Username: {username}")
+```
+
+- `https?` — the `s` is optional (`http` or `https`)
+- `(www\.)?` — `www.` may or may not be present
+- `(https?://)?` — the entire protocol segment is optional
+
+Instead of stripping away the prefix, you can capture just the part you want with `re.search`:
+
+```py
+import re
+
+url = input("URL: ").strip()
+
+matches = re.search(r"^https?://(www\.)?twitter\.com/(.+)$", url, re.IGNORECASE)
+if matches:
+    print(f"Username:", matches.group(2))
+```
+
+Using the walrus operator and a non-capturing group `(?:...)` for `www.` (since we don't need that value):
+
+```py
+import re
+
+url = input("URL: ").strip()
+
+if matches := re.search(r"^https?://(?:www\.)?twitter\.com/(.+)$", url, re.IGNORECASE):
+    print(f"Username:", matches.group(1))
+```
+
+`(?:...)` tells the engine to group without capturing, so `group(1)` still refers to the username.
+
+Finally, restrict the username to characters Twitter actually allows:
+
+```py
+import re
+
+url = input("URL: ").strip()
+
+if matches := re.search(r"^https?://(?:www\.)?twitter\.com/([a-z0-9_]+)", url, re.IGNORECASE):
+    print(f"Username:", matches.group(1))
+```
+
+`[a-z0-9_]+` accepts only letters, digits, and underscores—the characters permitted in a Twitter handle.
+
+---
+
+## Summing Up
+
+You now have a complete toolkit for working with patterns in text using Python's `re` module.
+
+- **Case Sensitivity** — use `re.IGNORECASE` to match regardless of letter case, and `(\w+\.)?` for optional segments
+- **Cleaning Up User Input** — `re.search` with capturing groups and `.groups()` / `.group(n)` to rearrange input
+- **Walrus Operator** — `:=` assigns and tests in a single expression, avoiding a separate variable line
+- **Extracting User Input** — `re.sub` to remove unwanted prefixes, and `re.search` with `(?:...)` non-capturing groups to pull out exactly the data you need

@@ -5,7 +5,7 @@ import type { Actions } from "./$types";
 // Redirect authenticated users away from login page
 export const load = async ({ locals: { user } }) => {
 	if (user) {
-		throw redirect(303, '/courses');
+		throw redirect(303, '/dashboard');
 	}
 };
 
@@ -27,6 +27,6 @@ export const actions: Actions = {
             return fail(401, { message: "Invalid Credentials" });
         }
 
-        redirect(303, "/courses");
+        redirect(303, "/dashboard");
     },
 };

@@ -1,0 +1,197 @@
+# Chapter 3.1: Exceptions
+
+Your programs will not always run smoothly. Users type the wrong thing, files go missing, networks fail. **Exceptions** are Python's way of telling you that something went wrong at runtime—and `try` is how you handle it gracefully.
+
+---
+
+## Syntax Errors vs Runtime Errors
+
+There are two broad categories of errors you will encounter.
+
+A **syntax error** is caught before your program runs. Python reads your code and finds something it cannot parse. Create a new file called `hello.py` and type this intentionally broken line:
+
+```py
+print("hello, world)
+```
+
+Notice the missing closing quotation mark. Running `python hello.py` immediately produces a `SyntaxError`. The program never started—Python refused to run it at all. Fix your syntax and move on.
+
+A **runtime error** (also called an exception) happens *while* the program is running. The syntax is fine, but something goes wrong during execution. These are harder to anticipate because they often depend on what the user does.
+
+---
+
+## ValueError
+
+Create a new file called `number.py`:
+
+```py
+x = int(input("What's x? "))
+print(f"x is {x}")
+```
+
+Run it and type `50`. It works. Now run it again and type `cat`. Python raises a `ValueError`:
+
+```
+ValueError: invalid literal for int() with base 10: 'cat'
+```
+
+The `int()` function expected a number and got a word instead. Your program crashed. This is a runtime error—there was nothing wrong with the code itself, only with the input it received.
+
+As a programmer, you need to defend against this. You cannot control what users type; you can only control how your program responds.
+
+---
+
+## try and except
+
+Python's `try` and `except` let you attempt something and handle the failure if it occurs:
+
+```py
+try:
+    x = int(input("What's x? "))
+    print(f"x is {x}")
+except ValueError:
+    print("x is not an integer")
+```
+
+If the user types `50`, the `try` block runs without issue and the result is printed. If they type `cat`, the `ValueError` is caught by `except` and a friendly message is shown instead of a crash.
+
+For best practice, keep the `try` block as small as possible—only wrap the line that might actually fail:
+
+```py
+try:
+    x = int(input("What's x? "))
+except ValueError:
+    print("x is not an integer")
+
+print(f"x is {x}")
+```
+
+This looks reasonable, but there is a problem. If the `ValueError` occurs, the assignment `x = ...` never completes—so `x` is never defined. The final `print` then raises a `NameError` because `x` does not exist. The order of operations matters.
+
+---
+
+## else
+
+The `else` clause solves this cleanly. It runs only when *no* exception was raised in the `try` block:
+
+```py
+try:
+    x = int(input("What's x? "))
+except ValueError:
+    print("x is not an integer")
+else:
+    print(f"x is {x}")
+```
+
+Now `x` is only printed when we know it was successfully assigned. If the conversion failed, we print the error message instead.
+
+---
+
+## Looping Until Valid Input
+
+A single prompt is often not enough. If the user types something invalid, we should ask again. Combine `while True` with your `try`/`except`/`else` pattern:
+
+```py
+while True:
+    try:
+        x = int(input("What's x? "))
+    except ValueError:
+        print("x is not an integer")
+    else:
+        break
+
+print(f"x is {x}")
+```
+
+The loop runs forever until the user enters a valid integer, at which point `else` triggers and `break` exits the loop. The `print` below only runs after a successful input.
+
+---
+
+## Creating a Function to Get an Integer
+
+Once this pattern is useful in more than one place, pull it into a function:
+
+```py
+def main():
+    x = get_int()
+    print(f"x is {x}")
+
+
+def get_int():
+    while True:
+        try:
+            x = int(input("What's x? "))
+        except ValueError:
+            print("x is not an integer")
+        else:
+            return x
+
+
+main()
+```
+
+Notice that `return` inside a loop both exits the loop *and* sends the value back to the caller—no `break` needed. The `main` function is now simple and readable. The complexity of getting a valid integer is hidden inside `get_int`.
+
+You can simplify `get_int` further by returning directly from the `try` block:
+
+```py
+def get_int():
+    while True:
+        try:
+            return int(input("What's x? "))
+        except ValueError:
+            print("x is not an integer")
+```
+
+If `int()` succeeds, `return` fires immediately. If it raises a `ValueError`, `except` catches it, the message prints, and the loop starts again.
+
+---
+
+## pass
+
+Sometimes you want to silently retry rather than print an error message. Use `pass` to do nothing at all when an exception occurs:
+
+```py
+def get_int():
+    while True:
+        try:
+            return int(input("What's x? "))
+        except ValueError:
+            pass
+```
+
+The user will simply be prompted again without any explanation. Whether to inform the user or silently retry depends on the situation—`pass` gives you the option to stay quiet.
+
+A final refinement is to pass the prompt text in as an argument, so `get_int` is reusable anywhere in your program:
+
+```py
+def main():
+    x = get_int("What's x? ")
+    print(f"x is {x}")
+
+
+def get_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            pass
+
+
+main()
+```
+
+Now `get_int` is a general-purpose, reusable function. The caller decides what the prompt says; `get_int` handles everything else.
+
+---
+
+## Summing Up
+
+Errors are inevitable, but crashes don't have to be. In this chapter we covered…
+
+- **Syntax errors** caught before your program runs
+- **Runtime errors** (exceptions) that occur during execution
+- `try` and `except` for catching and handling specific exceptions
+- `else` for code that should only run when no exception occurred
+- `while True` loops combined with `break` or `return` to keep prompting until input is valid
+- `pass` to silently ignore an exception and continue

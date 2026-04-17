@@ -1,0 +1,291 @@
+# Chapter 6.1: Unit Tests
+
+Testing your own code is a fundamental part of professional software development. Rather than relying on manual checks or print statements, you can write dedicated test programs—or use frameworks like `pytest`—to verify that your functions behave correctly.
+
+---
+
+## Unit Tests
+
+- **Unit testing** means testing individual functions or small pieces of your program in isolation.
+- A common approach is writing a separate test file that imports your code and checks its output.
+- Consider `calculator.py` with a `square` function:
+
+```py
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+
+def square(n):
+    return n * n
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- A basic test file `test_calculator.py` might look like:
+
+```py
+from calculator import square
+
+
+def main():
+    test_square()
+
+
+def test_square():
+    if square(2) != 4:
+        print("2 squared was not 4")
+    if square(3) != 9:
+        print("3 squared was not 9")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- Running `python test_calculator.py` with a correct `calculator.py` produces no output—silence means success.
+- As you add more conditions, however, this style of testing gets verbose fast.
+
+---
+
+## assert
+
+Python's built-in `assert` statement lets you declare that something must be true. If the condition is false, Python raises an `AssertionError`.
+
+```py
+from calculator import square
+
+
+def main():
+    test_square()
+
+
+def test_square():
+    assert square(2) == 4
+    assert square(3) == 9
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- Two lines replace four `if`/`print` blocks.
+- If `square` is broken (e.g., uses `+` instead of `*`), running the file raises an `AssertionError` immediately.
+
+You can wrap each assertion in `try`/`except` to keep testing even after a failure and print a descriptive message:
+
+```py
+from calculator import square
+
+
+def main():
+    test_square()
+
+
+def test_square():
+    try:
+        assert square(2) == 4
+    except AssertionError:
+        print("2 squared is not 4")
+    try:
+        assert square(3) == 9
+    except AssertionError:
+        print("3 squared is not 9")
+    try:
+        assert square(-2) == 4
+    except AssertionError:
+        print("-2 squared is not 4")
+    try:
+        assert square(-3) == 9
+    except AssertionError:
+        print("-3 squared is not 9")
+    try:
+        assert square(0) == 0
+    except AssertionError:
+        print("0 squared is not 0")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- This works, but the boilerplate grows with every new case. That's the problem `pytest` solves.
+
+---
+
+## pytest
+
+`pytest` is a popular third-party testing framework that runs your test functions automatically and produces clear, readable output.
+
+Install it once:
+
+```
+pip install pytest
+```
+
+Simplify `test_calculator.py` to just the assertions—no `main`, no `if __name__` block:
+
+```py
+from calculator import square
+
+
+def test_positive():
+    assert square(2) == 4
+    assert square(3) == 9
+
+
+def test_negative():
+    assert square(-2) == 4
+    assert square(-3) == 9
+
+
+def test_zero():
+    assert square(0) == 0
+```
+
+Run all tests with:
+
+```
+pytest test_calculator.py
+```
+
+- `pytest` discovers every function whose name starts with `test_` and runs it.
+- A green dot means the test passed; a red `F` means it failed.
+- Splitting tests into separate functions means `pytest` reports *each* failure independently—even if one group fails, the others still run.
+
+You can also test that a function raises the right exception using `pytest.raises`:
+
+```py
+import pytest
+
+from calculator import square
+
+
+def test_positive():
+    assert square(2) == 4
+    assert square(3) == 9
+
+
+def test_negative():
+    assert square(-2) == 4
+    assert square(-3) == 9
+
+
+def test_zero():
+    assert square(0) == 0
+
+
+def test_str():
+    with pytest.raises(TypeError):
+        square("cat")
+```
+
+- `pytest.raises(TypeError)` acts as a context manager: the test passes only if the wrapped code raises a `TypeError`.
+
+---
+
+## Testing Strings
+
+Functions that **return** a value are straightforward to test. Functions that only **print** are not—`assert` has nothing to compare against.
+
+Original `hello.py` that only prints:
+
+```py
+def main():
+    name = input("What's your name? ")
+    hello(name)
+
+
+def hello(to="world"):
+    print("hello,", to)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Rewrite `hello` to **return** the string instead:
+
+```py
+def main():
+    name = input("What's your name? ")
+    print(hello(name))
+
+
+def hello(to="world"):
+    return f"hello, {to}"
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Now `test_hello.py` can assert against the returned value:
+
+```py
+from hello import hello
+
+
+def test_default():
+    assert hello() == "hello, world"
+
+
+def test_argument():
+    assert hello("David") == "hello, David"
+```
+
+Run with `pytest test_hello.py`—both tests pass cleanly.
+
+---
+
+## Organizing Tests into Folders
+
+When a project grows, you can group all test files into a dedicated folder and run them with a single command.
+
+1. Create a `test` directory:
+
+```
+mkdir test
+```
+
+2. Create `test/test_hello.py`:
+
+```py
+from hello import hello
+
+
+def test_default():
+    assert hello() == "hello, world"
+
+
+def test_argument():
+    assert hello("David") == "hello, David"
+```
+
+3. Add an empty `test/__init__.py` so `pytest` recognizes the folder as a test package:
+
+```
+code test/__init__.py
+```
+
+4. Run all tests in the folder at once:
+
+```
+pytest test
+```
+
+`pytest` will discover and run every `test_*.py` file inside the folder.
+
+---
+
+## Summing Up
+
+Testing your code is a natural part of the programming process. Unit tests allow you to test specific aspects of your code. You can write your own test programs or use frameworks like `pytest` to run them for you. In this chapter we covered…
+
+- **Unit tests** — testing individual functions in isolation
+- **assert** — declaring conditions that must be true
+- **pytest** — a framework that discovers and runs tests automatically
+- **Testing strings** — why functions should return values rather than print them
+- **Organizing tests into folders** — grouping test files and running them with one command

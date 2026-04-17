@@ -1,0 +1,278 @@
+# Chapter 9.1: Object-Oriented Programming
+
+Object-oriented programming (OOP) is a programming paradigm that organizes code around **objects**—bundles of data and the functions that operate on that data. Rather than writing step-by-step instructions, you design blueprints called **classes** and create instances of them.
+
+---
+
+## Object-Oriented Programming
+
+There are different paradigms of programming. As you learn other languages, you will start recognizing patterns like these.
+
+Up until this point, you have worked **procedurally**—step-by-step. Object-oriented programming is a compelling solution to programming-related problems.
+
+Consider a simple program that collects a student's name and house:
+
+```py
+name = input("Name: ")
+house = input("House: ")
+print(f"{name} from {house}")
+```
+
+We can abstract parts of this into functions:
+
+```py
+def main():
+    name = get_name()
+    house = get_house()
+    print(f"{name} from {house}")
+
+
+def get_name():
+    return input("Name: ")
+
+
+def get_house():
+    return input("House: ")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+We can further simplify by returning both values together as a **tuple**—a sequence of values that, unlike a list, cannot be modified:
+
+```py
+def main():
+    student = get_student()
+    print(f"{student[0]} from {student[1]}")
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    return (name, house)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Because tuples are **immutable**, you cannot reassign their elements. This is a form of defensive programming—if a caller tries `student[1] = "Ravenclaw"` it will fail with an error.
+
+If you need mutability, a **list** allows reassignment but gives up that protection. A **dictionary** adds readable key names:
+
+```py
+def main():
+    student = get_student()
+    print(f"{student['name']} from {student['house']}")
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    return {"name": name, "house": house}
+
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+## Classes
+
+A **class** is a blueprint for a new data type. By convention, class names are capitalized.
+
+```py
+class Student:
+    ...
+
+
+def main():
+    student = get_student()
+    print(f"{student.name} from {student.house}")
+
+
+def get_student():
+    student = Student()
+    student.name = input("Name: ")
+    student.house = input("House: ")
+    return student
+
+
+if __name__ == "__main__":
+    main()
+```
+
+When you use the class blueprint to create something, you create an **object** (also called an **instance**). Here `student` is an instance of `Student`.
+
+The special `__init__` method is the **constructor**—it runs automatically when a new object is created and lets you declare what attributes every instance should have:
+
+```py
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+
+def main():
+    student = get_student()
+    print(f"{student.name} from {student.house}")
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    return Student(name, house)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+`self` refers to the object being constructed. `Student(name, house)` calls `__init__` under the hood and returns the new instance.
+
+---
+
+## raise
+
+Good OOP practice means **validating data inside the class** so callers cannot create objects in an invalid state. Python lets you `raise` exceptions to signal errors:
+
+```py
+class Student:
+    def __init__(self, name, house):
+        if not name:
+            raise ValueError("Missing name")
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        self.name = name
+        self.house = house
+```
+
+You can also define custom **methods** on a class—functions that belong to every instance. The special `__str__` method controls how an object looks when printed:
+
+```py
+class Student:
+    def __init__(self, name, house, patronus=None):
+        if not name:
+            raise ValueError("Missing name")
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        if patronus and patronus not in ["Stag", "Otter", "Jack Russell terrier"]:
+            raise ValueError("Invalid patronus")
+        self.name = name
+        self.house = house
+        self.patronus = patronus
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+
+    def charm(self):
+        match self.patronus:
+            case "Stag":
+                return "🐴"
+            case "Otter":
+                return "🦦"
+            case "Jack Russell terrier":
+                return "🐶"
+            case _:
+                return "🪄"
+
+
+def main():
+    student = get_student()
+    print("Expecto Patronum!")
+    print(student.charm())
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    patronus = input("Patronus: ") or None
+    return Student(name, house, patronus)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Methods prefixed and suffixed with double underscores (`__init__`, `__str__`) are called **dunder methods** (short for "double underscore"). Python calls them automatically in specific situations.
+
+---
+
+## Decorators
+
+**Properties** use function decorators—lines beginning with `@`—to add validation logic to attribute access. A `@property` defines a **getter**, and `@name.setter` defines a **setter**:
+
+```py
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Invalid name")
+        self._name = name
+
+    @property
+    def house(self):
+        return self._house
+
+    @house.setter
+    def house(self, house):
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        self._house = house
+
+
+def main():
+    student = get_student()
+    print(student)
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    return Student(name, house)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+The convention is to store the actual value in `_house` (with a leading underscore) while exposing it through the `house` property. The underscore signals to other programmers: *don't touch this directly*. All validation runs through the setter every time the attribute is assigned—even inside `__init__`.
+
+---
+
+## Connecting to Previous Work in this Course
+
+You have been using classes all along without realizing it. Every built-in type in Python is a class:
+
+```py
+print(type(50))        # <class 'int'>
+print(type("hello"))   # <class 'str'>
+print(type([]))        # <class 'list'>
+print(type({}))        # <class 'dict'>
+```
+
+When you called `"hello".upper()` or `[1, 2].append(3)`, you were calling methods defined on the `str` and `list` classes. OOP has been running your programs the entire time.
+
+---
+
+## Summing Up
+
+Object-oriented programming gives you a powerful way to model the real world in code. In this chapter we covered…
+
+- **Object-oriented programming** — organizing code around objects rather than procedures
+- **Classes** — blueprints for new data types, with `__init__` as the constructor
+- **raise** — signaling errors from within a class to enforce valid state
+- **Decorators** — using `@property` and setters to protect attributes

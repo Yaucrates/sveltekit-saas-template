@@ -1,0 +1,384 @@
+# Chapter 10: Et Cetera
+
+Over the many past lessons, we have covered so much related to Python! In this lesson, we will be focusing upon many of the "et cetera" items not previously discussed. "Et cetera" literally means "and the rest"!
+
+Indeed, if you look at the Python documentation, you will find quite "the rest" of other features.
+
+---
+
+## set
+
+In math, a **set** is a collection of numbers without any duplicates.
+
+Consider the following approach to collecting unique house names:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+    {"name": "Padma", "house": "Ravenclaw"},
+]
+
+houses = []
+for student in students:
+    if student["house"] not in houses:
+        houses.append(student["house"])
+
+for house in sorted(houses):
+    print(house)
+```
+
+We iterate through each student and only append a house if it isn't already in the list. Python's built-in `set` type handles this automatically:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+    {"name": "Padma", "house": "Ravenclaw"},
+]
+
+houses = set()
+for student in students:
+    houses.add(student["house"])
+
+for house in sorted(houses):
+    print(house)
+```
+
+No duplicate-checking is needed. The `set` object takes care of uniqueness automatically.
+
+---
+
+## Global Variables
+
+In Python, variables defined outside any function are accessible anywhere in the file.
+
+```py
+balance = 0
+
+
+def main():
+    print("Balance:", balance)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+This works for reading `balance`, but modifying it inside a function causes an `UnboundLocalError`:
+
+```py
+balance = 0
+
+
+def main():
+    print("Balance:", balance)
+    deposit(100)
+    withdraw(50)
+    print("Balance:", balance)
+
+
+def deposit(n):
+    balance += n
+
+
+def withdraw(n):
+    balance -= n
+
+
+if __name__ == "__main__":
+    main()
+```
+
+To modify a global variable inside a function, use the `global` keyword:
+
+```py
+balance = 0
+
+
+def main():
+    print("Balance:", balance)
+    deposit(100)
+    withdraw(50)
+    print("Balance:", balance)
+
+
+def deposit(n):
+    global balance
+    balance += n
+
+
+def withdraw(n):
+    global balance
+    balance -= n
+
+
+if __name__ == "__main__":
+    main()
+```
+
+`global balance` tells each function to refer to the top-level variable rather than creating a local one. A cleaner solution is to use a class, which encapsulates state naturally:
+
+```py
+class Account:
+    def __init__(self):
+        self._balance = 0
+
+    @property
+    def balance(self):
+        return self._balance
+
+    def deposit(self, n):
+        self._balance += n
+
+    def withdraw(self, n):
+        self._balance -= n
+
+
+def main():
+    account = Account()
+    print("Balance:", account.balance)
+    account.deposit(100)
+    account.withdraw(50)
+    print("Balance:", account.balance)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Instance variables are accessible to all methods via `self`, removing the need for globals entirely. Generally speaking, global variables should be used quite sparingly, if at all!
+
+---
+
+## Constants
+
+Some languages enforce unchangeable variables called **constants**. Python has no built-in mechanism to prevent a variable from being changed, but the convention is to write constant names in `ALL_CAPS`:
+
+```py
+MEOWS = 3
+
+for _ in range(MEOWS):
+    print("meow")
+```
+
+An all-caps name signals to other programmers: *don't change this*. You can also define a class-level constant:
+
+```py
+class Cat:
+    MEOWS = 3
+
+    def meow(self):
+        for _ in range(Cat.MEOWS):
+            print("meow")
+
+
+cat = Cat()
+cat.meow()
+```
+
+Because `MEOWS` is defined outside any method, every method of the class can access it via `Cat.MEOWS`.
+
+---
+
+## Type Hints
+
+Python does not require you to declare variable types, but **type hints** let you annotate them for clarity and tooling support. `mypy` is a static type-checker that can catch type errors before you run your program.
+
+Install it with:
+
+```
+pip install mypy
+```
+
+Here is a function without hints:
+
+```py
+def meow(n):
+    for _ in range(n):
+        print("meow")
+
+
+number = input("Number: ")
+meow(number)
+```
+
+`input()` returns a `str`, but `range()` expects an `int`. A type hint on the parameter signals the expected type:
+
+```py
+def meow(n: int):
+    for _ in range(n):
+        print("meow")
+
+
+number = input("Number: ")
+meow(number)
+```
+
+Running `mypy meows.py` will flag the mismatch. Annotate the variable too:
+
+```py
+def meow(n: int):
+    for _ in range(n):
+        print("meow")
+
+
+number: int = input("Number: ")
+meow(number)
+```
+
+Fix the error by casting the input:
+
+```py
+def meow(n: int):
+    for _ in range(n):
+        print("meow")
+
+
+number: int = int(input("Number: "))
+meow(number)
+```
+
+You can also annotate **return types** using `->`. Use `-> None` when a function has no return value:
+
+```py
+def meow(n: int) -> None:
+    for _ in range(n):
+        print("meow")
+
+
+number: int = int(input("Number: "))
+meows: str = meow(number)
+print(meows)
+```
+
+`mypy` will catch the error—`meow` returns `None`, not `str`. Fix it by making the function return a string:
+
+```py
+def meow(n: int) -> str:
+    return "meow\n" * n
+
+
+number: int = int(input("Number: "))
+meows: str = meow(number)
+print(meows, end="")
+```
+
+`mypy` now reports no errors.
+
+---
+
+## Docstrings
+
+A **docstring** is a string literal placed immediately after a function definition. It documents what the function does:
+
+```py
+def meow(n):
+    """Meow n times."""
+    return "meow\n" * n
+
+
+number = int(input("Number: "))
+meows = meow(number)
+print(meows, end="")
+```
+
+A fuller docstring can describe parameters, types, exceptions, and return values:
+
+```py
+def meow(n):
+    """
+    Meow n times.
+
+    :param n: Number of times to meow
+    :type n: int
+    :raise TypeError: If n is not an int
+    :return: A string of n meows, one per line
+    :rtype: str
+    """
+    return "meow\n" * n
+
+
+number = int(input("Number: "))
+meows = meow(number)
+print(meows, end="")
+```
+
+Tools like **Sphinx** can parse docstrings and automatically generate web pages or PDF documentation for your project.
+
+---
+
+## argparse
+
+When programs grow complex, `sys.argv` becomes unwieldy to manage manually:
+
+```py
+import sys
+
+if len(sys.argv) == 1:
+    print("meow")
+elif len(sys.argv) == 3 and sys.argv[1] == "-n":
+    n = int(sys.argv[2])
+    for _ in range(n):
+        print("meow")
+else:
+    print("usage: meows.py [-n NUMBER]")
+```
+
+The `argparse` library handles all the parsing for you:
+
+```py
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-n")
+args = parser.parse_args()
+
+for _ in range(int(args.n)):
+    print("meow")
+```
+
+Add a description and `help` text so users know what to do:
+
+```py
+import argparse
+
+parser = argparse.ArgumentParser(description="Meow like a cat")
+parser.add_argument("-n", help="number of times to meow")
+args = parser.parse_args()
+
+for _ in range(int(args.n)):
+    print("meow")
+```
+
+Running `python meows.py --help` now prints useful guidance. You can also add a default value and enforce a type:
+
+```py
+import argparse
+
+parser = argparse.ArgumentParser(description="Meow like a cat")
+parser.add_argument("-n", default=1, help="number of times to meow", type=int)
+args = parser.parse_args()
+
+for _ in range(args.n):
+    print("meow")
+```
+
+When the user omits `-n`, the program meows once by default.
+
+---
+
+## Summing Up
+
+In this chapter we covered…
+
+- **set** — a collection that automatically eliminates duplicates
+- **Global variables** — accessing and modifying top-level variables inside functions with `global`
+- **Constants** — the `ALL_CAPS` convention for values that should not change
+- **Type hints** — annotating variables and functions to catch type errors with `mypy`
+- **Docstrings** — standardized inline documentation for functions
+- **argparse** — parsing command-line arguments with help text, defaults, and automatic type conversion

@@ -1,0 +1,30 @@
+# Setting Up Your Development Environment
+
+Before you can begin writing and running Python code, you’ll need to prepare your
+computer with the right tools. This section will guide you through installing Python
+and setting up a code editor, ensuring that you have everything you need to follow
+along with the course.
+
+## Installing Python
+
+Python is the programming language we'll use throughout the course, and installing
+it is the first step. We'll cover the process for Windows, macOS, and Linux to ensure
+compatibility regardless of your operating system.
+1. Download the latest stable version from the [official Python website](https://www.python.org/downloads/).
+2. Run the installer and **check the box to add Python to your PATH**—-this makes it
+accessible from the command line.
+3. Verify the installation by opening a terminal or command prompt and typing `python --version`.
+You should see the version number displayed.
+
+## Installing a Code Editor
+
+Good code editors enhances your productivity with features like syntax highlighting,
+code completion, and debugging tools. For this course, we recommend [Visual Studio Code](https://code.visualstudio.com)
+because of its lightweight design and powerful extensions. If you decide to go with
+this option, make sure to follow the set up [tutorial](https://code.visualstudio.com/docs/python/python-tutorial).
+If you'd like an alternative, [PyCharm](https://www.jetbrains.com/pycharm/) is a good Python-specific code editor.
+
+## Looking Forward
+
+In the next lesson, we'll write and run your first Python program, introducing basic
+syntax and the interactive shell.

@@ -1,0 +1,66 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# NUMB3RS
+
+## Problem to Solve
+
+An IPv4 address is a 32-bit number written as four decimal integers separated by dots, like `192.168.0.1`. Each integer is in the range `0` to `255` inclusive.
+
+In a file called `numb3rs.py`, implement a function called `validate` that accepts an IPv4 address as a string and returns `True` if it is a valid IPv4 address, or `False` otherwise. Use regular expressions via Python's `re` module.
+
+You must also implement a `main` function that prompts the user for an IPv4 address and prints `True` or `False` depending on whether the input is valid.
+
+## Examples
+
+```bash
+$ python numb3rs.py
+IPv4 Address: 1.2.3.4
+True
+```
+
+```bash
+$ python numb3rs.py
+IPv4 Address: 275.3.6.28
+False
+```
+
+```bash
+$ python numb3rs.py
+IPv4 Address: cat
+False
+```
+
+```bash
+$ python numb3rs.py
+IPv4 Address: 192.168.1.1
+True
+```
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">re.fullmatch()</code> to ensure the <em>entire</em> string matches your pattern — not just a substring.</li>
+        <li>A regex can match the structure (four groups of digits separated by dots), but you'll also need Python logic to verify each group is in the range 0–255.</li>
+        <li>Use capturing groups <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">(\d+)</code> so you can extract each octet and convert it to an integer with <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">int()</code>.</li>
+        <li>Remember to anchor your pattern with <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">^</code> and <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">$</code>, or use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">fullmatch</code> which does this automatically.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you input:
+
+- `1.2.3.4`?
+- `0.0.0.0` and `255.255.255.255`?
+- `256.0.0.1` (out of range)?
+- `1.2.3` (only three octets)?
+- `1.2.3.4.5` (five octets)?
+- `cat` (non-numeric)?
+
+---
+
+<AssignmentSubmission assignmentName="numb3rs.py" />

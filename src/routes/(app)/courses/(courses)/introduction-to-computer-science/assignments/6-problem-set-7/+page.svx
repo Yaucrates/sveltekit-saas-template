@@ -1,0 +1,74 @@
+<script lang="ts">
+    import AssignmentSubmission from '$lib/components/ui/AssignmentSubmission.svelte';
+</script>
+
+# Lines of Code
+
+## Problem to Solve
+
+One way to measure the size of a program is to count its lines of code — but blank lines and comments don't really count. Tools like `cloc` ("Count Lines of Code") exist precisely to count meaningful lines.
+
+In a file called `lines.py`, implement a program that accepts a Python filename as a command-line argument and outputs the number of lines of code in that file, **excluding**:
+
+- Blank lines (lines that are entirely whitespace)
+- Comments (lines whose first non-whitespace character is `#`)
+
+## Examples
+
+```bash
+$ python lines.py hello.py
+5
+```
+
+```bash
+$ python lines.py lines.py
+10
+```
+
+If no filename is provided, or more than one is provided, output a usage message and exit with status `1`:
+
+```bash
+$ python lines.py
+Usage: python lines.py <filename>
+```
+
+If the filename provided does not end in `.py`, exit with status `1` and an appropriate error:
+
+```bash
+$ python lines.py notes.txt
+Not a Python file
+```
+
+If the file does not exist, exit with status `1` and an appropriate error:
+
+```bash
+$ python lines.py missing.py
+File does not exist
+```
+
+## Walkthrough
+
+<div class="not-prose rounded-xl border border-stone-200 bg-stone-50 p-6 mb-6">
+    <h3 class="text-base font-semibold text-stone-900 mb-3">Hints</h3>
+    <ul class="space-y-2 text-sm text-stone-700 list-disc pl-5">
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">import sys</code> and check <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">sys.argv</code> to get and validate the command-line argument.</li>
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">line.strip()</code> to remove surrounding whitespace before checking whether a line is blank or starts with <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">#</code>.</li>
+        <li>Open the file in a <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">try / except FileNotFoundError</code> block to handle a missing file cleanly.</li>
+        <li>Use <code class="text-stone-900 bg-stone-200/70 px-1 py-0.5 rounded text-xs">sys.exit(1)</code> to terminate with a non-zero exit code when reporting errors.</li>
+    </ul>
+</div>
+
+## How to Test Your Code
+
+Does your code work as prescribed when you:
+
+- Pass a valid `.py` file?
+- Pass a file with only comments and blank lines (answer should be `0`)?
+- Pass no arguments?
+- Pass two arguments?
+- Pass a `.txt` file?
+- Pass a filename that doesn't exist?
+
+---
+
+<AssignmentSubmission assignmentName="lines.py" />

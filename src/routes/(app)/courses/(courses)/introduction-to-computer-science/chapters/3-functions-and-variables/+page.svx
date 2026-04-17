@@ -1,0 +1,150 @@
+# Chapter 1.2: Functions and Variables
+
+In the last chapter, we wrote a `hello.py` file and ran it from the terminal. Let's take a closer look at what's actually happening in that program, and then extend it to do something more interesting.
+
+---
+
+## Functions
+
+When you write `print("hello, world")`, you are calling a **function**. Functions are actions that a programming language already knows how to perform. Rather than teaching the computer how to display text from scratch, you call the `print` function and it handles that for you.
+
+The value you pass into a function is called an **argument**. In this case, `"hello, world"` is the argument--it's what you're asking `print` to display. Functions can take one argument, multiple arguments, or sometimes none at all.
+
+---
+
+## Bugs
+
+Bugs are mistakes in your code--and they are a completely normal part of programming. Every programmer, at every level, runs into them. Don't get discouraged when something breaks. Working through bugs is how you grow.
+
+Imagine you accidentally wrote:
+
+```py
+print("hello, world"
+```
+
+You forgot the closing `)`. If you tried to run this, the interpreter would output an error in the terminal window:
+
+```
+  File "hello.py", line 1
+    print("hello, world"
+         ^
+SyntaxError: '(' was never closed
+```
+
+Error messages like this can often point you directly to your mistake and give you a clue on how to fix it. Sometimes, however, the interpreter isn't so helpful--the message may point to the wrong line or give a confusing explanation. With experience, you'll get better at reading them.
+
+---
+
+## Improving Your First Python Program
+
+We can personalize our first Python program. Adding the `input` function lets us prompt the user for information. We can edit our code to say:
+
+```py
+input("What's your name? ")
+print("hello, world")
+```
+
+This edit alone won't use what the user types, though. For that, we need **variables**.
+
+### Variables
+
+A variable is a container for a value in your program. You create one using the `=` sign:
+
+```py
+name = input("What's your name? ")
+print("hello, world")
+```
+
+Here, `=` is the **assignment operator**. It takes the value on the right side--whatever `input` returns--and assigns it to the variable called `name` on the left. This is different from the equals sign in math. It doesn't mean "these two things are equal." It means "store this value here."
+
+Now `name` holds what the user typed. We can use it in our `print`:
+
+```py
+name = input("What's your name? ")
+print("hello,")
+print(name)
+```
+
+If the user types `David`, the output would be:
+
+```
+What's your name? David
+hello,
+David
+```
+
+We're getting closer. The greeting and the name are on separate lines, but we'll address that shortly.
+
+---
+
+## Comments
+
+**Comments** are notes you leave in your code. They're for you, and for anyone else who might read your code later. Python ignores them completely when running the program.
+
+Any line that starts with `#` is a comment:
+
+```py
+# Ask the user for their name
+name = input("What's your name? ")
+print("hello,")
+print(name)
+```
+
+Comments are a useful habit to build early. They help you keep track of what your code is doing and make it easier to return to later.
+
+---
+
+## Pseudocode
+
+**Pseudocode** is a special kind of comment used to plan out your code before you write it. Rather than jumping straight to the solution, you describe the steps in plain language first:
+
+```py
+# Ask the user for their name
+name = input("What's your name? ")
+
+# Print hello
+print("hello,")
+
+# Print the name inputted
+print(name)
+```
+
+This is especially helpful when you're working on something complex and aren't sure yet how to implement each step. Write the plan in comments, then fill in the code underneath.
+
+---
+
+## Putting It Together
+
+Now let's improve our program. Instead of calling `print` twice and ending up with the greeting and name on separate lines, we can join them:
+
+```py
+# Ask the user for their name
+name = input("What's your name? ")
+
+# Print hello and the inputted name
+print("hello, " + name)
+```
+
+The `+` operator **concatenates** (joins) two strings together into one. If the user types `David`, the output is:
+
+```
+hello, David
+```
+
+We can also pass multiple arguments to `print` by separating them with a comma:
+
+```py
+# Ask the user for their name
+name = input("What's your name? ")
+
+# Print hello and the inputted name
+print("hello,", name)
+```
+
+When you pass multiple arguments, `print` automatically adds a space between them. The result is the same: `hello, David`.
+
+---
+
+## Looking Forward
+
+You've now written programs that accept input, store it in variables, and use it in output. You've also seen how bugs work and how to start planning code with comments and pseudocode. In the next chapter, we'll go deeper into strings, learn about numbers, and write our very own functions.

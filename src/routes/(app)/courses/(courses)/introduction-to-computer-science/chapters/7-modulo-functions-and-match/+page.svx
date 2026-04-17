@@ -1,0 +1,164 @@
+# Chapter 2.2: Modulo, Functions, and match
+
+In the last chapter we learned how to make decisions with `if`, `elif`, and `else`. Now we'll look at a new operator, practice writing Boolean-returning functions, and meet Python's `match` statement.
+
+---
+
+## Modulo
+
+In mathematics, **parity** refers to whether a number is even or odd. In programming, we check parity using the **modulo operator** `%`, which gives us the *remainder* after division.
+
+- `4 % 2` evaluates to `0` — 4 divides evenly by 2, no remainder
+- `3 % 2` evaluates to `1` — 3 divided by 2 leaves a remainder of 1
+
+This makes `%` a natural tool for checking whether a number is even. Create a new file called `parity.py`:
+
+```py
+x = int(input("What's x? "))
+
+if x % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+```
+
+If the remainder when dividing by 2 is 0, the number is even. Otherwise it is odd.
+
+---
+
+## Creating Your Own Parity Function
+
+As your programs grow, it becomes useful to encapsulate logic inside your own functions. Let's move the parity check into a dedicated function:
+
+```py
+def main():
+    x = int(input("What's x? "))
+    if is_even(x):
+        print("Even")
+    else:
+        print("Odd")
+
+
+def is_even(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+
+
+main()
+```
+
+Notice that `if is_even(x):` works without any comparison operator. That's because `is_even` returns a **Boolean**—either `True` or `False`. An `if` statement simply needs something that evaluates to one of those two values.
+
+---
+
+## Pythonic
+
+Python has its own sense of style. Code that follows the language's natural idioms is often called **Pythonic**. Compare these three versions of `is_even`, all of which are correct:
+
+```py
+# Version 1: explicit if/else
+def is_even(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+```
+
+```py
+# Version 2: ternary expression
+def is_even(n):
+    return True if n % 2 == 0 else False
+```
+
+```py
+# Version 3: return the expression directly
+def is_even(n):
+    return n % 2 == 0
+```
+
+Version 3 is the most Pythonic. The expression `n % 2 == 0` already evaluates to `True` or `False`—there is no need to wrap it in anything. Returning the expression directly is clean, concise, and idiomatic Python.
+
+---
+
+## match
+
+Python 3.10 introduced the `match` statement as an alternative to long chains of `if`/`elif`. It compares a single value against a series of **cases**.
+
+Consider this example that assigns Hogwarts houses:
+
+```py
+name = input("What's your name? ")
+
+if name == "Harry":
+    print("Gryffindor")
+elif name == "Hermione":
+    print("Gryffindor")
+elif name == "Ron":
+    print("Gryffindor")
+elif name == "Draco":
+    print("Slytherin")
+else:
+    print("Who?")
+```
+
+The `or` keyword cuts this down a bit:
+
+```py
+name = input("What's your name? ")
+
+if name == "Harry" or name == "Hermione" or name == "Ron":
+    print("Gryffindor")
+elif name == "Draco":
+    print("Slytherin")
+else:
+    print("Who?")
+```
+
+Using `match`, the same logic looks like this:
+
+```py
+name = input("What's your name? ")
+
+match name:
+    case "Harry":
+        print("Gryffindor")
+    case "Hermione":
+        print("Gryffindor")
+    case "Ron":
+        print("Gryffindor")
+    case "Draco":
+        print("Slytherin")
+    case _:
+        print("Who?")
+```
+
+The `case _:` at the end is the **wildcard**—it matches anything, behaving like `else`. Once a matching case is found, Python runs the indented block and stops—it does not continue checking the remaining cases.
+
+The `|` operator inside a case lets you match multiple values at once:
+
+```py
+name = input("What's your name? ")
+
+match name:
+    case "Harry" | "Hermione" | "Ron":
+        print("Gryffindor")
+    case "Draco":
+        print("Slytherin")
+    case _:
+        print("Who?")
+```
+
+`match` is especially readable when you have many distinct values to compare against a single variable.
+
+---
+
+## Summing Up
+
+You now have a full toolkit for conditional logic in Python. In this chapter we covered…
+
+- The modulo operator `%` for checking remainders and parity
+- Writing functions that return Boolean values
+- Pythonic style—returning expressions directly instead of wrapping them in `if`/`else`
+- `match` statements and the `|` operator for matching multiple cases at once

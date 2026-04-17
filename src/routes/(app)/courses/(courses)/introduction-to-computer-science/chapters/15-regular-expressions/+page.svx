@@ -1,0 +1,233 @@
+# Chapter 8.1: Regular Expressions
+
+Regular expressions give you a concise language for describing patterns in text—making it possible to validate, clean up, and extract user input far more powerfully than plain string methods alone.
+
+---
+
+## Regular Expressions
+
+A **regular expression** (or *regex*) is a sequence of characters that defines a search pattern. Python's built-in `re` module lets you match these patterns against strings.
+
+Before reaching for regex, you might try simple string checks:
+
+```py
+email = input("What's your email? ").strip()
+
+if "@" in email:
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+This works for the simplest case, but `@@` would pass. Adding a `.` check helps a little:
+
+```py
+email = input("What's your email? ").strip()
+
+if "@" in email and "." in email:
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+But now `@.` is considered valid. Splitting on `@` gets us further:
+
+```py
+email = input("What's your email? ").strip()
+
+username, domain = email.split("@")
+
+if username and "." in domain:
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+And restricting to `.edu` domains:
+
+```py
+email = input("What's your email? ").strip()
+
+username, domain = email.split("@")
+
+if username and domain.endswith(".edu"):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+Each step is an improvement, but we keep finding new gaps. The `re` module's `re.search` function lets us express all these rules as a single pattern.
+
+`re.search` follows the signature:
+
+```
+re.search(pattern, string, flags=0)
+```
+
+The simplest use just replicates what `"@" in email` already does:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search("@", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+The real power comes from special pattern symbols:
+
+| Symbol | Meaning |
+|--------|---------|
+| `.` | Any character except a newline |
+| `*` | 0 or more repetitions |
+| `+` | 1 or more repetitions |
+| `?` | 0 or 1 repetition |
+| `{m}` | Exactly *m* repetitions |
+| `{m,n}` | Between *m* and *n* repetitions |
+
+Using `.+` on each side of `@` ensures there is at least one character both before and after the symbol:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(".+@.+", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+To also require a `.edu` ending, you might first try:
+
+```py
+if re.search(".+@.+.edu", email):
+```
+
+But `.` in a regex means *any character*, so `malan@harvard?edu` would still match. Escape the dot with `\` to match a literal period:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r".+@.+\.edu", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+The `r` prefix creates a **raw string**—Python will not interpret `\n`, `\t`, or similar escape sequences inside it, so the `\` is passed directly to the regex engine.
+
+Two more anchors let us pin the pattern to the start and end of the input:
+
+| Symbol | Meaning |
+|--------|---------|
+| `^` | Start of the string |
+| `$` | End of the string |
+
+Without anchors, the pattern would match anywhere inside a longer sentence. Adding `^` and `$` forces the entire input to conform:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^.+@.+\.edu$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+Now `My email is malan@harvard.edu.` is rejected because it has characters outside the pattern boundaries.
+
+Still, `malan@@@harvard.edu` would pass because `.+` allows any character, including `@`. Character sets let us be more specific:
+
+| Symbol | Meaning |
+|--------|---------|
+| `[...]` | Any one character in the set |
+| `[^...]` | Any one character *not* in the set |
+
+`[^@]+` means "one or more characters that are not `@`":
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^[^@]+@[^@]+\.edu$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+To limit the characters even further to letters, digits, and underscores:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.edu$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+Because this combination is so common, Python provides the shorthand `\w`:
+
+| Shorthand | Meaning |
+|-----------|---------|
+| `\d` | Decimal digit |
+| `\D` | Not a decimal digit |
+| `\s` | Whitespace character |
+| `\S` | Not a whitespace character |
+| `\w` | Word character (letters, digits, `_`) |
+| `\W` | Not a word character |
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@\w+\.edu$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+To accept more than just `.edu`, use the alternation operator `|` inside a group:
+
+```py
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@\w+\.(com|edu|gov|net|org)$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
+
+Additional grouping symbols:
+
+| Symbol | Meaning |
+|--------|---------|
+| `A\|B` | Either A or B |
+| `(...)` | A capturing group |
+| `(?:...)` | A non-capturing group |
+
+---
+
+## Summing Up
+
+In this chapter you learned the building blocks of regular expressions using Python's `re` module.
+
+- **Regular Expressions** — patterns built from special symbols (`.`, `+`, `*`, `{m,n}`) that describe what text to match
+- **Anchors** — `^` and `$` pin a pattern to the start and end of the string
+- **Character Sets** — `[...]` and `[^...]` match specific or excluded characters
+- **Shorthands** — `\w`, `\d`, `\s` and their uppercase inverses for common character classes
+- **Alternation and Groups** — `A|B` for either/or, `(...)` for capturing groups, `(?:...)` for non-capturing groups

@@ -1,0 +1,277 @@
+# Chapter 10.2: Functional Python
+
+Python provides a rich set of tools for writing concise, expressive code: unpacking sequences, accepting variable numbers of arguments, and transforming data with map, filter, and comprehensions.
+
+---
+
+## Unpacking
+
+Python lets you **unpack** a sequence directly into variables:
+
+```py
+first, _ = input("What's your name? ").split(" ")
+print(f"hello, {first}")
+```
+
+The same idea applies to function arguments. Instead of indexing manually into a list:
+
+```py
+def total(galleons, sickles, knuts):
+    return (galleons * 17 + sickles) * 29 + knuts
+
+
+coins = [100, 50, 25]
+
+print(total(coins[0], coins[1], coins[2]), "Knuts")
+```
+
+Use `*` to unpack the list directly:
+
+```py
+def total(galleons, sickles, knuts):
+    return (galleons * 17 + sickles) * 29 + knuts
+
+
+coins = [100, 50, 25]
+
+print(total(*coins), "Knuts")
+```
+
+For dictionaries, use `**` to unpack key-value pairs as named arguments:
+
+```py
+def total(galleons, sickles, knuts):
+    return (galleons * 17 + sickles) * 29 + knuts
+
+
+coins = {"galleons": 100, "sickles": 50, "knuts": 25}
+
+print(total(**coins), "Knuts")
+```
+
+---
+
+## args and kwargs
+
+Recall the signature of Python's built-in `print`:
+
+```py
+print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+```
+
+- `*args` — accepts any number of **positional** arguments
+- `**kwargs` — accepts any number of **named (keyword)** arguments
+
+You can write functions that accept either:
+
+```py
+def f(*args, **kwargs):
+    print("Positional:", args)
+
+
+f(100, 50, 25)
+```
+
+```py
+def f(*args, **kwargs):
+    print("Named:", kwargs)
+
+
+f(galleons=100, sickles=50, knuts=25)
+```
+
+Named arguments arrive as a dictionary inside the function.
+
+---
+
+## map
+
+`map` applies a function to every element of a sequence and returns the results.
+
+Without `map`, accumulating uppercase words looks like this:
+
+```py
+def main():
+    yell("This", "is", "CS50")
+
+
+def yell(*words):
+    uppercased = []
+    for word in words:
+        uppercased.append(word.upper())
+    print(*uppercased)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+With `map`, the loop collapses to a single expression:
+
+```py
+def main():
+    yell("This", "is", "CS50")
+
+
+def yell(*words):
+    uppercased = map(str.upper, words)
+    print(*uppercased)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+`map(str.upper, words)` applies `str.upper` to every word and returns the transformed sequence.
+
+---
+
+## List Comprehensions
+
+A **list comprehension** builds a list in a single expression:
+
+```py
+def main():
+    yell("This", "is", "CS50")
+
+
+def yell(*words):
+    uppercased = [arg.upper() for arg in words]
+    print(*uppercased)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+You can also include a condition. Without a comprehension:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+]
+
+gryffindors = []
+for student in students:
+    if student["house"] == "Gryffindor":
+        gryffindors.append(student["name"])
+
+for gryffindor in sorted(gryffindors):
+    print(gryffindor)
+```
+
+With a comprehension:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+]
+
+gryffindors = [
+    student["name"] for student in students if student["house"] == "Gryffindor"
+]
+
+for gryffindor in sorted(gryffindors):
+    print(gryffindor)
+```
+
+---
+
+## filter
+
+`filter` returns a subset of a sequence for which a condition is `True`.
+
+Using a named function:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+]
+
+
+def is_gryffindor(s):
+    return s["house"] == "Gryffindor"
+
+
+gryffindors = filter(is_gryffindor, students)
+
+for gryffindor in sorted(gryffindors, key=lambda s: s["name"]):
+    print(gryffindor["name"])
+```
+
+Using a `lambda` function:
+
+```py
+students = [
+    {"name": "Hermione", "house": "Gryffindor"},
+    {"name": "Harry", "house": "Gryffindor"},
+    {"name": "Ron", "house": "Gryffindor"},
+    {"name": "Draco", "house": "Slytherin"},
+]
+
+gryffindors = filter(lambda s: s["house"] == "Gryffindor", students)
+
+for gryffindor in sorted(gryffindors, key=lambda s: s["name"]):
+    print(gryffindor["name"])
+```
+
+---
+
+## Dictionary Comprehensions
+
+Just like lists, dictionaries can be built with a comprehension.
+
+Without a comprehension:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+gryffindors = []
+
+for student in students:
+    gryffindors.append({"name": student, "house": "Gryffindor"})
+
+print(gryffindors)
+```
+
+Using a list comprehension to produce a list of dictionaries:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+gryffindors = [{"name": student, "house": "Gryffindor"} for student in students]
+
+print(gryffindors)
+```
+
+Using a dictionary comprehension to produce a `{name: house}` mapping:
+
+```py
+students = ["Hermione", "Harry", "Ron"]
+
+gryffindors = {student: "Gryffindor" for student in students}
+
+print(gryffindors)
+```
+
+---
+
+## Summing Up
+
+In this chapter we covered…
+
+- **Unpacking** — using `*` and `**` to spread sequences and dictionaries into function arguments
+- **args and kwargs** — writing functions that accept an arbitrary number of positional or named arguments
+- **map** — applying a function to every element of a sequence in a single expression
+- **List comprehensions** — building filtered or transformed lists in a single expressive line
+- **filter** — selecting elements of a sequence that satisfy a condition, with named or lambda functions
+- **Dictionary comprehensions** — building dictionaries in a single expressive line

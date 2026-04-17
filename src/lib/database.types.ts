@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      classroom: {
+        Row: {
+          created_at: string
+          id: string
+          join_code: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          join_code: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          join_code?: string
+        }
+        Relationships: []
+      }
+      classroom_students: {
+        Row: {
+          classroom_id: string
+          created_at: string
+          id: string
+          user_id: string
+          user_role: string
+        }
+        Insert: {
+          classroom_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+          user_role: string
+        }
+        Update: {
+          classroom_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+          user_role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "classroom_students_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classroom"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      submissions: {
+        Row: {
+          assignment_id: string
+          created_at: string
+          id: string
+          results: Json
+          submission_content: string
+          user_id: string
+        }
+        Insert: {
+          assignment_id: string
+          created_at?: string
+          id?: string
+          results: Json
+          submission_content: string
+          user_id: string
+        }
+        Update: {
+          assignment_id?: string
+          created_at?: string
+          id?: string
+          results?: Json
+          submission_content?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
