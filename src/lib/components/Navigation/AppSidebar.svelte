@@ -23,7 +23,7 @@
 	<!-- Logo Area (same pattern as NavigationBar) -->
 	<div class="relative h-24 w-full shrink-0">
 		<a
-			href="/dashboard"
+			href="/"
 			class="
                 absolute left-8 top-6 origin-left transition-all duration-300
                 {isHovered
@@ -50,13 +50,13 @@
 	<!-- Navigation Items -->
 	<div class="flex-1 flex flex-col px-5 pb-6">
 		<nav class="h-full flex flex-col gap-2">
-			<!-- Dashboard Section -->
+			<!-- Courses Section -->
             <a
-                href="/dashboard"
+                href="/courses"
                 class="
                     flex items-center gap-1.5 p-2 rounded-sm
                     transition-colors duration-200
-                    {isActive('/dashboard')
+                    {isActive('/courses')
                     ? 'bg-blue-50 text-blue-700'
                     : 'hover:bg-stone-100 text-stone-700'}
                 "
@@ -68,7 +68,7 @@
                         {isHovered ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none'}
                     "
                 >
-                    Dashboard
+                    Courses
                 </span>
             </a>
 
